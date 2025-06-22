@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LiveTileWinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "LiveTileWinUI3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
