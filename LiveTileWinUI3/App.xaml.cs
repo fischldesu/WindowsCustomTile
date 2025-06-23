@@ -29,7 +29,7 @@ namespace LiveTileWinUI3
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
-        public static Window? mainWindow { get; private set; }
+        public static MainWindow? mainWindow { get; private set; }
         private Window? m_window;
 
         public App()
@@ -44,18 +44,18 @@ namespace LiveTileWinUI3
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             Logger.Log("Application launched （App.OnLaunched");
-            
-            m_window = new MainWindow();
-            mainWindow = m_window;
 
-            if (Administrator())
-            {
+            mainWindow = new MainWindow();
+            m_window = mainWindow;
+
+            //if (Administrator())
+            //{
                 m_window.Activate();
-            }
-            else
-            {
+            //}
+            //else
+            //{
                 // do your own logic here
-            }
+            //}
         }
 
         public static bool Administrator()

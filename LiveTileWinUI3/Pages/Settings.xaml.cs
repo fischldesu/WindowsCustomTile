@@ -1,3 +1,5 @@
+using ABI.System;
+using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -18,14 +20,27 @@ using Windows.Foundation.Collections;
 
 namespace LiveTileWinUI3.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
+
     public sealed partial class Settings : Page
     {
         public Settings()
         {
             this.InitializeComponent();
+            backdropCombo.ItemsSource = Enum.GetValues(typeof(WindowBackdropType));
+            paneDisplayModeCombo.ItemsSource = Enum.GetValues(typeof(NavigationViewPaneDisplayMode));
+            themeSelectorCombo.ItemsSource = Enum.GetValues(typeof(ElementTheme));
         }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in settingsCards.Children.Cast<FrameworkElement?>())
+            {
+                var itemType = item?.GetType();
+                if (item != null && (itemType == typeof(SettingsCard) || itemType == typeof(SettingsExpander)))
+                    item.Margin = new Thickness(0, 4, 0, 4);
+            }
+            languageCombo.SelectedIndex = 0;
+        }
+
     }
 }

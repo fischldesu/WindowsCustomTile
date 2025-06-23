@@ -4,9 +4,12 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
+    xmlns:Proj="using:LiveTileWinUI3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    xmlns:CommunityToolkit="using:CommunityToolkit.WinUI.Controls"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
 
     <Grid Padding="32">
         <Grid.RowDefinitions>
@@ -16,7 +19,43 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="32">Settings</TextBlock>
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
-            <StackPanel Orientation="Vertical">
+            <StackPanel x:Name="settingsCards" Orientation="Vertical">
+                <TextBlock FontWeight="Bold">Appearence</TextBlock>
+                <CommunityToolkit:SettingsCard Header="Language 语言">
+                    <CommunityToolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xF2B7;" />
+                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="languageCombo">
+                        <x:String>en-US  English</x:String>
+                        <x:String>zh-CN  简体中文</x:String>
+                    </ComboBox>
+                </CommunityToolkit:SettingsCard>
+                <CommunityToolkit:SettingsExpander Header="Application Style" Description="Personalize style preferences">
+                    <CommunityToolkit:SettingsExpander.HeaderIcon>
+                        <FontIcon Glyph="&#xE790;" />
+                    </CommunityToolkit:SettingsExpander.HeaderIcon>
+                    <CommunityToolkit:SettingsExpander.Items>
+                        <CommunityToolkit:SettingsCard Header="Navigation style">
+                    <CommunityToolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xF594;" />
+                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="paneDisplayModeCombo" SelectedItem="{x:Bind Proj:App.mainWindow.PaneDisplayMode, Mode=TwoWay}" />
+                </CommunityToolkit:SettingsCard>
+                        <CommunityToolkit:SettingsCard Header="Backdrop type">
+                    <CommunityToolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xEF1F;" />
+                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                    <ComboBox x:Name="backdropCombo" SelectedItem="{x:Bind Proj:App.mainWindow.BackdropType, Mode=TwoWay}"/>
+                </CommunityToolkit:SettingsCard>
+                        <CommunityToolkit:SettingsCard Header="App Theme">
+                            <CommunityToolkit:SettingsCard.HeaderIcon>
+                                <FontIcon Glyph="&#xE793;" />
+                            </CommunityToolkit:SettingsCard.HeaderIcon>
+                            <ComboBox x:Name="themeSelectorCombo" SelectedItem="{x:Bind Proj:App.mainWindow.Theme, Mode=TwoWay}" />
+                        </CommunityToolkit:SettingsCard>
+                    </CommunityToolkit:SettingsExpander.Items>
+                </CommunityToolkit:SettingsExpander>
+
                 <TextBlock FontWeight="Bold" Margin="2 32 0 4">About this App</TextBlock>
                 <Expander HorizontalAlignment="Stretch">
                     <Expander.Header>
@@ -61,7 +100,7 @@
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <HyperlinkButton Content="Windows App SDK" NavigateUri="https://aka.ms/windowsappsdk"/>
                                 <HyperlinkButton Content="WinUI 3" NavigateUri="https://github.com/microsoft/microsoft-ui-xaml"/>
-                                <HyperlinkButton Content="UWP Adaptive Tiles" NavigateUri="https://learn.microsoft.com/zh-cn/windows/uwp/launch-resume/create-adaptive-tiles"></HyperlinkButton>
+                                <HyperlinkButton Content="Windows Community Toolkit" NavigateUri="https://aka.ms/toolkit/windows"/>
                             </StackPanel>
                         </StackPanel>
                     </Expander.Content>

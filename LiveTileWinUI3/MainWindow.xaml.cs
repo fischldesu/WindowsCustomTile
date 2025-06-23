@@ -18,8 +18,58 @@ using Windows.Foundation.Collections;
 
 namespace LiveTileWinUI3
 {
+    public enum WindowBackdropType
+    {
+        None,
+        Mica,
+        Acrylic,
+    }
     public sealed partial class MainWindow : Window
     {
+        public NavigationViewPaneDisplayMode PaneDisplayMode
+        {
+            get => view.PaneDisplayMode;
+            set => view.PaneDisplayMode = value;
+        }
+        public WindowBackdropType            BackdropType
+        {
+            get
+            {
+                var currentBackdrop = this.SystemBackdrop;
+                var name = string.Empty;
+                if (currentBackdrop != null)
+                    name = currentBackdrop.GetType().Name;
+
+                return name switch
+                {
+                    nameof(MicaBackdrop) => WindowBackdropType.Mica,
+                    nameof(DesktopAcrylicBackdrop) => WindowBackdropType.Acrylic,
+                    _ => WindowBackdropType.None
+                };
+            }
+            set
+            {
+                if (value != BackdropType)
+                {
+                    this.SystemBackdrop = value switch
+                    {
+                        WindowBackdropType.Mica => new MicaBackdrop(),
+                        WindowBackdropType.Acrylic => new DesktopAcrylicBackdrop(),
+                        _ => null
+                    };
+                }
+                
+            }
+        }
+        public ElementTheme                  Theme
+        {
+            get => view.RequestedTheme;
+            set
+            {
+                if (view.RequestedTheme != value)
+                    view.RequestedTheme = value;
+            }
+        }
         public MainWindow()
         {
             this.InitializeComponent();
