@@ -34,8 +34,8 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="LiveTileWinUI3"
-        Description="LiveTileWinUI3"
+        DisplayName="WindowsCustomTile"
+        Description="Customize Windows start menu tiles"
         BackgroundColor="transparent"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png">
