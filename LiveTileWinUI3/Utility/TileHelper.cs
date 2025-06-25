@@ -4,6 +4,13 @@ using Windows.UI.Notifications;
 
 namespace LiveTileWinUI3.Utility
 {
+    public enum TileSize
+    {
+        Small,
+        Medium,
+        Wide,
+        Large,
+    }
     public class TileHelper
     {
         private readonly TileUpdater tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
