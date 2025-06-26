@@ -32,16 +32,16 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="largeButton" Grid.RowSpan="4" Grid.ColumnSpan="4" Click="ImageButton_Click" Tag="large">
-            <Image Stretch="UniformToFill" x:Name="large" Source="{x:Bind Source.Large, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" x:Name="large" Source="{x:Bind Source.Large, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
         </Button>
         <Button x:Name="wideButton" Grid.Column="4" Grid.RowSpan="2" Grid.ColumnSpan="4" Click="ImageButton_Click" Tag="wide">
-            <Image Stretch="UniformToFill" x:Name="wide" Source="{x:Bind Source.Wide, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" x:Name="wide" Source="{x:Bind Source.Wide, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
         </Button>
         <Button x:Name="smallButton" Grid.Row="2" Grid.Column="4" Click="ImageButton_Click" Tag="small">
-            <Image Stretch="UniformToFill" x:Name="small" Source="{x:Bind Source.Small, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" x:Name="small" Source="{x:Bind Source.Small, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
         </Button>
         <Button x:Name="mediumButton" Grid.Row="2" Grid.Column="6" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="ImageButton_Click" Tag="medium">
-            <Image Stretch="UniformToFill" x:Name="medium" Source="{x:Bind Source.Medium, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Center" Stretch="UniformToFill" x:Name="medium" Source="{x:Bind Source.Medium, Converter={StaticResource StringToImageSourceConverter}, Mode=OneWay}"/>
         </Button>
         
     </Grid>

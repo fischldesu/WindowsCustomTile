@@ -20,7 +20,7 @@
         <TextBlock Grid.Row="0" FontSize="32">Settings</TextBlock>
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
             <StackPanel x:Name="settingsCards" Orientation="Vertical">
-                <TextBlock FontWeight="Bold">Appearence</TextBlock>
+                <TextBlock FontWeight="Bold">Appearance</TextBlock>
                 <CommunityToolkit:SettingsCard Header="Language 语言">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF2B7;" />
