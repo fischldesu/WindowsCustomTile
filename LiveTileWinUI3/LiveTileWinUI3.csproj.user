@@ -10,6 +10,12 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="Components\ImageTilePreviewer.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\HomePage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\XmlUriInput.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -29,9 +35,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Interval.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Pages\Main.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

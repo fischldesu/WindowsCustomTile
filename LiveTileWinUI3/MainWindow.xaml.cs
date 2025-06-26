@@ -75,7 +75,8 @@ namespace LiveTileWinUI3
             this.InitializeComponent();
         }
 
-        public Pages.Main main = new();
+        public Pages.HomePage main = new();
+        public Pages.XmlEditor xmlEditor = new();
         public Pages.Interval interval = new();
         public Pages.HTTPXmlServer httpsrv = new();
 
@@ -102,9 +103,10 @@ namespace LiveTileWinUI3
                     Page page = (selected.Tag as string) switch
                     {
                         "main" => main,
+                        "xmlEditor" => xmlEditor,
                         "interval" => interval,
                         "httpsrv" => httpsrv,
-                        _ => main,
+                        _ => xmlEditor,
                     };
                     Navigate(page);
                 }

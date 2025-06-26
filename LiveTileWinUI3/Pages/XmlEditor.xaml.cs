@@ -24,11 +24,11 @@ using WinRT.Interop;
 
 namespace LiveTileWinUI3.Pages
 {
-    public sealed partial class Main : Page
+    public sealed partial class XmlEditor : Page
     {
         public readonly InfoBar InfoBar;
         readonly XmlDocument xmlDoc = new();
-        public Main()
+        public XmlEditor()
         {
             this.InitializeComponent();
             InfoBar = info;
@@ -54,6 +54,7 @@ namespace LiveTileWinUI3.Pages
             }
             if (ret)
             {
+                Utility.TileHelper.SetXml(xmlDoc);
                 InfoBar.Severity = InfoBarSeverity.Success;
                 InfoBar.Message = "Xml parsed ok, tile updated.";
                 InfoBar.Title = "Success";

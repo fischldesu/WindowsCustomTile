@@ -76,7 +76,7 @@
                             <TextBlock VerticalAlignment="Top" Grid.Column="1" Foreground="Gray" FontSize="12" Grid.Row="1">
                             ©fischldesu 2025
                             </TextBlock>
-                            <TextBlock Grid.Column="2" Grid.RowSpan="2" Foreground="Gray" VerticalAlignment="Center">0.0.1(alpha)</TextBlock>
+                            <TextBlock Grid.Column="2" Grid.RowSpan="2" Foreground="Gray" VerticalAlignment="Center">0.0.2(alpha)</TextBlock>
                         </Grid>
                     </Expander.Header>
                     <Expander.Content>

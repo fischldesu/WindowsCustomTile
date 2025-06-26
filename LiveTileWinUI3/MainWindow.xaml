@@ -13,12 +13,17 @@
     </Window.SystemBackdrop>
     <NavigationView x:Name="view" IsBackButtonVisible="Collapsed" SelectionChanged="view_SelectionChanged" Loaded="view_Loaded">
         <NavigationView.MenuItems>
-            <NavigationViewItem x:Name="navigationDefaultItem" Tag="main" Content="Edit Tile Xml">
+            <NavigationViewItem x:Name="navigationDefaultItem" Tag="main" Content="Quick Set">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xF407;" />
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+            <NavigationViewItem Tag="xmlEditor" Content="Xml Text Editor">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE74C;" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
-            <NavigationViewItem Tag="interval" Content="Background Interval">
+            <NavigationViewItem Tag="interval" Content="Timer">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xE916;" />
                 </NavigationViewItem.Icon>
