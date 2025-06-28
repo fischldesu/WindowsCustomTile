@@ -106,7 +106,7 @@ namespace LiveTileWinUI3.Components
 
         private static void OnLayoutPropertyChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            if (dependencyObject is ImageTilePreviewer ins)
+            if (dependencyObject != null && dependencyObject is ImageTilePreviewer ins)
             {
                 foreach (var row in ins.grid.RowDefinitions)
                     row.Height = ins.UnitSize;

@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace LiveTileWinUI3.Components;
 
-public class ImageTilePreviewerSourceSet : INotifyPropertyChanged
+public partial class ImageTilePreviewerSourceSet : INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
