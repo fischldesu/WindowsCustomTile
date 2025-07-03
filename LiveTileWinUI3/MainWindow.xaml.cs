@@ -94,7 +94,7 @@ namespace LiveTileWinUI3
 
         private void view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.IsSettingsSelected) frame.Navigate(typeof(Pages.Settings));
+            if (args.IsSettingsSelected) Navigate(new Pages.Settings());
             else
             {
                 var selected = args.SelectedItem as NavigationViewItem;
@@ -106,7 +106,7 @@ namespace LiveTileWinUI3
                         "xmlEditor" => xmlEditor,
                         "interval" => interval,
                         "httpsrv" => httpsrv,
-                        _ => xmlEditor,
+                        _ => main,
                     };
                     Navigate(page);
                 }
