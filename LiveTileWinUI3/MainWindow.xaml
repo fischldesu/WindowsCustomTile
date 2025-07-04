@@ -7,13 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Title="LiveTileWinUI3">
+    Title="Windows Custom Tile">
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
     <NavigationView x:Name="view" IsBackButtonVisible="Collapsed" SelectionChanged="view_SelectionChanged" Loaded="view_Loaded">
         <NavigationView.MenuItems>
-            <NavigationViewItem x:Name="navigationDefaultItem" Tag="main" Content="Quick Set">
+            <NavigationViewItem x:Name="navigationDefaultItem" Tag="main" Content="Home">
                 <NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xF407;" />
                 </NavigationViewItem.Icon>

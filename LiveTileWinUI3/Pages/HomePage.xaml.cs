@@ -37,6 +37,13 @@ namespace LiveTileWinUI3.Pages
                     tbox.SelectionLength = tbox.Text.Length;
                 }
             };
+
+            var type = Utility.Settings.LaunchCommandType;
+            if (type != null)
+            {
+                if (type == "uri") LaunchCmdType_uri.IsChecked = true;
+                else if (type == "cmd") LaunchCmdType_cmd.IsChecked = true;
+            }
         }
 
         public void Previewer_Clear(TileSize size)
@@ -98,7 +105,7 @@ namespace LiveTileWinUI3.Pages
                 TileSize.Small => previewer_editBySize_small,
                 _ => null
             };
-}
+        }
 
         private void previewer_editBySize_combo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -168,6 +175,43 @@ namespace LiveTileWinUI3.Pages
         {
             foreach (TileSize size in Enum.GetValues(typeof(TileSize)))
                 Previewer_Clear(size);
+        }
+
+        private void launchCmdApply_Click(object sender, RoutedEventArgs e)
+        {
+            var ret = false;
+            var text = launchCmdInputer.Text;
+
+            if (text != string.Empty)
+            {
+                var uri = LaunchCmdType_uri.IsChecked;
+                var cmd = LaunchCmdType_cmd.IsChecked;
+                var asw = alwaysShowWindow.IsChecked;
+                if (uri != null && cmd != null && asw != null && ((bool)uri || (bool)cmd))
+                {
+                    Utility.Settings.LaunchCommand = text;
+                    Utility.Settings.LaunchCommandType = (bool)uri ? "uri" : "cmd";
+                    Utility.Settings.LaunchAlwaysShowWindow = (bool)asw;
+
+                    ret = true;
+                }
+            }
+
+            if (ret)
+            {
+                info.Title = "Success";
+                info.Message = "Launch command applied";
+                info.Severity = InfoBarSeverity.Success;
+                info.IsOpen = true;
+            }
+            else
+            {
+                info.Title = string.Empty;
+                info.Message = "Error while apply for launch command";
+                info.Severity = InfoBarSeverity.Error;
+                info.IsOpen = true;
+            }
+            
         }
     }
 }

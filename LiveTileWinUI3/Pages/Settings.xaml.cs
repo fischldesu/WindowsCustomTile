@@ -23,12 +23,15 @@ namespace LiveTileWinUI3.Pages
 
     public sealed partial class Settings : Page
     {
+        private LogWindow? logWindow;
         public Settings()
         {
             this.InitializeComponent();
             backdropCombo.ItemsSource = Enum.GetValues(typeof(WindowBackdropType));
             paneDisplayModeCombo.ItemsSource = Enum.GetValues(typeof(NavigationViewPaneDisplayMode));
             themeSelectorCombo.ItemsSource = Enum.GetValues(typeof(ElementTheme));
+
+            spVersion.Text = "(beta)";
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -42,5 +45,16 @@ namespace LiveTileWinUI3.Pages
             languageCombo.SelectedIndex = 0;
         }
 
+        private void showLogWindow_Click(object sender, RoutedEventArgs e)
+        {
+            logWindow ??= new LogWindow();
+            logWindow.Activate();
+            logWindow.Closed += (obj, _) =>
+            {
+                logWindow = null;
+            };
+        }
+
+        private void resetAll_Click(object sender, RoutedEventArgs e) => Utility.Settings.ResetAll();
     }
 }

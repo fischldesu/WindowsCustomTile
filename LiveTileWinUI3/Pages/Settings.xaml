@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Proj="using:LiveTileWinUI3"
+    xmlns:Utility="using:LiveTileWinUI3.Utility"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:CommunityToolkit="using:CommunityToolkit.WinUI.Controls"
@@ -20,6 +21,27 @@
         <TextBlock Grid.Row="0" FontSize="32">Settings</TextBlock>
         <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
             <StackPanel x:Name="settingsCards" Orientation="Vertical">
+                <CommunityToolkit:SettingsCard Header="Application logs">
+                    <CommunityToolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE77C;" />
+                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                    <Button x:Name="showLogWindow" Click="showLogWindow_Click" Content="Show Log Window" />
+                </CommunityToolkit:SettingsCard>
+                <CommunityToolkit:SettingsCard Header="Reset all settings">
+                    <CommunityToolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE74D;" />
+                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                    <Button x:Name="resetAll" Style="{StaticResource RedButtonStyle}" CornerRadius="4" Content="Reset">
+                        <Button.Flyout>
+                            <Flyout>
+                                <StackPanel>
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="All settings except apperance will be restore to default" Margin="0,0,0,12" />
+                                    <Button Click="resetAll_Click" Content="Confirm" Style="{StaticResource RedButtonStyle}" CornerRadius="4"/>
+                                </StackPanel>
+                            </Flyout>
+                        </Button.Flyout>
+                    </Button>
+                </CommunityToolkit:SettingsCard>
                 <TextBlock FontWeight="Bold">Appearance</TextBlock>
                 <CommunityToolkit:SettingsCard Header="Language 语言">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
@@ -57,7 +79,7 @@
                 </CommunityToolkit:SettingsExpander>
 
                 <TextBlock FontWeight="Bold" Margin="2 32 0 4">About this App</TextBlock>
-                <Expander HorizontalAlignment="Stretch">
+                <Expander HorizontalAlignment="Stretch" Margin="0 0 0 32">
                     <Expander.Header>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -76,7 +98,10 @@
                             <TextBlock VerticalAlignment="Top" Grid.Column="1" Foreground="Gray" FontSize="12" Grid.Row="1">
                             ©fischldesu 2025
                             </TextBlock>
-                            <TextBlock Grid.Column="2" Grid.RowSpan="2" Foreground="Gray" VerticalAlignment="Center">0.0.2(alpha)</TextBlock>
+                            <TextBlock x:Name="versionInfo" Grid.Column="2" Grid.RowSpan="2" Foreground="Gray" VerticalAlignment="Center">
+                                <Run Text="{x:Bind Utility:Settings.Version.Major}" />.<Run Text="{x:Bind Utility:Settings.Version.Minor}" />.<Run Text="{x:Bind Utility:Settings.Version.Build}" />
+                                <Run x:Name="spVersion" />
+                            </TextBlock>
                         </Grid>
                     </Expander.Header>
                     <Expander.Content>

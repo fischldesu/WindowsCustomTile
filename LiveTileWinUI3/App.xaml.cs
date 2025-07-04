@@ -17,6 +17,9 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using LiveTileWinUI3.Utility.Log;
 using System.Security.Principal;
+using System.Threading.Tasks;
+using Windows.System;
+using LiveTileWinUI3.Utility;
 
 namespace LiveTileWinUI3
 {
@@ -35,6 +38,20 @@ namespace LiveTileWinUI3
         public App()
         {
             this.InitializeComponent();
+
+            this.UnhandledException += App_UnhandledException;
+        }
+
+        private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            Logger.Log($"App.UnhandledException:{e.Message}");
+            
+            var logWindow = new LogWindow();
+            
+            mainWindow?.Close();
+            logWindow.Closed += (_, _) => Exit();
+
+            logWindow.Activate();
         }
 
         /// <summary>
@@ -43,19 +60,52 @@ namespace LiveTileWinUI3
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            Logger.Log("Application launched （App.OnLaunched");
+            Logger.Log("Application launched （App.OnLaunched)");
 
             mainWindow = new MainWindow();
             m_window = mainWindow;
 
-            //if (Administrator())
-            //{
+
+            if (Administrator() || !DoLaunchCommand() || Settings.LaunchAlwaysShowWindow)
                 m_window.Activate();
-            //}
-            //else
-            //{
-                // do your own logic here
-            //}
+            else
+                Exit();
+        }
+
+        public static bool DoLaunchCommand()
+        {
+            var ret = false;
+            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            if (settings != null)
+            {
+                try
+                {
+                    if (Settings.LaunchCommand is string command)
+                    {
+                        var commandType = Settings.LaunchCommandType;
+                        switch (commandType)
+                        {
+                            case "uri":
+                                Launcher.LaunchUriAsync(new Uri(command)).Wait();
+                                ret = true;
+                                break;
+                            case "cmd":
+                                System.Diagnostics.Process.Start(command);
+                                ret = true;
+                                break;
+                            default:
+                                Logger.Log($"Unknown launch command type:{(commandType is string t ? t: "UnknownType")}", LogMessage.LogLevel.WARNING);
+                                ret = false;
+                                break;
+                        }
+                    }
+                }
+                catch (Exception e) 
+                {
+                    Logger.Log($"Error while doing Launch Command {e.Message}", LogMessage.LogLevel.ERROR);
+                }
+            }
+            return ret;
         }
 
         public static bool Administrator()

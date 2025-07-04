@@ -11,7 +11,7 @@ namespace LiveTileWinUI3.Utility.Log
     public class Logger
     {
         private static readonly Logger instance = new();
-        private readonly List<LogMessage> logMessages = [];
+        private readonly Queue<LogMessage> logMessages = [];
 
         public static LogMessage[] History { get { return [.. instance.logMessages]; } }
         
@@ -27,7 +27,10 @@ namespace LiveTileWinUI3.Utility.Log
 
         private static void Append(LogMessage message)
         {
-            instance.logMessages.Add(message);
+            if (instance.logMessages.Count >= 512)
+                instance.logMessages.Dequeue();
+
+            instance.logMessages.Enqueue(message);
             NewMessageLogged?.Invoke(message);
         }
 

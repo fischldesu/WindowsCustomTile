@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Components="using:LiveTileWinUI3.Components"
+    xmlns:Utility="using:LiveTileWinUI3.Utility"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -15,9 +16,28 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="32">Winodws Custom Tile</TextBlock>
-        <ScrollViewer Grid.Row="1" CornerRadius="8" Margin="0 16" BorderBrush="#2b2b2b64" BorderThickness="1" HorizontalAlignment="Stretch">
-            <StackPanel Padding="32 32 32 0" Spacing="8">
-                <TextBlock Grid.Row="0" FontSize="22">Image Tile</TextBlock>
+        <Border Grid.Row="1" Margin="0 16" HorizontalAlignment="Stretch" Style="{StaticResource BorderSectionStyle}">
+            <ScrollViewer>
+                <StackPanel Padding="32" Spacing="12">
+                    <TextBlock Grid.Row="0" FontSize="22">Launch Command</TextBlock>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="32"/>
+                            <RowDefinition Height="38"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Text="{x:Bind Utility:Settings.LaunchCommand, Mode=OneTime}" />
+                        <Button x:Name="launchCmdApply" Click="launchCmdApply_Click"  Grid.Column="1" Style="{StaticResource AccentButtonStyle}" CornerRadius="0 4 4 0" Content="Apply" />
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+                            <RadioButton x:Name="LaunchCmdType_cmd" Tag="cmd" Content="Command" GroupName="LaunchCmdType"/>
+                            <RadioButton x:Name="LaunchCmdType_uri" Tag="uri" Content="URL" GroupName="LaunchCmdType" />
+                            <CheckBox x:Name="alwaysShowWindow" Content="Always show window" IsChecked="{x:Bind Utility:Settings.LaunchAlwaysShowWindow, Mode=OneTime}" ToolTipService.ToolTip="Always show main window at app launch"/>
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Grid.Row="0" FontSize="22">Image Tile</TextBlock>
                 <Grid Tag="Item" RowSpacing="16" ColumnSpacing="16" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -34,7 +54,7 @@
                             <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <StackPanel Name="rightpanelTop" Orientation="Vertical" Spacing="8">
-                            <Button x:Name="previewer_pickImageFile" Click="pickImageFile_Click" Content="Select a image file" HorizontalAlignment="Stretch" />
+                            <Button x:Name="previewer_pickImageFile" Click="pickImageFile_Click" Content="Image file" HorizontalAlignment="Stretch" />
                         </StackPanel>
                         <StackPanel Name="rightpanelBottom" Orientation="Vertical" Grid.Row="1" Spacing="8">
                             <Button x:Name="previewer_clear" Click="previewer_clear_Click"  Style="{StaticResource RedButtonStyle}"  HorizontalAlignment="Stretch" Content="Clear" CornerRadius="4"/>
@@ -66,6 +86,7 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
+        </Border>
         <InfoBar x:Name="info" Grid.RowSpan="2" VerticalAlignment="Bottom" HorizontalAlignment="Center" IsOpen="False" Severity="Warning" Message="Uninitialized message" />
     </Grid>
 </Page>

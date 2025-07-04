@@ -10,6 +10,9 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="LogWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Components\ImageTilePreviewer.xaml">
       <SubType>Designer</SubType>
     </Page>
