@@ -7,43 +7,36 @@
    xmlns:Components="using:LiveTileWinUI3.Components"  
    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
-   mc:Ignorable="d">  
+   mc:Ignorable="d">
 
-   <Grid Padding="32">  
-        <Grid.RowDefinitions>  
-           <RowDefinition Height="42"/>  
-           <RowDefinition Height="*"/>  
-           <RowDefinition Height="Auto"/>  
-        </Grid.RowDefinitions>  
-        <Grid.ColumnDefinitions>  
-            <ColumnDefinition Width="*"/>  
-            <ColumnDefinition Width="Auto"/>  
-        </Grid.ColumnDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="32">Timer</TextBlock>  
-        <Border Grid.Row="1" Grid.Column="0"   
-               BorderThickness="1 1 0 1" BorderBrush="#2b2b2b64"
-                CornerRadius="8 0 0 8"   
-               Margin="0 16"
-               Background="#0f808080">
-            <TabView x:Name="items" AddTabButtonClick="items_AddTabButtonClick" SelectionChanged="items_SelectionChanged"/>
-        </Border>  
-        <Border Grid.Row="1" Grid.Column="1"  
-                BorderThickness="1" BorderBrush="#2b2b2b64" CornerRadius="0 8 8 0"   
-                Margin="0 16"  
-                Background="#20808080">
-            <Grid Padding="16">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto"/>  
-               </Grid.RowDefinitions>  
-               <StackPanel Grid.Row="0" Orientation="Vertical">
-                    <Button x:Name="selectFile" Click="selectFile_Click" HorizontalAlignment="Stretch">Select a File</Button>
-                    <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch" Margin="0 8" ToolTipService.ToolTip="Randomize list on the left">Randomize</Button>
-                </StackPanel>  
-                <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Claer all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4">Clear</Button>
-           </Grid>  
-        </Border>
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+    <Grid Padding="32">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="42"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="32">Timer</TextBlock>
+        <Grid Grid.Row="1" Margin="0 32" ColumnSpacing="16">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.RowSpan="2" Style="{StaticResource BorderSectionStyle}">
+                <TabView x:Name="items" AddTabButtonClick="items_AddTabButtonClick" SelectionChanged="items_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            </Border>
+            <StackPanel Name="RightPanelTop" Grid.Column="1"  Orientation="Vertical" Spacing="8">
+                <Button x:Name="selectFile" Click="selectFile_Click" HorizontalAlignment="Stretch">Select a file</Button>
+                <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Randomize list on the left">Randomize</Button>
+            </StackPanel>
+            <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">
+                <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Clear all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4">Clear</Button>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
             <StackPanel Orientation="Horizontal" Width="192">
                 <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1" SpinButtonPlacementMode="Compact" SmallChange="1"  LargeChange="10" />
                 <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0">
@@ -67,6 +60,6 @@
            Severity="Warning"
            Canvas.ZIndex="10"
            Margin="0 0 0 16"
-           />  
-   </Grid>  
+           />
+    </Grid>
 </Page>

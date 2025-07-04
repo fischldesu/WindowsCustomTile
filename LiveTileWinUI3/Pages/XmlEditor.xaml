@@ -18,7 +18,7 @@
         <TextBlock Grid.Row="0" FontSize="32">Edit Tile Xml</TextBlock>
         <Components:TileXmlEditor x:Name="editor" Margin="0 16" Grid.Row="1"/>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="selectFile" Click="selectFile_Click" Margin="0 0 8 0">Select a File</Button>
+            <Button x:Name="selectFile" Click="selectFile_Click" Margin="0 0 8 0">Select a file</Button>
             <Button
             x:Name="submit"
             HorizontalAlignment="Right"

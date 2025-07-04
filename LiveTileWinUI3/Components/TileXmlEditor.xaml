@@ -12,7 +12,7 @@
 
         <PivotItem>
             <PivotItem.Header>
-                <TextBlock Text="单个编辑" FontSize="16"/>
+                <TextBlock Text="OneByOne" FontSize="16"/>
             </PivotItem.Header>
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="0 16 0 0">
@@ -51,7 +51,7 @@
                     </TextBlock>
                     <StackPanel Orientation="Horizontal" Margin="0 8 0 0">
                         <Button x:Name="copy" Click="copy_Click" ToolTipService.ToolTip="Copy text with template">
-                            Copy
+                            <FontIcon Glyph="&#xE8C8;" />
                         </Button>
                         <TeachingTip
                             x:Name="tip"
@@ -61,14 +61,14 @@
                                 <FontIconSource Glyph="&#xE73E;"/>
                             </TeachingTip.IconSource>
                         </TeachingTip>
-                        <ToggleSwitch Margin="16 0" x:Name="edit_single_switch" OffContent="隐藏模板" OnContent="显示模板" HorizontalAlignment="Left" IsOn="True"/>
+                        <ToggleSwitch Margin="16 0" x:Name="edit_single_switch" OffContent="Show Template" OnContent="Hide Template" HorizontalAlignment="Left" IsOn="True"/>
                     </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </PivotItem>
         <PivotItem>
             <PivotItem.Header>
-                <TextBlock Text="编辑所有" FontSize="16"/>
+                <TextBlock Text="Edit All" FontSize="16"/>
             </PivotItem.Header>
             <Grid Padding="0 16 0 0">
                 <Grid.RowDefinitions>

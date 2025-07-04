@@ -60,6 +60,12 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+            <Style x:Key="BorderSectionStyle" TargetType="Border">
+                <Setter Property="Background" Value="#10808080" />
+                <Setter Property="BorderBrush" Value="#1b2b2b64" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="6" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

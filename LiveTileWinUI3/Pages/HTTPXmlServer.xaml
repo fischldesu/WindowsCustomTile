@@ -16,17 +16,25 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="32">HTTP Xml server</TextBlock>
-        <Grid Grid.Row="1" Margin="0 16">
+        <Grid Grid.Row="1" Margin="0 32" ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <ScrollViewer Padding="16" Margin="0 16" Background="#20808080" CornerRadius="6" BorderThickness="1" BorderBrush="#2b2b2b64">
-                <StackPanel x:Name="inputStack" Orientation="Vertical" />
-            </ScrollViewer>
-            <StackPanel Grid.Column="1" Padding="16" Orientation="Vertical">
-                <Button HorizontalAlignment="Stretch" x:Name="newItem" Click="newItem_Click" ToolTipService.ToolTip="New HTTP link input">Append</Button>
-                <Button HorizontalAlignment="Stretch" x:Name="randomize" Click="randomize_Click" Margin="0 8" ToolTipService.ToolTip="Randomize entire list">Randomize</Button>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Border Grid.RowSpan="2" Style="{StaticResource BorderSectionStyle}">
+                <ScrollViewer Name="ContentContainer" Padding="16">
+                    <StackPanel x:Name="inputStack" Orientation="Vertical" />
+                </ScrollViewer>
+            </Border>
+            <StackPanel Name="RightPanelTop" Grid.Column="1"  Orientation="Vertical" Spacing="8">
+                <Button HorizontalAlignment="Stretch" x:Name="newItem" Click="newItem_Click" ToolTipService.ToolTip="New HTTP link inputer">Append</Button>
+                <Button HorizontalAlignment="Stretch" x:Name="randomize" Click="randomize_Click" ToolTipService.ToolTip="Randomize entire list">Randomize</Button>
+            </StackPanel>
+            <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">
                 <Button x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" Style="{StaticResource RedButtonStyle}" CornerRadius="4" ToolTipService.ToolTip="Clear all links">Clear</Button>
             </StackPanel>
         </Grid>
