@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using WinRT.Interop;
+using LiveTileWinUI3.Utility.Log;
 
 namespace LiveTileWinUI3.Utility
 {
@@ -13,6 +14,8 @@ namespace LiveTileWinUI3.Utility
     {
         private static FileOpenPicker InitFilePicker()
         {
+            
+            // When App run as Administrator and PickSingleFileAsync causes Exception
             var picker = new FileOpenPicker();
             InitializeWithWindow.Initialize(picker, WindowNative.GetWindowHandle(App.mainWindow));
 
@@ -35,8 +38,10 @@ namespace LiveTileWinUI3.Utility
                 if (file != null && file.IsAvailable)
                     return await FileIO.ReadTextAsync(file);
             }
-            catch (Exception) { }
-
+            catch (Exception)
+            {
+                Logger.Log("Excetion when picking a file", LogMessage.LogLevel.ERROR);
+            }
             return null;
         }
 
@@ -59,9 +64,9 @@ namespace LiveTileWinUI3.Utility
             }
             catch (Exception)
             {
-                return null;
+                Logger.Log("Excetion when picking a file", LogMessage.LogLevel.ERROR);
             }
-
+            return null;
         }
     }
 }
