@@ -3,7 +3,7 @@
 Quickly customize your Windows start menu tiles.  
 个性化你的Windows开始菜单磁贴
 
-![Application home-page Screenshot](/assets/screenshot-main.png)
+![Application home-page Screenshot](/Assets/screenshot-main.png)
 
 [Dev blog 开发博客](https://blog.fischldesu.com/?p=windows-live-tile)  
 [Bilibili BV1T83ozJETg](https://www.bilibili.com/video/BV1T83ozJETg)
