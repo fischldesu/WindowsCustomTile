@@ -19,13 +19,19 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" FontSize="32">Settings</TextBlock>
-        <ScrollViewer Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
+        <ScrollViewer x:Name="scroller" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
             <StackPanel x:Name="settingsCards" Orientation="Vertical">
                 <CommunityToolkit:SettingsCard Header="Application logs">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE77C;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
                     <Button x:Name="showLogWindow" Click="showLogWindow_Click" Content="Show Log Window" />
+                </CommunityToolkit:SettingsCard>
+                <CommunityToolkit:SettingsCard Header="Don`t show any App notification">
+                    <CommunityToolkit:SettingsCard.HeaderIcon>
+                        <FontIcon Glyph="&#xE8BD;" />
+                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                    <ToggleSwitch  IsOn="{x:Bind Utility:Settings.NoNotification, Mode=TwoWay}" />
                 </CommunityToolkit:SettingsCard>
                 <CommunityToolkit:SettingsCard Header="Reset all settings">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
@@ -79,7 +85,7 @@
                 </CommunityToolkit:SettingsExpander>
 
                 <TextBlock FontWeight="Bold" Margin="2 32 0 4">About this App</TextBlock>
-                <Expander HorizontalAlignment="Stretch" Margin="0 0 0 32">
+                <Expander SizeChanged="aboutExpander_SizeChanged" Collapsed="aboutExpander_Fold" HorizontalAlignment="Stretch" Margin="0 0 0 32">
                     <Expander.Header>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -132,6 +138,6 @@
                 </Expander>
             </StackPanel>
         </ScrollViewer>
-        <HyperlinkButton Grid.Row="2" Content="fischldesu.com" NavigateUri="http://fischldesu.com" />
+        <HyperlinkButton Grid.Row="2" Content="fischldesu.com" NavigateUri="https://fischldesu.com" />
     </Grid>
 </Page>

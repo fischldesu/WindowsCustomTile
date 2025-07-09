@@ -18,6 +18,11 @@ namespace LiveTileWinUI3.Utility
         private readonly static TileHelper instance = new();
         private static Action? cancelToken;
 
+        public static void Reset()
+        {
+            instance.tileUpdater.Clear();
+        }
+
         public static void SetXml(XmlDocument xmlDoc)
         {
             if (xmlDoc != null)

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LiveTileWinUI3.Utility.Log;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +19,12 @@ namespace LiveTileWinUI3.Utility
             LaunchCommand = null;
             LaunchCommandType = null;
             LaunchAlwaysShowWindow = false;
+            NoNotification = false;
+
+            TileHelper.Reset();
+
+            Logger.Log("Settings.ResetAll");
+            Notification.Text("Settings have been reset", "All Settings have been restore to default");
         }
         // Command before Window activated
         public static string? LaunchCommand
@@ -36,6 +44,13 @@ namespace LiveTileWinUI3.Utility
         public static bool LaunchAlwaysShowWindow
         {
             get => instance.GetIntValue("launch-show") > 0;
+            set => instance.SetIntValue("launch-show", value ? 1 : 0);
+        }
+
+        // dont show any system notification
+        public static bool NoNotification
+        {
+            get => instance.GetIntValue("show-no-notification") > 0;
             set => instance.SetIntValue("launch-show", value ? 1 : 0);
         }
 

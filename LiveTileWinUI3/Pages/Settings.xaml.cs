@@ -1,5 +1,6 @@
 using ABI.System;
 using CommunityToolkit.WinUI.Controls;
+using LiveTileWinUI3.Utility.Log;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -34,6 +35,11 @@ namespace LiveTileWinUI3.Pages
             spVersion.Text = "(beta)";
         }
 
+        public void AskResetAll()
+        {
+            resetAll.Flyout?.ShowAt(resetAll);
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (var item in settingsCards.Children.Cast<FrameworkElement?>())
@@ -55,6 +61,23 @@ namespace LiveTileWinUI3.Pages
             };
         }
 
-        private void resetAll_Click(object sender, RoutedEventArgs e) => Utility.Settings.ResetAll();
+        private void resetAll_Click(object sender, RoutedEventArgs e)
+        {
+            resetAll.Flyout?.Hide();
+            Utility.Settings.ResetAll();
+        }
+
+        private void aboutExpander_SizeChanged(object sender, SizeChangedEventArgs args)
+        {
+            if (sender is Expander expander && expander.Content is UIElement content)
+                if (args.NewSize.Height != args.PreviousSize.Height && expander.IsExpanded)
+                    scroller.ScrollToVerticalOffset(scroller.VerticalOffset + content.ActualSize.Y + 4);
+        }
+
+        private void aboutExpander_Fold(Expander expander, ExpanderCollapsedEventArgs args)
+        {
+            if (expander.Content is UIElement content)
+                scroller.ScrollToVerticalOffset(scroller.VerticalOffset - content.ActualSize.Y - 4);
+        }
     }
 }

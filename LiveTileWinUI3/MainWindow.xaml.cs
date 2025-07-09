@@ -18,6 +18,18 @@ using Windows.Foundation.Collections;
 
 namespace LiveTileWinUI3
 {
+    namespace Pages
+    {
+        public enum PageType
+        {
+            Main,
+            XmlEditor,
+            Interval,
+            HTTPXmlServer,
+            Settings
+        }
+    }
+
     public enum WindowBackdropType
     {
         None,
@@ -75,12 +87,12 @@ namespace LiveTileWinUI3
             this.InitializeComponent();
         }
 
-        public Pages.HomePage main = new();
-        public Pages.XmlEditor xmlEditor = new();
-        public Pages.Interval interval = new();
-        public Pages.HTTPXmlServer httpsrv = new();
+        public readonly Pages.HomePage main = new();
+        public readonly Pages.XmlEditor xmlEditor = new();
+        public readonly Pages.Interval interval = new();
+        public readonly Pages.HTTPXmlServer httpsrv = new();
 
-        public void Navigate(Page pageInstance)
+        private void NavigateToContent(Page pageInstance)
         {
             var animation = new Utility.Animation.Appearance(pageInstance)
             {
@@ -91,10 +103,9 @@ namespace LiveTileWinUI3
             animation.Start(false);
         }
 
-
         private void view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.IsSettingsSelected) Navigate(new Pages.Settings());
+            if (args.IsSettingsSelected) NavigateToContent(new Pages.Settings());
             else
             {
                 var selected = args.SelectedItem as NavigationViewItem;
@@ -108,7 +119,7 @@ namespace LiveTileWinUI3
                         "httpsrv" => httpsrv,
                         _ => main,
                     };
-                    Navigate(page);
+                    NavigateToContent(page);
                 }
             }
         }

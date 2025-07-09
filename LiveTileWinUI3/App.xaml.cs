@@ -81,6 +81,9 @@ namespace LiveTileWinUI3
             {
                 case "start":
                     return true;
+                case "reset":
+                    Settings.ResetAll();
+                    return false;
                 default:
                     return false;
             }
