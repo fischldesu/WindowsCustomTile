@@ -12,7 +12,7 @@ namespace LiveTileWinUI3.Utility
     {
         public static void Text(string title, string message)
         {
-            if (Settings.NoNotification)
+            if (App.Settings.NoNotification)
                 return;
 
             AppNotification notification = new AppNotificationBuilder()

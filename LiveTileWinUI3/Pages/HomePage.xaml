@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Components="using:LiveTileWinUI3.Components"
-    xmlns:Utility="using:LiveTileWinUI3.Utility"
+    xmlns:Proj="using:LiveTileWinUI3"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -29,12 +29,12 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Text="{x:Bind Utility:Settings.LaunchCommand, Mode=OneTime}" />
+                        <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Text="{x:Bind Proj:App.Settings.LaunchCommand, Mode=OneTime}" />
                         <Button x:Name="launchCmdApply" Click="launchCmdApply_Click"  Grid.Column="1" Style="{StaticResource AccentButtonStyle}" CornerRadius="0 4 4 0" Content="Apply" />
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
                             <RadioButton x:Name="LaunchCmdType_cmd" Tag="cmd" Content="Command" GroupName="LaunchCmdType"/>
                             <RadioButton x:Name="LaunchCmdType_uri" Tag="uri" Content="URL" GroupName="LaunchCmdType" />
-                            <CheckBox x:Name="alwaysShowWindow" Content="Always show window" IsChecked="{x:Bind Utility:Settings.LaunchAlwaysShowWindow, Mode=OneTime}" ToolTipService.ToolTip="Always show main window at app launch"/>
+                            <CheckBox x:Name="alwaysShowWindow" Content="Always show window" IsChecked="{x:Bind Proj:App.Settings.LaunchAlwaysShowWindow, Mode=OneTime}" ToolTipService.ToolTip="Always show main window at app launch"/>
                         </StackPanel>
                     </Grid>
                     <TextBlock Grid.Row="0" FontSize="22">Image Tile</TextBlock>

@@ -64,7 +64,7 @@ namespace LiveTileWinUI3.Pages
         private void resetAll_Click(object sender, RoutedEventArgs e)
         {
             resetAll.Flyout?.Hide();
-            Utility.Settings.ResetAll();
+            App.Settings.ResetAll();
         }
 
         private void aboutExpander_SizeChanged(object sender, SizeChangedEventArgs args)

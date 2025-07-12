@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace LiveTileWinUI3.Utility
 {
-    public class Settings
+
+    public class Settings : INotifyPropertyChanged
     {
-        private static readonly Settings instance = new();
 
-        public static Windows.ApplicationModel.PackageVersion Version { get => Windows.ApplicationModel.Package.Current.Id.Version; }
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        public static void ResetAll()
+        public Windows.ApplicationModel.PackageVersion Version => Windows.ApplicationModel.Package.Current.Id.Version;
+
+        public void ResetAll()
         {
             LaunchCommand = null;
             LaunchCommandType = null;
@@ -26,32 +28,61 @@ namespace LiveTileWinUI3.Utility
             Logger.Log("Settings.ResetAll");
             Notification.Text("Settings have been reset", "All Settings have been restore to default");
         }
+
         // Command before Window activated
-        public static string? LaunchCommand
+        public string? LaunchCommand
         {
-            get => instance.GetStringValue("launch-cmd");
-            set => instance.SetStringValue("launch-cmd", value);
+            get => GetStringValue("launch-cmd");
+            set
+            {
+                if (value != LaunchCommand)
+                {
+                    SetStringValue("launch-cmd", value);
+                    OnPropertyChanged(nameof(LaunchCommand));
+                }
+            }
         }
 
         // type of command, a uri or a system-cmd...
-        public static string? LaunchCommandType
+        public string? LaunchCommandType
         {
-            get => instance.GetStringValue("launch-type");
-            set => instance.SetStringValue("launch-type", value);
+            get => GetStringValue("launch-type");
+            set
+            {
+                if (value != LaunchCommandType)
+                {
+                    SetStringValue("launch-type", value);
+                    OnPropertyChanged(nameof(LaunchCommandType));
+                }
+            }
         }
 
         // even if command is executed, should the window still be shown
-        public static bool LaunchAlwaysShowWindow
+        public bool LaunchAlwaysShowWindow
         {
-            get => instance.GetIntValue("launch-show") > 0;
-            set => instance.SetIntValue("launch-show", value ? 1 : 0);
+            get => GetIntValue("launch-show") > 0;
+            set
+            {
+                if (value != LaunchAlwaysShowWindow)
+                {
+                    SetIntValue("launch-show", value ? 1 : 0);
+                    OnPropertyChanged(nameof(LaunchAlwaysShowWindow));
+                }
+            }
         }
 
         // dont show any system notification
-        public static bool NoNotification
+        public bool NoNotification
         {
-            get => instance.GetIntValue("show-no-notification") > 0;
-            set => instance.SetIntValue("launch-show", value ? 1 : 0);
+            get => GetIntValue("show-no-notification") > 0;
+            set
+            {
+                if (value != NoNotification)
+                {
+                    SetIntValue("show-no-notification", value ? 1 : 0);
+                    OnPropertyChanged(nameof(NoNotification));
+                }
+            }
         }
 
         public string? GetStringValue(string key)
@@ -78,5 +109,9 @@ namespace LiveTileWinUI3.Utility
             settings.Values[key] = value;
         }
 
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

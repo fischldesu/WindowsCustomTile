@@ -38,7 +38,7 @@ namespace LiveTileWinUI3.Pages
                 }
             };
 
-            var type = Utility.Settings.LaunchCommandType;
+            var type = App.Settings.LaunchCommandType;
             if (type != null)
             {
                 if (type == "uri") LaunchCmdType_uri.IsChecked = true;
@@ -189,9 +189,9 @@ namespace LiveTileWinUI3.Pages
                 var asw = alwaysShowWindow.IsChecked;
                 if (uri != null && cmd != null && asw != null && ((bool)uri || (bool)cmd))
                 {
-                    Utility.Settings.LaunchCommand = text;
-                    Utility.Settings.LaunchCommandType = (bool)uri ? "uri" : "cmd";
-                    Utility.Settings.LaunchAlwaysShowWindow = (bool)asw;
+                    App.Settings.LaunchCommand = text;
+                    App.Settings.LaunchCommandType = (bool)uri ? "uri" : "cmd";
+                    App.Settings.LaunchAlwaysShowWindow = (bool)asw;
 
                     ret = true;
                 }

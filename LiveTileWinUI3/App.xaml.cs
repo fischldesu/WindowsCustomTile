@@ -33,7 +33,7 @@ namespace LiveTileWinUI3
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public static MainWindow? mainWindow { get; private set; }
-        private Window? m_window;
+        public static readonly Settings Settings = new(); 
 
         public App()
         {
@@ -62,14 +62,13 @@ namespace LiveTileWinUI3
             Logger.Log("Application launched (App.OnLaunched)");
 
             mainWindow = new MainWindow();
-            m_window = mainWindow;
 
             var protocalLaunch = false;
             if (AppInstance.GetCurrent().GetActivatedEventArgs().Data is ProtocolActivatedEventArgs protocolArgs && protocolArgs.Uri != null)
                 protocalLaunch = ProtocolLaunch(protocolArgs.Uri);
 
             if (protocalLaunch || !DoLaunchCommand() || Settings.LaunchAlwaysShowWindow)
-                m_window.Activate();
+                mainWindow.Activate();
             else
                 Exit();
         }

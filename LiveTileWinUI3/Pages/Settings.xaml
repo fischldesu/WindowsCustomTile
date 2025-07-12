@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Proj="using:LiveTileWinUI3"
-    xmlns:Utility="using:LiveTileWinUI3.Utility"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:CommunityToolkit="using:CommunityToolkit.WinUI.Controls"
@@ -31,7 +30,7 @@
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE8BD;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <ToggleSwitch  IsOn="{x:Bind Utility:Settings.NoNotification, Mode=TwoWay}" />
+                    <ToggleSwitch  IsOn="{x:Bind Proj:App.Settings.NoNotification, Mode=TwoWay}" />
                 </CommunityToolkit:SettingsCard>
                 <CommunityToolkit:SettingsCard Header="Reset all settings">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
@@ -105,7 +104,7 @@
                             ©fischldesu 2025
                             </TextBlock>
                             <TextBlock x:Name="versionInfo" Grid.Column="2" Grid.RowSpan="2" Foreground="Gray" VerticalAlignment="Center">
-                                <Run Text="{x:Bind Utility:Settings.Version.Major}" />.<Run Text="{x:Bind Utility:Settings.Version.Minor}" />.<Run Text="{x:Bind Utility:Settings.Version.Build}" />
+                                <Run Text="{x:Bind Proj:App.Settings.Version.Major}" />.<Run Text="{x:Bind Proj:App.Settings.Version.Minor}" />.<Run Text="{x:Bind Proj:App.Settings.Version.Build}" />
                                 <Run x:Name="spVersion" />
                             </TextBlock>
                         </Grid>
