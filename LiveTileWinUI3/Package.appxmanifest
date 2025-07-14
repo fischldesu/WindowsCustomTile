@@ -8,9 +8,9 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="9544b31e-da4f-4d7e-bd8c-5556d205b5ed"
+    Name="com.fischldesu.windowscustomtile"
     Publisher="CN=fischldesu"
-    Version="0.0.3.1" />
+    Version="0.0.3.3" />
 
   <mp:PhoneIdentity PhoneProductId="9544b31e-da4f-4d7e-bd8c-5556d205b5ed" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -21,8 +21,8 @@
   </Properties>
 
   <Dependencies>
-    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
-    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.19041.0" />
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.17763.0" MaxVersionTested="10.0.26100.0" />
   </Dependencies>
 
   <Resources>

@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Components="using:LiveTileWinUI3.Components"
+    xmlns:i18n="using:LiveTileWinUI3.Utility.I18N"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -15,15 +16,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="32">Edit Tile Xml</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Page_XmlTextEditor_Title')}" />
         <Components:TileXmlEditor x:Name="editor" Margin="0 16" Grid.Row="1"/>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="selectFile" Click="selectFile_Click" Margin="0 0 8 0">Select a file</Button>
+            <Button x:Name="selectFile" Click="selectFile_Click" Margin="0 0 8 0" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
             <Button
             x:Name="submit"
             HorizontalAlignment="Right"
             Style="{StaticResource AccentButtonStyle}"
-            Click="submit_Click">Submit</Button>
+            Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
         </StackPanel>
         <InfoBar
             x:Name="info"

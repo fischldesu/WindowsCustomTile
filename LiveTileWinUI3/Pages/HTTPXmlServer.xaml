@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Components="using:LiveTileWinUI3.Components"
+    xmlns:i18n="using:LiveTileWinUI3.Utility.I18N"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -15,7 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="32">HTTP Xml server</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Page_HTTPSrv_Title')}"/>
         <Grid Grid.Row="1" Margin="0 32" ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -31,11 +32,11 @@
                 </ScrollViewer>
             </Border>
             <StackPanel Name="RightPanelTop" Grid.Column="1"  Orientation="Vertical" Spacing="8">
-                <Button HorizontalAlignment="Stretch" x:Name="newItem" Click="newItem_Click" ToolTipService.ToolTip="New HTTP link inputer">Append</Button>
-                <Button HorizontalAlignment="Stretch" x:Name="randomize" Click="randomize_Click" ToolTipService.ToolTip="Randomize entire list">Randomize</Button>
+                <Button HorizontalAlignment="Stretch" x:Name="newItem" Click="newItem_Click" ToolTipService.ToolTip="New HTTP link inputer" Content="{x:Bind i18n:Lang.Text('Page_HTTPSrv_Append')}" />
+                <Button HorizontalAlignment="Stretch" x:Name="randomize" Click="randomize_Click" ToolTipService.ToolTip="Randomize entire list" Content="{x:Bind i18n:Lang.Text('G_Randomize')}" />
             </StackPanel>
             <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">
-                <Button x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" Style="{StaticResource RedButtonStyle}" CornerRadius="4" ToolTipService.ToolTip="Clear all links">Clear</Button>
+                <Button x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" Style="{StaticResource RedButtonStyle}" CornerRadius="4" ToolTipService.ToolTip="Clear all links" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" />
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
@@ -47,7 +48,7 @@
                 x:Name="submit"
                 HorizontalAlignment="Right"
                 Style="{StaticResource AccentButtonStyle}"
-                Click="submit_Click">Submit</Button>
+                Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
         </StackPanel>
         <InfoBar
            x:Name="info"  

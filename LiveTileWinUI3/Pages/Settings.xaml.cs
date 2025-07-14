@@ -79,5 +79,21 @@ namespace LiveTileWinUI3.Pages
             if (expander.Content is UIElement content)
                 scroller.ScrollToVerticalOffset(scroller.VerticalOffset - content.ActualSize.Y - 4);
         }
+
+        private void languageCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string langTag = languageCombo.SelectedIndex switch
+            {
+                1 => "en-US", // English
+                2 => "zh-CN", // Simplified Chinese
+                _ => string.Empty
+            };
+
+            if (langTag != Utility.I18N.Lang.Primary)
+            {
+                Utility.I18N.Lang.Primary = langTag;
+                restart.Visibility = Visibility.Visible;
+            }
+        }
     }
 }

@@ -44,7 +44,7 @@ namespace LiveTileWinUI3
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
             Logger.Log($"App.UnhandledException:{e.Message}");
-
+            
             var logWindow = new LogWindow();
 
             mainWindow?.Close();

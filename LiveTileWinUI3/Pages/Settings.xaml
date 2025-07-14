@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:LiveTileWinUI3.Pages"
     xmlns:Proj="using:LiveTileWinUI3"
+    xmlns:i18n="using:LiveTileWinUI3.Utility.I18N"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:CommunityToolkit="using:CommunityToolkit.WinUI.Controls"
@@ -17,64 +18,70 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="32">Settings</TextBlock>
+        <TextBlock Grid.Row="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Settings_Title')}" />
         <ScrollViewer x:Name="scroller" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
             <StackPanel x:Name="settingsCards" Orientation="Vertical">
-                <CommunityToolkit:SettingsCard Header="Application logs">
+                <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Log')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE77C;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <Button x:Name="showLogWindow" Click="showLogWindow_Click" Content="Show Log Window" />
+                    <Button x:Name="showLogWindow" Click="showLogWindow_Click" Content="{x:Bind i18n:Lang.Text('Settings_Log_OpenWindow')}" />
                 </CommunityToolkit:SettingsCard>
-                <CommunityToolkit:SettingsCard Header="Don`t show any App notification">
+                <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_NoNotify')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE8BD;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <ToggleSwitch  IsOn="{x:Bind Proj:App.Settings.NoNotification, Mode=TwoWay}" />
+                    <ToggleSwitch IsOn="{x:Bind Proj:App.Settings.NoNotification, Mode=TwoWay}" />
                 </CommunityToolkit:SettingsCard>
-                <CommunityToolkit:SettingsCard Header="Reset all settings">
+                <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Reset')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xE74D;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <Button x:Name="resetAll" Style="{StaticResource RedButtonStyle}" CornerRadius="4" Content="Reset">
+                    <Button x:Name="resetAll" Style="{StaticResource RedButtonStyle}" CornerRadius="4" Content="{x:Bind i18n:Lang.Text('Settings_Reset_Opt')}">
                         <Button.Flyout>
                             <Flyout>
                                 <StackPanel>
-                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="All settings except apperance will be restore to default" Margin="0,0,0,12" />
-                                    <Button Click="resetAll_Click" Content="Confirm" Style="{StaticResource RedButtonStyle}" CornerRadius="4"/>
+                                    <TextBlock Style="{ThemeResource BaseTextBlockStyle}" Text="{x:Bind i18n:Lang.Text('Settings_Reset_ConfirmText')}" Margin="0,0,0,12" />
+                                    <Button Click="resetAll_Click" Content="{x:Bind i18n:Lang.Text('Settings_Reset_Confirm')}" Style="{StaticResource RedButtonStyle}" CornerRadius="4"/>
                                 </StackPanel>
                             </Flyout>
                         </Button.Flyout>
                     </Button>
                 </CommunityToolkit:SettingsCard>
-                <TextBlock FontWeight="Bold">Appearance</TextBlock>
+                <TextBlock FontWeight="Bold" Text="{x:Bind i18n:Lang.Text('Settings_Appearance')}" />
                 <CommunityToolkit:SettingsCard Header="Language 语言">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF2B7;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <ComboBox x:Name="languageCombo">
-                        <x:String>en-US  English</x:String>
-                        <x:String>zh-CN  简体中文</x:String>
-                    </ComboBox>
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <Button x:Name="restart" Visibility="Collapsed">
+                            <FontIcon Glyph="&#xE72C;" />
+                        </Button>
+                        <ComboBox x:Name="languageCombo" SelectedIndex="0" SelectionChanged="languageCombo_SelectionChanged">
+                            <x:String>Default</x:String>
+                            <x:String>en-US  English</x:String>
+                            <x:String>zh-CN  简体中文</x:String>
+                        </ComboBox>
+                    </StackPanel>
                 </CommunityToolkit:SettingsCard>
-                <CommunityToolkit:SettingsExpander Header="Application Style" Description="Personalize style preferences">
+                <CommunityToolkit:SettingsExpander Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style')}" Description="{x:Bind i18n:Lang.Text('Settings_Appearence_Style_Tip')}">
                     <CommunityToolkit:SettingsExpander.HeaderIcon>
                         <FontIcon Glyph="&#xE790;" />
                     </CommunityToolkit:SettingsExpander.HeaderIcon>
                     <CommunityToolkit:SettingsExpander.Items>
-                        <CommunityToolkit:SettingsCard Header="Navigation style">
+                        <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style_NavStyle')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xF594;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
                     <ComboBox x:Name="paneDisplayModeCombo" SelectedItem="{x:Bind Proj:App.mainWindow.PaneDisplayMode, Mode=TwoWay}" />
                 </CommunityToolkit:SettingsCard>
-                        <CommunityToolkit:SettingsCard Header="Backdrop type">
+                        <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style_Backdrop')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
                         <FontIcon Glyph="&#xEF1F;" />
                     </CommunityToolkit:SettingsCard.HeaderIcon>
                     <ComboBox x:Name="backdropCombo" SelectedItem="{x:Bind Proj:App.mainWindow.BackdropType, Mode=TwoWay}"/>
                 </CommunityToolkit:SettingsCard>
-                        <CommunityToolkit:SettingsCard Header="App Theme">
+                        <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style_Theme')}">
                             <CommunityToolkit:SettingsCard.HeaderIcon>
                                 <FontIcon Glyph="&#xE793;" />
                             </CommunityToolkit:SettingsCard.HeaderIcon>
@@ -83,7 +90,7 @@
                     </CommunityToolkit:SettingsExpander.Items>
                 </CommunityToolkit:SettingsExpander>
 
-                <TextBlock FontWeight="Bold" Margin="2 32 0 4">About this App</TextBlock>
+                <TextBlock FontWeight="Bold" Margin="2 32 0 4" Text="{x:Bind i18n:Lang.Text('Settings_About')}" />
                 <Expander SizeChanged="aboutExpander_SizeChanged" Collapsed="aboutExpander_Fold" HorizontalAlignment="Stretch" Margin="0 0 0 32">
                     <Expander.Header>
                         <Grid>
@@ -120,7 +127,7 @@
                                     github.com/fischldesu/WindowsCustomTile
                                 </HyperlinkButton>
                             </StackPanel>
-                            <TextBlock HorizontalAlignment="Center" FontSize="12" Foreground="Gray" Margin="0 8 0 0" Padding="0 8 0 0">Develop blog passage</TextBlock>
+                            <TextBlock HorizontalAlignment="Center" FontSize="12" Foreground="Gray" Margin="0 8 0 0" Padding="0 8 0 0" Text="{x:Bind i18n:Lang.Text('Settings_About_DevBlog')}" />
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <HyperlinkButton VerticalAlignment="Center" NavigateUri="https://blog.fischldesu.com/?p=windows-live-tile">
                                     blog.fischldesu.com/?p=windows-live-tile

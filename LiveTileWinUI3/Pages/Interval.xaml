@@ -5,6 +5,7 @@
    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
    xmlns:local="using:LiveTileWinUI3.Pages"  
    xmlns:Components="using:LiveTileWinUI3.Components"  
+   xmlns:i18n="using:LiveTileWinUI3.Utility.I18N"
    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
    mc:Ignorable="d">
@@ -15,7 +16,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="32">Timer</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="32" Text="{x:Bind i18n:Lang.Text('Page_Timer_Title')}" />
         <Grid Grid.Row="1" Margin="0 32" ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -29,11 +30,11 @@
                 <TabView x:Name="items" AddTabButtonClick="items_AddTabButtonClick" SelectionChanged="items_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
             </Border>
             <StackPanel Name="RightPanelTop" Grid.Column="1"  Orientation="Vertical" Spacing="8">
-                <Button x:Name="selectFile" Click="selectFile_Click" HorizontalAlignment="Stretch">Select a file</Button>
-                <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Randomize list on the left">Randomize</Button>
+                <Button x:Name="selectFile" Click="selectFile_Click" HorizontalAlignment="Stretch" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
+                <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Randomize list on the left" Content="{x:Bind i18n:Lang.Text('G_Randomize')}" />
             </StackPanel>
             <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">
-                <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Clear all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4">Clear</Button>
+                <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Clear all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" />
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
@@ -45,7 +46,7 @@
                     <x:String>Second</x:String>
                 </ComboBox>
             </StackPanel>
-            <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}">Submit</Button>
+            <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
         </StackPanel>
         <InfoBar
            x:Name="info"  
