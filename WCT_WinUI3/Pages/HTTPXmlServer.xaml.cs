@@ -127,7 +127,7 @@ namespace WCT_WinUI3.Pages
                     if (uriList.Count == 1) Utility.TileHelper.SetHTTPServer(uriList[0], recurrence);
                     else Utility.TileHelper.SetHTTPServer([.. uriList], recurrence);
 
-                if (uriList.Count != 0)
+                if (uriList.Count == 0)
                 {
                     info.Title = "Warning";
                     info.Message = "None of server URI is valid.";
