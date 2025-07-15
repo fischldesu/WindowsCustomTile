@@ -102,7 +102,7 @@
                             <CommunityToolkit:SettingsCard.HeaderIcon>
                                 <FontIcon Glyph="&#xE793;" />
                             </CommunityToolkit:SettingsCard.HeaderIcon>
-                            <ComboBox x:Name="themeSelectorCombo" DisplayMemberPath="DisplayName" SelectedValuePath="ThemeValue" SelectedValue="{x:Bind Proj:App.mainWindow.Theme, Mode=TwoWay}" />
+                            <ComboBox x:Name="themeSelectorCombo" ItemsSource="{x:Bind ThemeOptions}" DisplayMemberPath="DisplayName" SelectedValuePath="ThemeValue" SelectedValue="{x:Bind Proj:App.mainWindow.Theme, Mode=TwoWay}"  />
                         </CommunityToolkit:SettingsCard>
                     </CommunityToolkit:SettingsExpander.Items>
                 </CommunityToolkit:SettingsExpander>

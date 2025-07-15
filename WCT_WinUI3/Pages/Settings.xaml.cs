@@ -21,33 +21,30 @@ using Windows.Foundation.Collections;
 
 namespace WCT_WinUI3.Pages
 {
-
+    public class ThemeOption
+    {
+        public string DisplayName { get; set; } = string.Empty;
+        public ElementTheme ThemeValue { get; set; }
+    }
     public sealed partial class Settings : Page
     {
-        internal class ThemeOption
-        {
-            public required string DisplayName { get; set; }
-            public ElementTheme ThemeValue { get; set; }
-
-            public static List<ThemeOption> ThemeSelectorComboSourceInit()
-            {
-                var lang = Utility.I18N.Lang.Text;
-                return
-                [
-                    new() { DisplayName = lang("Enum_Theme_Default") ?? string.Empty, ThemeValue = ElementTheme.Default },
-                new() { DisplayName = lang("Enum_Theme_Light") ?? string.Empty,   ThemeValue = ElementTheme.Light },
-                new() { DisplayName = lang("Enum_Theme_Dark") ?? string.Empty,    ThemeValue = ElementTheme.Dark }
-                ];
-            }
-        }
+        public List<ThemeOption> ThemeOptions { get; }
 
         private LogWindow? logWindow;
+
         public Settings()
         {
+            var lang = Utility.I18N.Lang.Text;
+            ThemeOptions = [
+                new() { DisplayName = lang("Enum_Theme_Default") ?? string.Empty, ThemeValue = ElementTheme.Default },
+                new() { DisplayName = lang("Enum_Theme_Light") ?? string.Empty,   ThemeValue = ElementTheme.Light },
+                new() { DisplayName = lang("Enum_Theme_Dark") ?? string.Empty,    ThemeValue = ElementTheme.Dark }
+            ];
+
             this.InitializeComponent();
             backdropCombo.ItemsSource = Enum.GetValues(typeof(WindowBackdropType));
             paneDisplayModeCombo.ItemsSource = Enum.GetValues(typeof(NavigationViewPaneDisplayMode));
-            themeSelectorCombo.ItemsSource = ThemeOption.ThemeSelectorComboSourceInit();
+
             languageCombo.SelectedIndex = Utility.I18N.Lang.Primary switch
             {
                 "en-US" => 1, // English
