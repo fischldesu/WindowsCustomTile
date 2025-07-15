@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Button_Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="Button_Apply" xml:space="preserve">
+    <value>应用</value>
+  </data>
+  <data name="Button_Submit" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Component_TileEditor_CopyToolTip" xml:space="preserve">
+    <value>复制文本（包含模板）</value>
+  </data>
+  <data name="Component_TileEditor_EditAll" xml:space="preserve">
+    <value>编辑所有</value>
+  </data>
+  <data name="Component_TileEditor_HideTemplate" xml:space="preserve">
+    <value>隐藏模板</value>
+  </data>
+  <data name="Component_TileEditor_InitTemplate" xml:space="preserve">
+    <value>初始化为模板</value>
+  </data>
+  <data name="Component_TileEditor_OneByOne" xml:space="preserve">
+    <value>逐个编辑</value>
+  </data>
+  <data name="Component_TileEditor_ShowTemplate" xml:space="preserve">
+    <value>显示模板</value>
+  </data>
+  <data name="Page_Home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="Page_Home_ImageTile" xml:space="preserve">
+    <value>图片磁贴</value>
+  </data>
+  <data name="Page_Home_ImageTile_EditBySize" xml:space="preserve">
+    <value>按大小编辑</value>
+  </data>
+  <data name="Page_Home_ImageTile_ImageFile" xml:space="preserve">
+    <value>选择图片</value>
+  </data>
+  <data name="Page_Home_LaunchAlwaysShowWindow" xml:space="preserve">
+    <value>始终显示窗口</value>
+  </data>
+  <data name="Page_Home_LaunchCmd" xml:space="preserve">
+    <value>启动命令</value>
+  </data>
+  <data name="Page_Home_LaunchCmdType_Cmd" xml:space="preserve">
+    <value>命令行命令</value>
+  </data>
+  <data name="Page_Home_LaunchCmdType_URL" xml:space="preserve">
+    <value>URL 链接</value>
+  </data>
+  <data name="Page_HTTPSrv" xml:space="preserve">
+    <value>HTTP 服务器</value>
+  </data>
+  <data name="Page_Timer" xml:space="preserve">
+    <value>定时器</value>
+  </data>
+  <data name="Page_XmlTextEditor" xml:space="preserve">
+    <value>Xml文本编辑器</value>
+  </data>
+  <data name="G_SelectXmlFile" xml:space="preserve">
+    <value>选择一个Xml文件</value>
+  </data>
+  <data name="Page_XmlTextEditor_Title" xml:space="preserve">
+    <value>编辑磁贴Xml文本</value>
+  </data>
+  <data name="G_Randomize" xml:space="preserve">
+    <value>随机排列</value>
+  </data>
+  <data name="Page_Timer_Title" xml:space="preserve">
+    <value>定时更改</value>
+  </data>
+  <data name="Page_HTTPSrv_Title" xml:space="preserve">
+    <value>HTTP Xml 服务器</value>
+  </data>
+  <data name="Page_HTTPSrv_Append" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="Settings_Title" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="Settings_Log" xml:space="preserve">
+    <value>应用程序日志</value>
+  </data>
+  <data name="Settings_Log_OpenWindow" xml:space="preserve">
+    <value>打开日志窗口</value>
+  </data>
+  <data name="Settings_NoNotify" xml:space="preserve">
+    <value>不显示任何系统级App通知</value>
+  </data>
+  <data name="Settings_Reset" xml:space="preserve">
+    <value>重置所有设置</value>
+  </data>
+  <data name="Settings_Appearance" xml:space="preserve">
+    <value>显示</value>
+  </data>
+  <data name="Settings_Appearance_Style" xml:space="preserve">
+    <value>样式</value>
+  </data>
+  <data name="Settings_Appearance_Style_NavStyle" xml:space="preserve">
+    <value>导航栏样式</value>
+  </data>
+  <data name="Settings_Appearance_Style_Backdrop" xml:space="preserve">
+    <value>背景样式</value>
+  </data>
+  <data name="Settings_Appearance_Style_Theme" xml:space="preserve">
+    <value>主题</value>
+  </data>
+  <data name="Settings_About" xml:space="preserve">
+    <value>关于此App</value>
+  </data>
+  <data name="Settings_About_DevBlog" xml:space="preserve">
+    <value>开发博客图文</value>
+  </data>
+  <data name="Settings_Reset_Opt" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="Button_Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="Settings_Reset_ConfirmText" xml:space="preserve">
+    <value>除开显示外的所有设置都将重置</value>
+  </data>
+  <data name="Settings_Appearence_Style_Tip" xml:space="preserve">
+    <value>个性化窗口样式</value>
+  </data>
+  <data name="Settings_Restart_ConfirmText" xml:space="preserve">
+    <value>是否重启此应用程序？</value>
+  </data>
+  <data name="Enum_NavigationViewPaneDisplayMode_Auto" xml:space="preserve">
+    <value>自动</value>
+  </data>
+  <data name="Enum_NavigationViewPaneDisplayMode_Left" xml:space="preserve">
+    <value>左侧</value>
+  </data>
+  <data name="Enum_NavigationViewPaneDisplayMode_Top" xml:space="preserve">
+    <value>顶部</value>
+  </data>
+  <data name="Enum_NavigationViewPaneDisplayMode_LeftCompact" xml:space="preserve">
+    <value>左侧（折叠）</value>
+  </data>
+  <data name="Enum_NavigationViewPaneDisplayMode_LeftMinimal" xml:space="preserve">
+    <value>左侧（最小化）</value>
+  </data>
+  <data name="Enum_PeriodicUpdateRecurrence_HalfHour" xml:space="preserve">
+    <value>每半小时</value>
+  </data>
+  <data name="Enum_PeriodicUpdateRecurrence_Hour" xml:space="preserve">
+    <value>每小时</value>
+  </data>
+  <data name="Enum_PeriodicUpdateRecurrence_SixHours" xml:space="preserve">
+    <value>每6小时</value>
+  </data>
+  <data name="Enum_PeriodicUpdateRecurrence_TwelveHours" xml:space="preserve">
+    <value>每12小时</value>
+  </data>
+  <data name="Enum_PeriodicUpdateRecurrence_Daily" xml:space="preserve">
+    <value>每日一次</value>
+  </data>
+  <data name="G_Hour" xml:space="preserve">
+    <value>小时</value>
+  </data>
+  <data name="G_Minute" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="G_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="G_Yes" xml:space="preserve">
+    <value>确认</value>
+  </data>
+  <data name="G_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="G_Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Enum_Theme_Default" xml:space="preserve">
+    <value>跟随系统</value>
+  </data>
+  <data name="Enum_Theme_Light" xml:space="preserve">
+    <value>亮</value>
+  </data>
+  <data name="Enum_Theme_Dark" xml:space="preserve">
+    <value>暗</value>
+  </data>
+</root>

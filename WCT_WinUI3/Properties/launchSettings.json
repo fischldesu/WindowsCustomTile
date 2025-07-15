@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WCT_WinUI3 (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WCT_WinUI3 (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
