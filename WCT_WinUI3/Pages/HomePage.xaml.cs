@@ -83,16 +83,14 @@ namespace WCT_WinUI3.Pages
             }
             catch
             {
-                info.Title = "Failed";
-                info.Message = "Image tile quick set failed, check Uri";
-                info.Severity = InfoBarSeverity.Error;
-                info.IsOpen = true;
+                App.mainWindow?.ShowInfoBand("Failed",
+                    "Image tile quick set failed, check your Uri",
+                    InfoBarSeverity.Error);
                 return;
             }
-            info.Title = "Success";
-            info.Message = "Image tile quick set ok";
-            info.Severity = InfoBarSeverity.Success;
-            info.IsOpen = true;
+            App.mainWindow?.ShowInfoBand("Success",
+                "Image tile quick set ok",
+                InfoBarSeverity.Success);
         }
 
         public TextBox? GetPreviewerEditBySize_TextBox(TileSize? size)
@@ -197,21 +195,12 @@ namespace WCT_WinUI3.Pages
                 }
             }
 
-            if (ret)
-            {
-                info.Title = "Success";
-                info.Message = "Launch command applied";
-                info.Severity = InfoBarSeverity.Success;
-                info.IsOpen = true;
-            }
-            else
-            {
-                info.Title = string.Empty;
-                info.Message = "Error while apply for launch command";
-                info.Severity = InfoBarSeverity.Error;
-                info.IsOpen = true;
-            }
-            
+            if (ret) App.mainWindow?.ShowInfoBand("Success",
+                "Launch command applied",
+                InfoBarSeverity.Success);
+            else App.mainWindow?.ShowInfoBand(string.Empty,
+                "Failed to apply for the launch command",
+                InfoBarSeverity.Error);
         }
     }
 }

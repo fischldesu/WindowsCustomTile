@@ -44,19 +44,5 @@
             </StackPanel>
             <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
         </StackPanel>
-        <InfoBar
-           x:Name="info"  
-           Grid.Row="0"    Grid.RowSpan="3"
-           Grid.Column="0" Grid.ColumnSpan="2"
-           VerticalAlignment="Bottom"
-           HorizontalAlignment="Center"
-           IsClosable="True"   
-           IsOpen="False"
-           Title="Info bar title"   
-           Message="Uninitialized Infobar message"   
-           Severity="Warning"
-           Canvas.ZIndex="10"
-           Margin="0 0 0 16"
-           />
     </Grid>
 </Page>

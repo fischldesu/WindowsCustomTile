@@ -67,10 +67,9 @@ namespace WCT_WinUI3.Pages
 
             if (inputStack.Children.Count == 0)
             {
-                info.Title = "Warning";
-                info.Message = "No available server URI.";
-                info.Severity = InfoBarSeverity.Error;
-                info.IsOpen = true;
+                App.mainWindow?.ShowInfoBand("Warning",
+                    "Theres no available server URI.",
+                    InfoBarSeverity.Error);
                 return;
             }
 
@@ -127,20 +126,12 @@ namespace WCT_WinUI3.Pages
                     if (uriList.Count == 1) Utility.TileHelper.SetHTTPServer(uriList[0], recurrence);
                     else Utility.TileHelper.SetHTTPServer([.. uriList], recurrence);
 
-                if (uriList.Count == 0)
-                {
-                    info.Title = "Warning";
-                    info.Message = "None of server URI is valid.";
-                    info.Severity = InfoBarSeverity.Warning;
-                }
-                else
-                {
-                    info.Title = "Success";
-                    info.Message = "All server URI changes has applied.";
-                    info.Severity = InfoBarSeverity.Success;
-                }
-
-                info.IsOpen = true;
+                if (uriList.Count == 0) App.mainWindow?.ShowInfoBand("None of server URI is valid",
+                    string.Empty,
+                    InfoBarSeverity.Error);
+                else App.mainWindow?.ShowInfoBand("Success",
+                    $"Applied for your {uriList.Count} uri",
+                    InfoBarSeverity.Success);
             }
         }
 

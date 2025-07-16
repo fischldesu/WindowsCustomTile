@@ -26,12 +26,10 @@ namespace WCT_WinUI3.Pages
 {
     public sealed partial class XmlEditor : Page
     {
-        public readonly InfoBar InfoBar;
         readonly XmlDocument xmlDoc = new();
         public XmlEditor()
         {
             this.InitializeComponent();
-            InfoBar = info;
         }
 
         public async Task<bool> Submit(string xmlText)
@@ -47,18 +45,16 @@ namespace WCT_WinUI3.Pages
             }
             catch (Exception)
             {
-                InfoBar.Severity = InfoBarSeverity.Error;
-                InfoBar.Message = "Invalid Xml text content, changes will not be applied.";
-                InfoBar.Title = "Parse Error";
-                InfoBar.IsOpen = true;
+                App.mainWindow?.ShowInfoBand(string.Empty,
+                    "Invalid Xml text",
+                    InfoBarSeverity.Error);
             }
             if (ret)
             {
                 Utility.TileHelper.SetXml(xmlDoc);
-                InfoBar.Severity = InfoBarSeverity.Success;
-                InfoBar.Message = "Xml parsed ok, tile updated.";
-                InfoBar.Title = "Success";
-                InfoBar.IsOpen = true;
+                App.mainWindow?.ShowInfoBand("Success",
+                    "Changes have applied",
+                    InfoBarSeverity.Success);
             }
             return ret;
         }

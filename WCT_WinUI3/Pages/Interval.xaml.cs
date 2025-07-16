@@ -51,10 +51,10 @@ namespace WCT_WinUI3.Pages
         {
             if (items.TabItems.Count == 0)
             {
-                info.Title = "Null Argument";
-                info.Message = "There`s no available TileXml text.";
-                info.Severity = InfoBarSeverity.Warning;
-                info.IsOpen = true;
+                App.mainWindow?.ShowInfoBand(string.Empty,
+                    "Theres no available sources",
+                    InfoBarSeverity.Warning
+                    );
                 return false;
             }
 
@@ -123,10 +123,11 @@ namespace WCT_WinUI3.Pages
                     _ => TimeSpan.FromMinutes(timeInput.Value),
                 };
                 TileHelper.SetInterval([.. xmlDocuments], timeSpan);
-                info.Severity = InfoBarSeverity.Success;
-                info.Message = "Xml parsed ok, tile updated.";
-                info.Title = "Success";
-                info.IsOpen = true;
+
+                App.mainWindow?.ShowInfoBand("Success",
+                    "All changes have applied",
+                    InfoBarSeverity.Success);
+
                 return true;
             }
 

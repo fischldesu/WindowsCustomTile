@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using WCT_WinUI3.Utility;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -93,6 +94,32 @@ namespace WCT_WinUI3
         public readonly Pages.XmlEditor xmlEditor = new();
         public readonly Pages.Interval interval = new();
         public readonly Pages.HTTPXmlServer httpsrv = new();
+
+        private Action? infoBandCloseCancelToken;
+
+        public void ShowInfoBand(string title, string message, InfoBarSeverity severity, int closeTimeSecond = 3)
+        {
+            infoBand.Title = title;
+            infoBand.Message = message;
+            infoBand.Severity = severity;
+            infoBand.IsOpen = true;
+            if (closeTimeSecond > 0)
+            {
+                infoBandCloseCancelToken?.Invoke();
+                infoBandCloseCancelToken = Timer.SetTimeout(() =>
+                {
+                    infoBandCloseCancelToken = null;
+                    infoBand.IsOpen = false;
+                }, TimeSpan.FromSeconds(closeTimeSecond));
+            }
+            var logLevel = severity switch
+            {
+                InfoBarSeverity.Warning => Utility.Log.LogMessage.LogLevel.WARNING,
+                InfoBarSeverity.Error => Utility.Log.LogMessage.LogLevel.WARNING,
+                _ => Utility.Log.LogMessage.LogLevel.INFO,
+            };
+            Utility.Log.Logger.Log($"{severity} info:{Title} {message}", logLevel);
+        }
 
         private void NavigateToContent(Page pageInstance)
         {

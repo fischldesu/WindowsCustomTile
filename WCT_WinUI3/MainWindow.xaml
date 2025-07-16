@@ -31,6 +31,15 @@
             </NavigationViewItem>
             <NavigationViewItem Icon="Globe" Tag="httpsrv" Content="{x:Bind i18n:Lang.Text('Page_HTTPSrv')}"/>
         </NavigationView.MenuItems>
-        <Frame x:Name="frame"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Frame x:Name="frame" Grid.Row="1"/>
+            <InfoBar x:Name="infoBar" CornerRadius="0" Margin="-1 0"   Grid.Row="0" HorizontalAlignment="Stretch" />
+            <InfoBar x:Name="infoBand" Grid.Row="0" Grid.RowSpan="3" Margin="16 24" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+        </Grid>
     </NavigationView>
 </Window>
