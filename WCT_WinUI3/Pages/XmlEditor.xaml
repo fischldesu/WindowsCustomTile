@@ -10,22 +10,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Padding="32">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Page_XmlTextEditor_Title')}" />
-        <Components:TileXmlEditor x:Name="editor" Margin="0 16" Grid.Row="1"/>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="selectFile" Click="selectFile_Click" Margin="0 0 8 0" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
-            <Button
-            x:Name="submit"
-            HorizontalAlignment="Right"
-            Style="{StaticResource AccentButtonStyle}"
-            Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
-        </StackPanel>
-    </Grid>
-
+    <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Page_XmlTextEditor_Title')}">
+        <Components:TileXmlEditor x:Name="editor" Grid.Row="1"/>
+        <local:PageTemplate.FooterContent>
+            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="selectFile" Click="selectFile_Click" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" Margin="0 0 8 0"  />
+                <Button x:Name="submit" Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}"   />
+            </StackPanel>
+        </local:PageTemplate.FooterContent>
+    </local:PageTemplate>
 </Page>

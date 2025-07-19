@@ -10,7 +10,7 @@
   <Identity
     Name="com.fischldesu.windowscustomtile"
     Publisher="CN=fischldesu"
-    Version="0.0.4.1" />
+    Version="0.0.4.2" />
 
   <mp:PhoneIdentity PhoneProductId="9544b31e-da4f-4d7e-bd8c-5556d205b5ed" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

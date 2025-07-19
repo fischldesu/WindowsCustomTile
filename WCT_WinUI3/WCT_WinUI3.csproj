@@ -19,6 +19,7 @@
     <None Remove="Pages\HTTPXmlServer.xaml" />
     <None Remove="Pages\Interval.xaml" />
     <None Remove="Pages\Main.xaml" />
+    <None Remove="Pages\PageTemplate.xaml" />
     <None Remove="Pages\Settings.xaml" />
   </ItemGroup>
 
@@ -47,6 +48,11 @@
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.2.250402" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Pages\PageTemplate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="LogWindow.xaml">

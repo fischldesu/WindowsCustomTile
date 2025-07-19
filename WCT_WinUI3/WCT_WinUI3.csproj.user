@@ -6,4 +6,9 @@
     <AppxBuildConfigurationSelection>x86|x64|arm64</AppxBuildConfigurationSelection>
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
   </PropertyGroup>
+  <ItemGroup>
+    <Page Update="Pages\PageTemplate.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
 </Project>

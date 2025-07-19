@@ -10,14 +10,8 @@
    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
    mc:Ignorable="d">
 
-    <Grid Padding="32">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Page_Timer_Title')}" />
-        <Grid Grid.Row="1" Margin="0 32" ColumnSpacing="16">
+    <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Page_Timer_Title')}">
+        <Grid ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
@@ -37,12 +31,14 @@
                 <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Clear all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" />
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal" Width="192">
-                <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1" SpinButtonPlacementMode="Compact" SmallChange="1"  LargeChange="10" />
-                <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
+        <local:PageTemplate.FooterContent>
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" Width="192">
+                    <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1" SpinButtonPlacementMode="Compact" SmallChange="1"  LargeChange="10" />
+                    <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
+                </StackPanel>
+                <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
             </StackPanel>
-            <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
-        </StackPanel>
-    </Grid>
+        </local:PageTemplate.FooterContent>
+    </local:PageTemplate>
 </Page>

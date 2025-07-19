@@ -10,18 +10,12 @@
     xmlns:WindowsNotification="using:Windows.UI.Notifications"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
     <Page.Resources>
         <Converter:EnumToLocalizedStringConverter x:Key="EnumToStringConverter" />
     </Page.Resources>
-    <Grid Padding="32">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Page_HTTPSrv_Title')}"/>
-        <Grid Grid.Row="1" Margin="0 32" ColumnSpacing="16">
+    <local:PageTemplate x:Name="pageTemplate" Header="{x:Bind i18n:Lang.Text('Page_HTTPSrv_Title')}">
+        <Grid ColumnSpacing="16">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="auto"/>
@@ -43,15 +37,16 @@
                 <Button x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" Style="{StaticResource RedButtonStyle}" CornerRadius="4" ToolTipService.ToolTip="Clear all links" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" />
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <ComboBox x:Name="updateRecurrence" Height="32" CornerRadius="6 0 0 6">
-                <ComboBox.ItemTemplate>
-                    <DataTemplate x:DataType="WindowsNotification:PeriodicUpdateRecurrence">
-                        <TextBlock Text="{x:Bind Converter={StaticResource EnumToStringConverter}}" />
-                    </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Button
+        <local:PageTemplate.FooterContent>
+            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                <ComboBox x:Name="updateRecurrence" Height="32" CornerRadius="6 0 0 6">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="WindowsNotification:PeriodicUpdateRecurrence">
+                            <TextBlock Text="{x:Bind Converter={StaticResource EnumToStringConverter}}" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button
                 Height="32"
                 CornerRadius="0 6 6 0"
                 Margin="-1 0 0 0"
@@ -59,6 +54,7 @@
                 HorizontalAlignment="Right"
                 Style="{StaticResource AccentButtonStyle}"
                 Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
-        </StackPanel>
-    </Grid>
+            </StackPanel>
+        </local:PageTemplate.FooterContent>
+    </local:PageTemplate>
 </Page>

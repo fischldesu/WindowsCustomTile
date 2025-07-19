@@ -14,6 +14,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System.Profile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -192,6 +193,15 @@ namespace WCT_WinUI3.Pages
                 };
                 animation.Start(true);
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ulong.TryParse(AnalyticsInfo.VersionInfo.DeviceFamilyVersion, out var versionNumber))
+                if( ((versionNumber & 0x00000000FFFF0000L) >> 16) >= 22000) 
+                    pageTemplate.ShowInfo("Warning",
+                        "This feature is unlikely to be available on Windows 11",
+                        InfoBarSeverity.Warning, false);
         }
     }
 }

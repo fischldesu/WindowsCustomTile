@@ -15,14 +15,8 @@
     <Page.Resources>
         <Converter:EnumToLocalizedStringConverter x:Key="EnumToStringConverter" />
     </Page.Resources>
-    <Grid Padding="32">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="42"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" FontSize="32" Text="{x:Bind i18n:Lang.Text('Settings_Title')}" />
-        <ScrollViewer x:Name="scroller" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0 16">
+    <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Settings_Title')}">
+        <ScrollViewer x:Name="scroller" HorizontalAlignment="Stretch">
             <StackPanel x:Name="settingsCards" Orientation="Vertical">
                 <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Log')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
@@ -81,9 +75,9 @@
                     </CommunityToolkit:SettingsExpander.HeaderIcon>
                     <CommunityToolkit:SettingsExpander.Items>
                         <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style_NavStyle')}">
-                    <CommunityToolkit:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xF594;" />
-                    </CommunityToolkit:SettingsCard.HeaderIcon>
+                            <CommunityToolkit:SettingsCard.HeaderIcon>
+                                <FontIcon Glyph="&#xF594;" />
+                            </CommunityToolkit:SettingsCard.HeaderIcon>
                             <ComboBox x:Name="paneDisplayModeCombo" SelectedItem="{x:Bind Proj:App.mainWindow.PaneDisplayMode, Mode=TwoWay}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate x:DataType="NavigationViewPaneDisplayMode">
@@ -93,11 +87,11 @@
                             </ComboBox>
                         </CommunityToolkit:SettingsCard>
                         <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style_Backdrop')}">
-                    <CommunityToolkit:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xEF1F;" />
-                    </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <ComboBox x:Name="backdropCombo" SelectedItem="{x:Bind Proj:App.mainWindow.BackdropType, Mode=TwoWay}"/>
-                </CommunityToolkit:SettingsCard>
+                            <CommunityToolkit:SettingsCard.HeaderIcon>
+                                <FontIcon Glyph="&#xEF1F;" />
+                            </CommunityToolkit:SettingsCard.HeaderIcon>
+                            <ComboBox x:Name="backdropCombo" SelectedItem="{x:Bind Proj:App.mainWindow.BackdropType, Mode=TwoWay}"/>
+                        </CommunityToolkit:SettingsCard>
                         <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Appearance_Style_Theme')}">
                             <CommunityToolkit:SettingsCard.HeaderIcon>
                                 <FontIcon Glyph="&#xE793;" />
@@ -161,6 +155,8 @@
                 </Expander>
             </StackPanel>
         </ScrollViewer>
-        <HyperlinkButton Grid.Row="2" Content="fischldesu.com" NavigateUri="https://fischldesu.com" />
-    </Grid>
+        <local:PageTemplate.FooterContent>
+            <HyperlinkButton Grid.Row="2" Content="fischldesu.com" NavigateUri="https://fischldesu.com" />
+        </local:PageTemplate.FooterContent>
+    </local:PageTemplate>
 </Page>
