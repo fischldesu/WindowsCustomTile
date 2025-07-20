@@ -97,10 +97,10 @@ namespace WCT_WinUI3
 
         private Action? infoBandCloseCancelToken;
 
-        public void ShowInfoBand(string title, string message, InfoBarSeverity severity, int closeTimeSecond = 3)
+        public void ShowInfoBand(string? title, string? message, InfoBarSeverity severity, int closeTimeSecond = 3)
         {
             infoBand.Title = title;
-            infoBand.Message = message;
+            infoBand.Message = message ?? string.Empty;
             infoBand.Severity = severity;
             infoBand.IsOpen = true;
             if (closeTimeSecond > 0)

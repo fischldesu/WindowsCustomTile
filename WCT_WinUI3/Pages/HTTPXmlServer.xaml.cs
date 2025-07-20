@@ -1,3 +1,4 @@
+using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -63,64 +64,61 @@ namespace WCT_WinUI3.Pages
 
             foreach (var item in inputStack.Children)
                 if (item is Components.XmlUriInput uriInput)
+                {
                     if (uriInput.Uri != null) uriList.Add(uriInput.Uri);
                     else invalids.Add(uriInput.Header);
+                }
 
-            if (inputStack.Children.Count == 0)
+            if (inputStack.Children.Count < 0)
             {
-                App.mainWindow?.ShowInfoBand("Warning",
-                    "Theres no available server URI.",
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
+                    Utility.I18N.Lang.Text("Info_NoValidSrv"),
                     InfoBarSeverity.Error);
                 return;
             }
 
-            var dialogContent = new TextBlock()
+            var content = new TextBlock()
             {
                 Margin = new Thickness(0, 8, 0, 8),
             };
-            dialogContent.Inlines.Add(new Run()
+
+            void TextTitle(string? text)
             {
-                Text = "Valid Uri",
-                FontWeight = Microsoft.UI.Text.FontWeights.Bold,
-                FontSize = 12
-            });
-            dialogContent.Inlines.Add(new Run()
-            {
-                Text = $" Count: {uriList.Count}",
-            });
-            dialogContent.Inlines.Add(new LineBreak());
-            dialogContent.Inlines.Add(new LineBreak());
-            if (invalids.Count > 0)
-            {
-                dialogContent.Inlines.Add(new Run()
+                if (text == null) return;
+
+                content.Inlines.Add(new Run()
                 {
-                    Text = "Invalid Uri",
-                    FontWeight = Microsoft.UI.Text.FontWeights.Bold,
+                    Text = text,
+                    FontWeight = FontWeights.Bold,
                     FontSize = 12
                 });
-                dialogContent.Inlines.Add(new LineBreak());
-                foreach (var item in invalids)
-                {
-                    dialogContent.Inlines.Add(new Run() { Text = item });
-                    dialogContent.Inlines.Add(new LineBreak());
-                }
-                dialogContent.Inlines.Add(new LineBreak());
             }
-            dialogContent.Inlines.Add(new Run()
+            void TextContent(string? text)
             {
-                Text = "Update Recurrence",
-                FontWeight = Microsoft.UI.Text.FontWeights.Bold,
-                FontSize = 12
-            });
-            dialogContent.Inlines.Add(new LineBreak());
-            dialogContent.Inlines.Add(new Run()
+                if (text == null) return;
+
+                content.Inlines.Add(new Run()
+                {
+                    Text = text
+                });
+            }
+            void TextLineBreak() => content.Inlines.Add(new LineBreak());
+
+            TextTitle($"{Utility.I18N.Lang.Text("Dialog_ValidUri")}\n");
+            TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")} {uriList.Count}\n");
+            TextLineBreak();
+            TextTitle($"{Utility.I18N.Lang.Text("Dialog_TimeSpan")}\n");
+            TextContent($"{Utility.I18N.Lang.Text("Dialog_Every")} {updateRecurrence.SelectedItem}\n");
+            if (invalids.Count > 0)
             {
-                Text = $"Time span: {updateRecurrence.SelectedItem}",
-            });
+                TextLineBreak();
+                TextTitle($"{Utility.I18N.Lang.Text("Dialog_InvalidUri")}\n");
+                TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {invalids.Count}\n{string.Join(Environment.NewLine, invalids)}");
+            }
 
             var ok = await Utility.AppContentDialog.ShowAsync(
-                "Apply changes?",
-                dialogContent);
+                Utility.I18N.Lang.Text("Dialog_AskApplyChanges"),
+                content);
             if (ok)
             {
                 if (updateRecurrence.SelectedItem is Windows.UI.Notifications.PeriodicUpdateRecurrence recurrence)
@@ -199,8 +197,8 @@ namespace WCT_WinUI3.Pages
         {
             if (ulong.TryParse(AnalyticsInfo.VersionInfo.DeviceFamilyVersion, out var versionNumber))
                 if( ((versionNumber & 0x00000000FFFF0000L) >> 16) >= 22000) 
-                    pageTemplate.ShowInfo("Warning",
-                        "This feature is unlikely to be available on Windows 11",
+                    pageTemplate.ShowInfo(Utility.I18N.Lang.Text("G_Warning"),
+                        Utility.I18N.Lang.Text("Page_HTTPSrv_Info_BadForWin11"),
                         InfoBarSeverity.Warning, false);
         }
     }

@@ -41,19 +41,19 @@ namespace WCT_WinUI3.Pages
                     throw new ArgumentException("Invalid Xml text");
                 xmlDoc.LoadXml(xmlText);
 
-                ret = await Utility.AppContentDialog.ShowAsync("Apply Changes?", xmlText);
+                ret = await Utility.AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), xmlText);
             }
             catch (Exception)
             {
                 App.mainWindow?.ShowInfoBand(string.Empty,
-                    "Invalid Xml text",
+                    Utility.I18N.Lang.Text("Info_InvalidXmlText"),
                     InfoBarSeverity.Error);
             }
             if (ret)
             {
                 Utility.TileHelper.SetXml(xmlDoc);
-                App.mainWindow?.ShowInfoBand("Success",
-                    "Changes have applied",
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
+                    Utility.I18N.Lang.Text("Info_ChnagesApplied"),
                     InfoBarSeverity.Success);
             }
             return ret;

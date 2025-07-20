@@ -51,10 +51,9 @@ namespace WCT_WinUI3.Pages
         {
             if (items.TabItems.Count == 0)
             {
-                App.mainWindow?.ShowInfoBand(string.Empty,
-                    "Theres no available sources",
-                    InfoBarSeverity.Warning
-                    );
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
+                    Utility.I18N.Lang.Text("Info_NoValidXml"),
+                    InfoBarSeverity.Warning);
                 return false;
             }
 
@@ -80,40 +79,54 @@ namespace WCT_WinUI3.Pages
                 }
             }
 
-            if (xmlDocuments.Count == 0)
-                return false;
-            
-
-            static Run TitleText(string text)
+            if (xmlDocuments.Count < 1)
             {
-                return new Run() { 
-                    Text = text,
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 12 
-                };
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
+                    Utility.I18N.Lang.Text("Info_NoValidXml"),
+                    InfoBarSeverity.Warning);
+                return false;
             }
+
             TextBlock content = new()
             {
                 Margin = new Thickness(0, 16, 0, 0)
             };
 
-            content.Inlines.Add(TitleText("Total valid Xml"));
-            content.Inlines.Add(new LineBreak());
-            content.Inlines.Add(new Run { Text = $"Count: {xmlDocuments.Count}" });
-            content.Inlines.Add(new LineBreak());
-            content.Inlines.Add(new LineBreak());
-            content.Inlines.Add(TitleText("Time span"));
-            content.Inlines.Add(new LineBreak());
-            content.Inlines.Add(new Run { Text = $"Every {timeInput.Value} {timeFormat.SelectedItem.ToString()?.ToLower()}" });
+            void TextTitle (string? text)
+            {
+                if (text == null) return;
+
+                content.Inlines.Add(new Run()
+                {
+                    Text = text,
+                    FontWeight = FontWeights.Bold,
+                    FontSize = 12
+                });
+            }
+            void TextContent(string? text)
+            {
+                if (text == null) return;
+
+                content.Inlines.Add(new Run()
+                {
+                    Text = text
+                });
+            }
+            void TextLineBreak() => content.Inlines.Add(new LineBreak());
+
+            TextTitle($"{Utility.I18N.Lang.Text("Dialog_TotalValidXml")}\n");
+            TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {xmlDocuments.Count}\n");
+            TextLineBreak();
+            TextTitle($"{Utility.I18N.Lang.Text("Dialog_TimeSpan")}\n");
+            TextContent($"{Utility.I18N.Lang.Text("Dialog_Every")} {timeInput.Value} {timeFormat.SelectedItem}\n");
             if (invalids.Count > 0)
             {
-                content.Inlines.Add(new LineBreak());
-                content.Inlines.Add(new LineBreak());
-                content.Inlines.Add(TitleText("Total invalid Xml"));
-                content.Inlines.Add(new Run { Text = $" Count: {invalids.Count}\n{string.Join(Environment.NewLine, invalids)}" });
+                TextLineBreak();
+                TextTitle($"{Utility.I18N.Lang.Text("Dialog_TotalInvalidXml")}\n");
+                TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {invalids.Count}\n{string.Join(Environment.NewLine, invalids)}");
             }
 
-            if (await AppContentDialog.ShowAsync("Apply all changes?", content))
+            if (await AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), content))
             {
                 var timeSpan = timeFormat.SelectedIndex switch
                 {
@@ -124,8 +137,8 @@ namespace WCT_WinUI3.Pages
                 };
                 TileHelper.SetInterval([.. xmlDocuments], timeSpan);
 
-                App.mainWindow?.ShowInfoBand("Success",
-                    "All changes have applied",
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
+                    Utility.I18N.Lang.Text("Info_ChangesApplied"),
                     InfoBarSeverity.Success);
 
                 return true;
@@ -153,10 +166,7 @@ namespace WCT_WinUI3.Pages
             }
         }
 
-        private async void submit_Click(object sender, RoutedEventArgs e)
-        {
-            await SubmitXmlsTimer();
-        }
+        private async void submit_Click(object sender, RoutedEventArgs e) => await SubmitXmlsTimer();
 
         private async void selectFile_Click(object sender, RoutedEventArgs e)
         {

@@ -8,7 +8,8 @@ namespace WCT_WinUI3.Utility
     public class AppContentDialog
     {
         private readonly XamlRoot? xamlRoot = App.mainWindow?.Content.XamlRoot;
-        public static async Task<bool> ShowAsync(string title, object content)
+
+        public static async Task<bool> ShowAsync(string? title, object content)
         {
             var helper = new AppContentDialog();
             if (helper.xamlRoot != null)
@@ -17,8 +18,8 @@ namespace WCT_WinUI3.Utility
                 {
                     Title = title,
                     Content = content,
-                    PrimaryButtonText = "Yes",
-                    SecondaryButtonText = "Cancel",
+                    PrimaryButtonText = I18N.Lang.Text("G_Yes"),
+                    SecondaryButtonText = I18N.Lang.Text("G_Cancel"),
                     DefaultButton = ContentDialogButton.Primary,
                     XamlRoot = helper.xamlRoot
                 };
@@ -28,7 +29,7 @@ namespace WCT_WinUI3.Utility
             }
             else
             {
-                throw new ApplicationException("MainWindow of Application not exist");
+                throw new ApplicationException("Application MainWindow or it`s XamlRoot not exist");
             }
             return false;
         }

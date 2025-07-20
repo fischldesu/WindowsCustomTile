@@ -178,7 +178,7 @@
     <value>Xml Text Editor</value>
   </data>
   <data name="G_SelectXmlFile" xml:space="preserve">
-    <value>Select a file</value>
+    <value>Xml file</value>
   </data>
   <data name="Page_XmlTextEditor_Title" xml:space="preserve">
     <value>Edit tile Xml</value>
@@ -302,5 +302,50 @@
   </data>
   <data name="Enum_Theme_Dark" xml:space="preserve">
     <value>Dark</value>
+  </data>
+  <data name="Dialog_AskApplyChanges" xml:space="preserve">
+    <value>Apply changes?</value>
+  </data>
+  <data name="G_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="G_Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
+  <data name="Info_ChangesApplied" xml:space="preserve">
+    <value>Changes have applied</value>
+  </data>
+  <data name="Dialog_TotalValidXml" xml:space="preserve">
+    <value>Total valid Xml text</value>
+  </data>
+  <data name="Dialog_Count" xml:space="preserve">
+    <value>Count</value>
+  </data>
+  <data name="Dialog_TimeSpan" xml:space="preserve">
+    <value>Time Span</value>
+  </data>
+  <data name="Dialog_Every" xml:space="preserve">
+    <value>Every</value>
+  </data>
+  <data name="Dialog_TotalInvalidXml" xml:space="preserve">
+    <value>Total invalid Xml text</value>
+  </data>
+  <data name="G_Warning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="Info_NoValidSrv" xml:space="preserve">
+    <value>There`s no valid HTTP server uri</value>
+  </data>
+  <data name="Dialog_ValidUri" xml:space="preserve">
+    <value>Total Valid Uri</value>
+  </data>
+  <data name="Dialog_InvalidUri" xml:space="preserve">
+    <value>Invalid Uri</value>
+  </data>
+  <data name="Info_NoValidXml" xml:space="preserve">
+    <value>There`s no valid Xml Text</value>
+  </data>
+  <data name="Page_HTTPSrv_Info_BadForWin11" xml:space="preserve">
+    <value>This function probably unavailable on Windows 11</value>
   </data>
 </root>

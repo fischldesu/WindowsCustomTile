@@ -45,12 +45,12 @@ namespace WCT_WinUI3.Pages
             DefaultStyleKey = typeof(PageTemplate);
         }
 
-        public bool ShowInfo(string title, string message, InfoBarSeverity severity, bool closable = true, Microsoft.UI.Xaml.Controls.Primitives.ButtonBase? actionButton = null)
+        public bool ShowInfo(string? title, string? message, InfoBarSeverity severity, bool closable = true, Microsoft.UI.Xaml.Controls.Primitives.ButtonBase? actionButton = null)
         {
             if (infoBar != null)
             {
                 infoBar.Title = title;
-                infoBar.Message = message;
+                infoBar.Message = message ?? string.Empty;
                 infoBar.Severity = severity;
                 infoBar.IsClosable = closable;
                 infoBar.ActionButton = actionButton;

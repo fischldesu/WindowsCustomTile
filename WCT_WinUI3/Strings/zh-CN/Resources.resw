@@ -178,7 +178,7 @@
     <value>Xml文本编辑器</value>
   </data>
   <data name="G_SelectXmlFile" xml:space="preserve">
-    <value>选择一个Xml文件</value>
+    <value>选择Xml文件</value>
   </data>
   <data name="Page_XmlTextEditor_Title" xml:space="preserve">
     <value>编辑磁贴Xml文本</value>
@@ -302,5 +302,50 @@
   </data>
   <data name="Enum_Theme_Dark" xml:space="preserve">
     <value>暗</value>
+  </data>
+  <data name="Dialog_AskApplyChanges" xml:space="preserve">
+    <value>是否应用更改？</value>
+  </data>
+  <data name="G_Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="G_Failed" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Info_ChangesApplied" xml:space="preserve">
+    <value>已应用更改</value>
+  </data>
+  <data name="Dialog_TotalValidXml" xml:space="preserve">
+    <value>有效的Xml文本</value>
+  </data>
+  <data name="Dialog_Count" xml:space="preserve">
+    <value>共计</value>
+  </data>
+  <data name="Dialog_TimeSpan" xml:space="preserve">
+    <value>时间间隔</value>
+  </data>
+  <data name="Dialog_Every" xml:space="preserve">
+    <value>每</value>
+  </data>
+  <data name="Dialog_TotalInvalidXml" xml:space="preserve">
+    <value>无效的Xml文本</value>
+  </data>
+  <data name="G_Warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
+  <data name="Info_NoValidSrv" xml:space="preserve">
+    <value>没有有效的HTTP服务器Uri</value>
+  </data>
+  <data name="Dialog_ValidUri" xml:space="preserve">
+    <value>有效的Uri</value>
+  </data>
+  <data name="Dialog_InvalidUri" xml:space="preserve">
+    <value>无效的Uri</value>
+  </data>
+  <data name="Info_NoValidXml" xml:space="preserve">
+    <value>没有有效的Xml文本</value>
+  </data>
+  <data name="Page_HTTPSrv_Info_BadForWin11" xml:space="preserve">
+    <value>该功能在 Windows 11 上大概率不可用</value>
   </data>
 </root>
