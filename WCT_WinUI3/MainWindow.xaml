@@ -12,34 +12,43 @@
     <Window.SystemBackdrop>
         <MicaBackdrop />
     </Window.SystemBackdrop>
-    <NavigationView x:Name="view" IsBackButtonVisible="Collapsed" SelectionChanged="view_SelectionChanged" Loaded="view_Loaded">
-        <NavigationView.MenuItems>
-            <NavigationViewItem x:Name="navigationDefaultItem" Tag="main" Content="{x:Bind i18n:Lang.Text('Page_Home')}">
-                <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xF407;" />
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Tag="xmlEditor" Content="{x:Bind i18n:Lang.Text('Page_XmlTextEditor')}">
-                <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE74C;" />
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Tag="interval" Content="{x:Bind i18n:Lang.Text('Page_Timer')}">
-                <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE916;" />
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-            <NavigationViewItem Icon="Globe" Tag="httpsrv" Content="{x:Bind i18n:Lang.Text('Page_HTTPSrv')}"/>
-        </NavigationView.MenuItems>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="auto" />
-            </Grid.RowDefinitions>
-            <Frame x:Name="frame" Grid.Row="1"/>
-            <InfoBar x:Name="infoBar" CornerRadius="0" Margin="-1 0"   Grid.Row="0" HorizontalAlignment="Stretch" />
-            <InfoBar x:Name="infoBand" Grid.Row="0" Grid.RowSpan="3" Margin="16 24" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
-        </Grid>
-    </NavigationView>
+    <Grid x:Name="root">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="38" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="appTitleContainer" Grid.Row="0" Orientation="Horizontal">
+            <TextBlock x:Name="appTitleText" VerticalAlignment="Center" Padding="16 0" FontSize="12" />
+        </StackPanel>
+        <NavigationView x:Name="view" Grid.Row="1" IsBackButtonVisible="Collapsed" SelectionChanged="view_SelectionChanged" Loaded="view_Loaded">
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="navigationDefaultItem" Tag="main" Content="{x:Bind i18n:Lang.Text('Page_Home')}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xF407;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Tag="xmlEditor" Content="{x:Bind i18n:Lang.Text('Page_XmlTextEditor')}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE74C;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Tag="interval" Content="{x:Bind i18n:Lang.Text('Page_Timer')}">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE916;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+                <NavigationViewItem Icon="Globe" Tag="httpsrv" Content="{x:Bind i18n:Lang.Text('Page_HTTPSrv')}"/>
+            </NavigationView.MenuItems>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Frame x:Name="frame" Grid.Row="1"/>
+                <InfoBar x:Name="infoBar" CornerRadius="0" Margin="-1 0"   Grid.Row="0" HorizontalAlignment="Stretch" />
+                <InfoBar x:Name="infoBand" Grid.Row="0" Grid.RowSpan="3" Margin="16 24" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+            </Grid>
+        </NavigationView>
+    </Grid>
 </Window>

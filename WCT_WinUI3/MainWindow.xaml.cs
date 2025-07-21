@@ -74,20 +74,39 @@ namespace WCT_WinUI3
                 
             }
         }
-
         public ElementTheme Theme
         {
-            get => view.RequestedTheme;
+            get => root.RequestedTheme;
             set
             {
-                if (view.RequestedTheme != value)
-                    view.RequestedTheme = value;
+                if (root.RequestedTheme != value)
+                {
+                    root.RequestedTheme = value;
+                    if (value != ElementTheme.Default)
+                    {
+                        AppWindow.TitleBar.ButtonForegroundColor = value == ElementTheme.Dark ?
+                            Microsoft.UI.Colors.White : Microsoft.UI.Colors.Black;
+                    }
+                }
             }
+        }
+
+        public string WindowTitle
+        {
+            get => appTitleText.Text;
+            private set => appTitleText.Text = value;
         }
 
         public MainWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            SetTitleBar(appTitleContainer);
+
+            WindowTitle = Title;
+            ExtendsContentIntoTitleBar = true;
+
+            AppWindow.TitleBar.PreferredHeightOption = Microsoft.UI.Windowing.TitleBarHeightOption.Standard;
+            AppWindow.SetIcon("Assets/WindowIcon.ico");
         }
 
         public readonly Pages.HomePage main = new();

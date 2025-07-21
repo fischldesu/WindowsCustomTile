@@ -31,6 +31,7 @@ namespace WCT_WinUI3
         {
             this.InitializeComponent();
             this.AppWindow.Resize(new Windows.Graphics.SizeInt32(1024, 768));
+            this.AppWindow.SetIcon("Assets/WindowIcon.ico");
 
             Initilaize();
 
