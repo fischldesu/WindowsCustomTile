@@ -13,6 +13,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Square310x310Logo.scale-200.png" />
+    <None Remove="Components\DocumentationDropdownButton.xaml" />
+    <None Remove="Components\PageFooter.xaml" />
     <None Remove="Components\TileXmlEditor.xaml" />
     <None Remove="Components\XmlUriInput.xaml" />
     <None Remove="LogWindow.xaml" />
@@ -48,6 +50,16 @@
     <PackageReference Include="CommunityToolkit.WinUI.Controls.SettingsControls" Version="8.2.250402" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\DocumentationDropdownButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\PageFooter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Pages\PageTemplate.xaml">

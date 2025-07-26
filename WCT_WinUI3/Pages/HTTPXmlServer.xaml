@@ -38,23 +38,27 @@
             </StackPanel>
         </Grid>
         <local:PageTemplate.FooterContent>
-            <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-                <ComboBox x:Name="updateRecurrence" Height="32" CornerRadius="6 0 0 6">
-                    <ComboBox.ItemTemplate>
-                        <DataTemplate x:DataType="WindowsNotification:PeriodicUpdateRecurrence">
-                            <TextBlock Text="{x:Bind Converter={StaticResource EnumToStringConverter}}" />
-                        </DataTemplate>
-                    </ComboBox.ItemTemplate>
-                </ComboBox>
-                <Button
-                Height="32"
-                CornerRadius="0 6 6 0"
-                Margin="-1 0 0 0"
-                x:Name="submit"
-                HorizontalAlignment="Right"
-                Style="{StaticResource AccentButtonStyle}"
-                Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
-            </StackPanel>
+            <Components:PageFooter>
+                <Components:PageFooter.FrontContent>
+                    <Components:DocumentationDropdownButton Description="TileUpdater.StartPeriodicUpdate">
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference 1" NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.startperiodicupdate" />
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference 2" NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.startperiodicupdatebatch" />
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines" NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#http-server" />
+                    </Components:DocumentationDropdownButton>
+                </Components:PageFooter.FrontContent>
+                <Components:PageFooter.RearContent>
+                    <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <ComboBox x:Name="updateRecurrence" Height="32" CornerRadius="6 0 0 6">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate x:DataType="WindowsNotification:PeriodicUpdateRecurrence">
+                                    <TextBlock Text="{x:Bind Converter={StaticResource EnumToStringConverter}}" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Button x:Name="submit" Height="32" CornerRadius="0 6 6 0" Margin="-1 0 0 0" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
+                    </StackPanel>
+                </Components:PageFooter.RearContent>
+            </Components:PageFooter>
         </local:PageTemplate.FooterContent>
     </local:PageTemplate>
 </Page>

@@ -13,10 +13,20 @@
     <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Page_XmlTextEditor_Title')}">
         <Components:TileXmlEditor x:Name="editor" Grid.Row="1"/>
         <local:PageTemplate.FooterContent>
-            <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button x:Name="selectFile" Click="selectFile_Click" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" Margin="0 0 8 0"  />
-                <Button x:Name="submit" Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}"   />
-            </StackPanel>
+            <Components:PageFooter>
+                <Components:PageFooter.FrontContent>
+                    <Components:DocumentationDropdownButton Description="TileUpdater.Update">
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference" NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.update" />
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines" NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#xml-edit" />
+                    </Components:DocumentationDropdownButton>
+                </Components:PageFooter.FrontContent>
+                <Components:PageFooter.RearContent>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button x:Name="selectFile" Click="selectFile_Click" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" Margin="0 0 8 0"  />
+                        <Button x:Name="submit" Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}"   />
+                    </StackPanel>
+                </Components:PageFooter.RearContent>
+            </Components:PageFooter>
         </local:PageTemplate.FooterContent>
     </local:PageTemplate>
 </Page>

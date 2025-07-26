@@ -7,6 +7,16 @@
     <PackageOptionalProjectsInIdeBuilds>False</PackageOptionalProjectsInIdeBuilds>
   </PropertyGroup>
   <ItemGroup>
+    <Page Update="Components\DocumentationDropdownButton.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\PageFooter.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Pages\PageTemplate.xaml">
       <SubType>Designer</SubType>
     </Page>

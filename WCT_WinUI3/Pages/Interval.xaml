@@ -32,13 +32,23 @@
             </StackPanel>
         </Grid>
         <local:PageTemplate.FooterContent>
-            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-                <StackPanel Orientation="Horizontal" Width="192">
-                    <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1" SpinButtonPlacementMode="Compact" SmallChange="1"  LargeChange="10" />
-                    <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
-                </StackPanel>
-                <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
-            </StackPanel>
+            <Components:PageFooter>
+                <Components:PageFooter.FrontContent>
+                    <Components:DocumentationDropdownButton Description="(Invoke Update periodically)">
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference" NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.update" />
+                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines" NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#timer" />
+                    </Components:DocumentationDropdownButton>
+                </Components:PageFooter.FrontContent>
+                <Components:PageFooter.RearContent>
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+                        <StackPanel Orientation="Horizontal" Width="192">
+                            <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1" SpinButtonPlacementMode="Compact" SmallChange="1"  LargeChange="10" />
+                            <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
+                        </StackPanel>
+                        <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
+                    </StackPanel>
+                </Components:PageFooter.RearContent>
+            </Components:PageFooter>
         </local:PageTemplate.FooterContent>
     </local:PageTemplate>
 </Page>
