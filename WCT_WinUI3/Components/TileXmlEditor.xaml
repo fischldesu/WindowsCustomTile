@@ -71,7 +71,7 @@
             <PivotItem.Header>
                 <TextBlock Text="{x:Bind i18n:Lang.Text('Component_TileEditor_EditAll')}" FontSize="16"/>
             </PivotItem.Header>
-            <Grid Padding="0 16 0 0">
+            <Grid Padding="0 16 0 8">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />

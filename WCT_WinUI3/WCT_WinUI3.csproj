@@ -11,19 +11,6 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Assets\Square310x310Logo.scale-200.png" />
-    <None Remove="Components\DocumentationDropdownButton.xaml" />
-    <None Remove="Components\PageFooter.xaml" />
-    <None Remove="Components\TileXmlEditor.xaml" />
-    <None Remove="Components\XmlUriInput.xaml" />
-    <None Remove="LogWindow.xaml" />
-    <None Remove="Pages\HTTPXmlServer.xaml" />
-    <None Remove="Pages\Interval.xaml" />
-    <None Remove="Pages\Main.xaml" />
-    <None Remove="Pages\PageTemplate.xaml" />
-    <None Remove="Pages\Settings.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -123,6 +110,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Components\TileXmlEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Components\HomePage\ImageTile.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
