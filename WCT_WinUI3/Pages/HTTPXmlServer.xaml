@@ -30,7 +30,7 @@
                 </ScrollViewer>
             </Border>
             <StackPanel Name="RightPanelTop" Grid.Column="1"  Orientation="Vertical" Spacing="8">
-                <Button HorizontalAlignment="Stretch" x:Name="newItem" Click="newItem_Click" ToolTipService.ToolTip="New HTTP link inputer" Content="{x:Bind i18n:Lang.Text('Page_HTTPSrv_Append')}" />
+                <Button HorizontalAlignment="Stretch" x:Name="newItem" Click="newItem_Click" ToolTipService.ToolTip="New HTTP link inputer" Content="{x:Bind i18n:Lang.Text('Button_Add')}" />
                 <Button HorizontalAlignment="Stretch" x:Name="randomize" Click="randomize_Click" ToolTipService.ToolTip="Randomize entire list" Content="{x:Bind i18n:Lang.Text('G_Randomize')}" />
             </StackPanel>
             <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">

@@ -192,8 +192,8 @@
   <data name="Page_HTTPSrv_Title" xml:space="preserve">
     <value>HTTP Xml Server</value>
   </data>
-  <data name="Page_HTTPSrv_Append" xml:space="preserve">
-    <value>Append</value>
+  <data name="Button_Add" xml:space="preserve">
+    <value>Add</value>
   </data>
   <data name="Settings_Title" xml:space="preserve">
     <value>Settings</value>
@@ -347,5 +347,17 @@
   </data>
   <data name="Page_HTTPSrv_Info_BadForWin11" xml:space="preserve">
     <value>This function probably unavailable on Windows 11</value>
+  </data>
+  <data name="Button_Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Button_Check" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="Component_SlideShowTilePreviewer_ClickToPreview" xml:space="preserve">
+    <value>Click To Preview</value>
+  </data>
+  <data name="Page_Home_SlideShow" xml:space="preserve">
+    <value>Slide Show</value>
   </data>
 </root>

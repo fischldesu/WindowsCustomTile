@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="WCT_WinUI3.Components.SlideShowTilePreviewer"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WCT_WinUI3.Components"
+    xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Storyboard x:Name="SlideShowStoryboard">
+            <DoubleAnimation x:Name="HorizontalScaleAnimation"  Storyboard.TargetProperty="ScaleX" From="1" To="1.2" Duration="0:0:1"/>
+            <DoubleAnimation x:Name="VerticalScaleAnimation" Storyboard.TargetProperty="ScaleY" From="1" To="1.2" Duration="0:0:1"/>
+            <DoubleAnimation x:Name="OpacityAnimation" Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:1"/>
+        </Storyboard>
+    </UserControl.Resources>
+
+    <Border x:Name="container">
+        <Button x:Name="displayButton" CornerRadius="0" Padding="0" Click="displayButton_Click" HorizontalAlignment="Center">
+            <Grid x:Name="grid" SizeChanged="Grid_SizeChanged">
+                <TextBlock Text="{x:Bind i18n:Lang.Text('Component_SlideShowTilePreviewer_ClickToPreview')}" Padding="8" TextWrapping="Wrap" />
+            </Grid>
+        </Button>
+    </Border>
+</UserControl>

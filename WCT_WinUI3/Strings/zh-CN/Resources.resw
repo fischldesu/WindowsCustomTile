@@ -192,8 +192,8 @@
   <data name="Page_HTTPSrv_Title" xml:space="preserve">
     <value>HTTP Xml 服务器</value>
   </data>
-  <data name="Page_HTTPSrv_Append" xml:space="preserve">
-    <value>添加</value>
+  <data name="Button_Add" xml:space="preserve">
+    <value>新增</value>
   </data>
   <data name="Settings_Title" xml:space="preserve">
     <value>设置</value>
@@ -347,5 +347,17 @@
   </data>
   <data name="Page_HTTPSrv_Info_BadForWin11" xml:space="preserve">
     <value>该功能在 Windows 11 上大概率不可用</value>
+  </data>
+  <data name="Button_Remove" xml:space="preserve">
+    <value>移除</value>
+  </data>
+  <data name="Button_Check" xml:space="preserve">
+    <value>检查</value>
+  </data>
+  <data name="Component_SlideShowTilePreviewer_ClickToPreview" xml:space="preserve">
+    <value>点击进行预览</value>
+  </data>
+  <data name="Page_Home_SlideShow" xml:space="preserve">
+    <value>幻灯片</value>
   </data>
 </root>

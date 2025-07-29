@@ -20,8 +20,13 @@
         <TextBlock Grid.Row="0" FontSize="32">Winodws Custom Tile</TextBlock>
         <Border Grid.Row="1" Margin="0 16" HorizontalAlignment="Stretch" Style="{StaticResource BorderSectionStyle}">
             <ScrollViewer>
-                <StackPanel Padding="32" Spacing="12">
-                    <TextBlock Grid.Row="0" FontSize="22" Text="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmd')}" />
+                <StackPanel Padding="32 26 32 16" Spacing="12">
+                    <StackPanel  Grid.Row="0" Orientation="Horizontal" Spacing="4">
+                        <TextBlock FontSize="22" Text="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmd')}" />
+                        <HyperlinkButton Padding="6" Margin="0 1 0 0" VerticalAlignment="Stretch" NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki">
+                            <FontIcon Glyph="&#xE946;" FontSize="16" />
+                        </HyperlinkButton>
+                    </StackPanel>
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="32"/>
@@ -42,9 +47,15 @@
                     <Pivot x:Name="quickFunctionPivot" Loaded="quickFunctionPivot_Loaded"  Padding="-12 0">
                         <PivotItem>
                             <PivotItem.Header>
-                                <TextBlock FontSize="16" Text="{x:Bind i18n:Lang.Text('Page_Home_ImageTile')}" />
+                                <TextBlock VerticalAlignment="Center" FontSize="16" Text="{x:Bind i18n:Lang.Text('Page_Home_ImageTile')}" />
                             </PivotItem.Header>
-                            <LocalComponents:ImageTile Margin="0 20 0 0" x:Name="imageTile" />
+                            <LocalComponents:ImageTile Margin="0 20 0 0" />
+                        </PivotItem>
+                        <PivotItem>
+                            <PivotItem.Header>
+                                <TextBlock VerticalAlignment="Center" FontSize="16" Text="{x:Bind i18n:Lang.Text('Page_Home_SlideShow')}" />
+                            </PivotItem.Header>
+                            <LocalComponents:SlideShow AllowDrop="True" Margin="0 20 0 0" />
                         </PivotItem>
                     </Pivot>
                 </StackPanel>

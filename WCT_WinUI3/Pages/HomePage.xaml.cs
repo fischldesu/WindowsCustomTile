@@ -75,14 +75,15 @@ namespace WCT_WinUI3.Pages
 
             DispatcherQueue.TryEnqueue(() =>
             {
-                float height = 0;
+                double height = 0;
                 foreachContent(ele =>
                 {
-                    float height_ = ele.ActualSize.Y;
+                    double height_ = ele.ActualSize.Y;
                     if (height_ > height)
                         height = height_;
                 });
-                if (height > 0) foreachContent(ele => ele.MinHeight = height);
+                if (height > 0)
+                    foreachContent(ele => ele.MinHeight = height);
             });
         }
     }
