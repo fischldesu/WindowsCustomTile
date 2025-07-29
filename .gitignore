@@ -6,4 +6,7 @@ publish/
 .vscode/
 .idea/
 
-WCT_WinUI3.csproj.user
+*.user
+*.suo
+*.userosscache
+*.sln.docstates

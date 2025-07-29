@@ -8,7 +8,7 @@ Coming soon
 - [x] Unify and update page layout
 - v0.0.4 prerelease
 
-- [ ] Integrates SpecialTile: Multiple Photo Gallery
+- [x] Integrates SpecialTile: Multiple Photo Gallery
 - [ ] Background Service: Auto update tile content (For Page.Timer)(May implement with system tray icon)
 - v0.1 release
 
