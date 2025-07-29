@@ -5,3 +5,5 @@ publish/
 .vs/
 .vscode/
 .idea/
+
+WCT_WinUI3.csproj.user
