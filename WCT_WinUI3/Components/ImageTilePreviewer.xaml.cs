@@ -14,6 +14,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WCT_WinUI3.Utility;
 using System.ComponentModel;
+using Windows.ApplicationModel.DataTransfer;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -125,6 +126,38 @@ namespace WCT_WinUI3.Components
                 $"<image src='{Source.Medium}' placement='background' />",
                 $"<image src='{Source.Wide}' placement='background' />",
                 $"<image src='{Source.Large}' placement='background' />");
+        }
+
+        private void ImageButton_DragOver(object sender, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Link;
+        }
+
+        private async void ImageButton_Drop(object sender, DragEventArgs e)
+        {
+            e.Handled = true;
+            if (!e.DataView.Contains(StandardDataFormats.StorageItems)) return;
+            if (sender is Button button && button.Content is Image img)
+            {
+                var storageItems = await e.DataView.GetStorageItemsAsync();
+                var item = storageItems[0];
+                if (item != null)
+                    switch (button.Tag.ToString()?.ToLower())
+                    {
+                        case "large":
+                            Source.Large = item.Path;
+                            break;
+                        case "wide":
+                            Source.Wide = item.Path;
+                            break;
+                        case "medium":
+                            Source.Medium = item.Path;
+                            break;
+                        case "small":
+                            Source.Small = item.Path;
+                            break;
+                    }
+            }
         }
     }
 
