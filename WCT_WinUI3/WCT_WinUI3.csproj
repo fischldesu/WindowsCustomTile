@@ -39,6 +39,9 @@
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WCT_Core\Fischldesu.WCTCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="Components\ImagePathInput.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,7 +151,7 @@
     <PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
     <PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
     <PublishTrimmed Condition="'$(Configuration)' == 'Debug'">False</PublishTrimmed>
-    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">True</PublishTrimmed>
+    <PublishTrimmed Condition="'$(Configuration)' != 'Debug'">False</PublishTrimmed>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <PackageCertificateThumbprint>EA6DED7CCED6177C5127A6C3F0A85C22C294F8A5</PackageCertificateThumbprint>
@@ -160,5 +163,6 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <AppxBundlePlatforms>x86|x64|arm64</AppxBundlePlatforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefaultLanguage>zh-CN</DefaultLanguage>
   </PropertyGroup>
 </Project>
