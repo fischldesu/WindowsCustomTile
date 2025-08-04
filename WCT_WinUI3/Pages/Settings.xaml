@@ -50,7 +50,7 @@
             </Button.Flyout>
           </Button>
         </CommunityToolkit:SettingsCard>
-        <TextBlock FontWeight="Bold" Text="{x:Bind i18n:Lang.Text('Settings_Appearance')}" />
+        <TextBlock Margin="2" FontWeight="Bold" Text="{x:Bind i18n:Lang.Text('Settings_Appearance')}" />
         <CommunityToolkit:SettingsCard Header="Language 语言">
           <CommunityToolkit:SettingsCard.HeaderIcon>
             <FontIcon Glyph="&#xF2B7;" />
@@ -135,9 +135,8 @@
               </TextBlock>
               <TextBlock x:Name="versionInfo" Grid.Column="2" Grid.RowSpan="2" Foreground="Gray"
                          VerticalAlignment="Center">
-                <Run Text="{Binding Version.Major}" />.<Run Text="{Binding Settings.Version.Minor}" />.
-                <Run Text="{Binding Settings.Version.Build}" />
-                <Run x:Name="spVersion" />
+                <Run x:Name="VersionMajor" />.<Run x:Name="VersionMinor" />.<Run x:Name="VersionBuild" />
+                <Run x:Name="SpVersion" />
               </TextBlock>
             </Grid>
           </Expander.Header>

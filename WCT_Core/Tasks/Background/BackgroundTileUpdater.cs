@@ -42,6 +42,13 @@ internal class BackgroundTileUpdater
         
     }
 
+    public static void UnregisterAll()
+    {
+        foreach (var item in BackgroundTaskRegistration.AllTasks)
+            item.Value.Unregister(true);
+    }
+
+
     public static async Task Update(BackgroundTaskEntry? backgroundUpdater = null)
     {
         var settings = Settings.Instance;

@@ -1,4 +1,3 @@
-using ABI.System;
 using CommunityToolkit.WinUI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -14,6 +13,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+
+using CoreSettings = Fischldesu.WCTCore.Settings;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -53,7 +54,10 @@ namespace WCT_WinUI3.Pages
                 _ => 0
             };
 
-            spVersion.Text = "(pre-release)";
+            VersionMajor.Text = CoreSettings.Version.Major.ToString();
+            VersionMinor.Text = CoreSettings.Version.Minor.ToString();
+            VersionBuild.Text = CoreSettings.Version.Build.ToString();
+            SpVersion.Text = "(pre-release)";
         }
 
         public void AskResetAll()

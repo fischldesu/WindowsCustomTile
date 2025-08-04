@@ -22,6 +22,8 @@ internal partial class Settings : INotifyPropertyChanged
         Instance.LaunchAlwaysShowWindow = false;
         Instance.NoNotification = false;
         Instance.AutoUpdateNextTileIndex = 0;
+
+        Tasks.Background.BackgroundTileUpdater.UnregisterAll();
     }
 
     public string? LaunchCommand
