@@ -10,7 +10,7 @@
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
 
-  <Pivot x:Name="pivot" FontFamily="Consolas">
+  <Pivot x:Name="pivot" FontFamily="Consolas" AllowDrop="True" Drop="pivot_Drop" DragOver="pivot_DragOver">
 
     <PivotItem>
       <PivotItem.Header>

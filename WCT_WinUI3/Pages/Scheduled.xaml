@@ -12,7 +12,7 @@
   mc:Ignorable="d" Loaded="Page_Loaded">
 
   <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Page_Scheduled_Title')}">
-    <Grid ColumnSpacing="16">
+    <Grid ColumnSpacing="16" AllowDrop="True" Drop="File_Drop" DragOver="File_DragOver">
       <Grid.ColumnDefinitions>
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="auto" />

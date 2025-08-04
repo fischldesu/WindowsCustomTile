@@ -1,7 +1,9 @@
+using Fischldesu.WCTCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using Windows.ApplicationModel.DataTransfer;
+using Windows.Storage;
 
 namespace WCT_WinUI3.Components
 {
@@ -96,6 +98,40 @@ namespace WCT_WinUI3.Components
             {
                 tip.IsOpen = false;
             }, TimeSpan.FromSeconds(4));
+        }
+
+        private async void pivot_Drop(object sender, DragEventArgs e)
+        {
+            if (!e.DataView.Contains(StandardDataFormats.StorageItems))
+                return;
+
+            var storageItems = await e.DataView.GetStorageItemsAsync();
+            if (storageItems.Count < 1)
+                return;
+
+            var storageItem = storageItems[0];
+            if (storageItem != null && storageItem is IStorageFile file)
+            {
+                try
+                {
+                    var text = await FileIO.ReadTextAsync(file);
+                    var xmlDocument = new Windows.Data.Xml.Dom.XmlDocument();
+
+                    xmlDocument.LoadXml(text);
+                    SetXml(xmlDocument);
+                    e.Handled = true;
+                }
+                catch
+                {
+                    Log.Error($"Failed to load XML from file {file.Name}");
+                }
+            }
+
+        }
+
+        private void pivot_DragOver(object _, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Copy;
         }
     }
 }

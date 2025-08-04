@@ -1,3 +1,4 @@
+using Fischldesu.WCTCore;
 using Fischldesu.WCTCore.Tile;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
@@ -17,7 +18,9 @@ using WCT_WinUI3.Components;
 using WCT_WinUI3.Components.Scheduled;
 using WCT_WinUI3.Utility;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Xml.Dom;
+using Windows.Storage;
 
 namespace WCT_WinUI3.Pages
 {
@@ -292,6 +295,46 @@ namespace WCT_WinUI3.Pages
             var path = await TileHelper.GetSetAutoUpdateTileXmlsFolder();
             if (path != null)
                 XmlFileFolderOperationGroup.Visibility = Visibility.Visible;
+        }
+
+        private async void File_Drop(object _, DragEventArgs e)
+        {
+            if (!e.DataView.Contains(StandardDataFormats.StorageItems))
+                return;
+
+            var storageItems = await e.DataView.GetStorageItemsAsync();
+            if (storageItems.Count < 1)
+                return;
+
+            if (storageItems.Count > 1)
+                e.Handled = true;
+
+            foreach (var storageItem in storageItems)
+            {
+                if (storageItem is IStorageFile file)
+                {
+                    try
+                    {
+                        var text = await FileIO.ReadTextAsync(file);
+                        var xmlDocument = new XmlDocument();
+
+                        xmlDocument.LoadXml(text);
+
+                        var tab = NewTab();
+                        tab.SetXml(xmlDocument);
+                    }
+                    catch
+                    {
+                        Log.Error($"Failed to load XML from file {file.Name}");
+                    }
+                }
+            }
+
+        }
+
+        private void File_DragOver(object _, DragEventArgs e)
+        {
+            e.AcceptedOperation = DataPackageOperation.Copy;
         }
     }
 }
