@@ -32,7 +32,7 @@
                         <FontIcon Glyph="&#xE74C;" />
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem Tag="interval" Content="{x:Bind i18n:Lang.Text('Page_Timer')}">
+        <NavigationViewItem Tag="interval" Content="{x:Bind i18n:Lang.Text('Page_Scheduled')}">
                     <NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE916;" />
                     </NavigationViewItem.Icon>

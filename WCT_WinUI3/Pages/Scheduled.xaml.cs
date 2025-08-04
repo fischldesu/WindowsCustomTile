@@ -14,13 +14,20 @@ using Windows.Data.Xml.Dom;
 using System.Linq;
 using WCT_WinUI3.Components;
 using WCT_WinUI3.Utility;
+using System.Collections.Generic;
+using WinRT;
 
 namespace WCT_WinUI3.Pages
 {
-    public sealed partial class Interval : Page
+    public sealed partial class Scheduled : Page
     {
+        public class TileXmlTabs(XmlDocument[] xmlDocuments, string[] invalid)
+        {
+            public readonly XmlDocument[] Available = xmlDocuments;
+            public readonly string[] Invalid = invalid;
+        }
 
-        public Interval()
+        public Scheduled()
         {
             this.InitializeComponent();
             timeFormat.Items.Add(Utility.I18N.Lang.Text("G_Hour"));
@@ -47,39 +54,46 @@ namespace WCT_WinUI3.Pages
             return editor;
         }
 
-        public async Task<bool> SubmitXmlsTimer()
+        public TileXmlTabs? GetTileXmls()
         {
-            if (items.TabItems.Count == 0)
-            {
-                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
-                    Utility.I18N.Lang.Text("Info_NoValidXml"),
-                    InfoBarSeverity.Warning);
-                return false;
-            }
+            if (items.TabItems.Count == 0) return null;
 
-            var xmlDocuments = new System.Collections.Generic.List<XmlDocument>();
-            var invalids = new System.Collections.Generic.List<string>();
-            foreach (var item_ in items.TabItems)
+            List<XmlDocument> xmlDocuments = [];
+            List<string> invalid = [];
+
+            foreach (var tab in items.TabItems)
             {
-                if (item_ is TabViewItem item && item.Content is Components.TileXmlEditor editor)
+                if (tab is TabViewItem tabItem && tabItem.Content is TileXmlEditor item)
                 {
                     try
                     {
-                        var xmlDoc = new XmlDocument();
-                        xmlDoc.LoadXml(editor.GetXml());
-                        if (xmlDoc.DocumentElement != null)
-                            xmlDocuments.Add(xmlDoc);
+                        var xmlDocument = new XmlDocument();
+                        var xmlString = item.GetXml();
+
+                        xmlDocument.LoadXml(xmlString);
+                        xmlDocuments.Add(xmlDocument);
                     }
-                    catch (Exception)
+                    catch
                     {
-                        var itemHeader = item.Header.ToString();
+                        var itemHeader = tabItem.Header.ToString();
                         if (itemHeader != null)
-                            invalids.Add(itemHeader);
+                            invalid.Add(itemHeader);
                     }
                 }
             }
 
             if (xmlDocuments.Count < 1)
+                return null;
+
+            return new([.. xmlDocuments], [.. invalid]);
+        }
+
+        public async Task<bool> SubmitXmlsTimer(TileXmlTabs? tabs)
+        {
+            //
+
+
+            if (tabs == null || tabs.Available.Length < 1)
             {
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
                     Utility.I18N.Lang.Text("Info_NoValidXml"),
@@ -115,15 +129,15 @@ namespace WCT_WinUI3.Pages
             void TextLineBreak() => content.Inlines.Add(new LineBreak());
 
             TextTitle($"{Utility.I18N.Lang.Text("Dialog_TotalValidXml")}\n");
-            TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {xmlDocuments.Count}\n");
+            TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {tabs.Available.Length}\n");
             TextLineBreak();
             TextTitle($"{Utility.I18N.Lang.Text("Dialog_TimeSpan")}\n");
             TextContent($"{Utility.I18N.Lang.Text("Dialog_Every")} {timeInput.Value} {timeFormat.SelectedItem}\n");
-            if (invalids.Count > 0)
+            if (tabs.Invalid.Length > 0)
             {
                 TextLineBreak();
                 TextTitle($"{Utility.I18N.Lang.Text("Dialog_TotalInvalidXml")}\n");
-                TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {invalids.Count}\n{string.Join(Environment.NewLine, invalids)}");
+                TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {tabs.Invalid.Length}\n{string.Join(Environment.NewLine, tabs.Invalid)}");
             }
 
             if (await AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), content))
@@ -135,7 +149,7 @@ namespace WCT_WinUI3.Pages
                     2 => TimeSpan.FromSeconds(timeInput.Value),
                     _ => TimeSpan.FromMinutes(timeInput.Value),
                 };
-                await Fischldesu.WCTCore.Tile.TileHelper.SetAutoUpdateTileXmls(xmlDocuments.AsReadOnly());
+                await Fischldesu.WCTCore.Tile.TileHelper.SetAutoUpdateTileXmls(tabs.Available.AsReadOnly());
                 await Fischldesu.WCTCore.Tasks.Background.BackgroundTileUpdater.Register("interval", new Windows.ApplicationModel.Background.TimeTrigger((uint)timeSpan.Minutes, false));
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
                     Utility.I18N.Lang.Text("Info_ChangesApplied"),
@@ -166,7 +180,11 @@ namespace WCT_WinUI3.Pages
             }
         }
 
-        private async void submit_Click(object sender, RoutedEventArgs e) => await SubmitXmlsTimer();
+        private async void submit_Click(object sender, RoutedEventArgs e)
+        {
+            var tabs = GetTileXmls();
+            await SubmitXmlsTimer(tabs);
+        }
 
         private async void selectFile_Click(object sender, RoutedEventArgs e)
         {

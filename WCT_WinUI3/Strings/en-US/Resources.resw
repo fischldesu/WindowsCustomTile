@@ -171,8 +171,8 @@
   <data name="Page_HTTPSrv" xml:space="preserve">
     <value>HTTP Xml Server</value>
   </data>
-  <data name="Page_Timer" xml:space="preserve">
-    <value>Timer</value>
+  <data name="Page_Scheduled" xml:space="preserve">
+    <value>Scheduled</value>
   </data>
   <data name="Page_XmlTextEditor" xml:space="preserve">
     <value>Xml Text Editor</value>
@@ -186,8 +186,8 @@
   <data name="G_Randomize" xml:space="preserve">
     <value>Randomize</value>
   </data>
-  <data name="Page_Timer_Title" xml:space="preserve">
-    <value>Timer</value>
+  <data name="Page_Scheduled_Title" xml:space="preserve">
+    <value>Scheduled Task</value>
   </data>
   <data name="Page_HTTPSrv_Title" xml:space="preserve">
     <value>HTTP Xml Server</value>

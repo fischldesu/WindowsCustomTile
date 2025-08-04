@@ -171,8 +171,8 @@
   <data name="Page_HTTPSrv" xml:space="preserve">
     <value>HTTP 服务器</value>
   </data>
-  <data name="Page_Timer" xml:space="preserve">
-    <value>定时器</value>
+  <data name="Page_Scheduled" xml:space="preserve">
+    <value>计划任务</value>
   </data>
   <data name="Page_XmlTextEditor" xml:space="preserve">
     <value>Xml文本编辑器</value>
@@ -186,8 +186,8 @@
   <data name="G_Randomize" xml:space="preserve">
     <value>随机排列</value>
   </data>
-  <data name="Page_Timer_Title" xml:space="preserve">
-    <value>定时更改</value>
+  <data name="Page_Scheduled_Title" xml:space="preserve">
+    <value>计划更新任务</value>
   </data>
   <data name="Page_HTTPSrv_Title" xml:space="preserve">
     <value>HTTP Xml 服务器</value>

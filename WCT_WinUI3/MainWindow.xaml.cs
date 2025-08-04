@@ -110,7 +110,7 @@ namespace WCT_WinUI3
 
         public readonly Pages.HomePage main = new();
         public readonly Pages.XmlEditor xmlEditor = new();
-        public readonly Pages.Interval interval = new();
+        public readonly Pages.Scheduled Scheduled = new();
         public readonly Pages.HTTPXmlServer httpsrv = new();
 
         private Action? infoBandCloseCancelToken;
@@ -164,7 +164,7 @@ namespace WCT_WinUI3
                     {
                         "main" => main,
                         "xmlEditor" => xmlEditor,
-                        "interval" => interval,
+                        "interval" => Scheduled,
                         "httpsrv" => httpsrv,
                         _ => main,
                     };
