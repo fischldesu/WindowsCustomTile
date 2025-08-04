@@ -1,43 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<UserControl
-    x:Class="WCT_WinUI3.Components.HomePage.SlideShow"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WCT_WinUI3.Components.HomePage"
-    xmlns:Components="using:WCT_WinUI3.Components"
-    xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Loaded="UserControl_Loaded">
 
-    <Grid RowSpacing="16" ColumnSpacing="16" AllowDrop="True" Drop="Grid_Drop" DragOver="Grid_DragOver">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
-        <Components:SlideShowTilePreviewer x:Name="SlideShowLarge" Tag="TileLarge" RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Large" HorizontalAlignment="Left" Grid.RowSpan="2" Visibility="{x:Bind RadioButtonLarge.IsChecked, Mode=OneWay}" />
-        <Components:SlideShowTilePreviewer x:Name="SlideShowWide" Tag="TileWide" RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Wide" HorizontalAlignment="Left" Grid.RowSpan="2" Visibility="{x:Bind RadioButtonWide.IsChecked, Mode=OneWay}" />
-        <Components:SlideShowTilePreviewer x:Name="SlideShowMedium" Tag="TileMedium" RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Medium" HorizontalAlignment="Left" Grid.RowSpan="2" Visibility="{x:Bind RadioButtonMedium.IsChecked, Mode=OneWay}" />
-        <ScrollViewer x:Name="SourcePathInputsContainer" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Padding="4" BorderBrush="#22101010" BorderThickness="1" CornerRadius="6">
-            <ListView x:Name="SourcePathInputs" Padding="12 0" CanDragItems="True" CanReorderItems="True" AllowDrop="True" SelectionMode="Single" ItemContainerStyle="{StaticResource NoBackgroundListViewItemStyle}" />
-        </ScrollViewer>
-        <StackPanel Grid.Column="2" Grid.Row="0" Spacing="8">
-            <Button Click="Add_Click" Content="{x:Bind i18n:Lang.Text('Button_Add')}" HorizontalAlignment="Stretch" />
-            <RadioButtons x:Name="PreviewRadioButtonSelector"  SelectedIndex="0" Margin="10 -6">
-                <RadioButton x:Name="RadioButtonLarge" Content="Large" MinWidth="10" />
-                <RadioButton x:Name="RadioButtonWide" Content="Wide" MinWidth="10"  Margin="0 -8 0 0" />
-                <RadioButton x:Name="RadioButtonMedium" Content="Medium" MinWidth="10" Margin="0 -16 0 0"/>
-            </RadioButtons>
-        </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" Spacing="8">
-            <Button Click="Clear_Click" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" HorizontalAlignment="Stretch" Style="{StaticResource RedButtonStyle}" CornerRadius="4" />
-            <Button Click="Submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" HorizontalAlignment="Stretch" Style="{StaticResource AccentButtonStyle}" />
-        </StackPanel>
-    </Grid>
+<UserControl
+  x:Class="WCT_WinUI3.Components.HomePage.SlideShow"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:WCT_WinUI3.Components.HomePage"
+  xmlns:Components="using:WCT_WinUI3.Components"
+  xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d" Loaded="UserControl_Loaded">
+
+  <Grid RowSpacing="16" ColumnSpacing="16" AllowDrop="True" Drop="Grid_Drop" DragOver="Grid_DragOver">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="auto" />
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+    <Components:SlideShowTilePreviewer x:Name="SlideShowLarge" Tag="TileLarge"
+                                       RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Large"
+                                       HorizontalAlignment="Left" Grid.RowSpan="2"
+                                       Visibility="{x:Bind RadioButtonLarge.IsChecked, Mode=OneWay}" />
+    <Components:SlideShowTilePreviewer x:Name="SlideShowWide" Tag="TileWide" RequestPreview="SlideShow_RequestPreview"
+                                       UnitSize="50" TileSize="Wide" HorizontalAlignment="Left" Grid.RowSpan="2"
+                                       Visibility="{x:Bind RadioButtonWide.IsChecked, Mode=OneWay}" />
+    <Components:SlideShowTilePreviewer x:Name="SlideShowMedium" Tag="TileMedium"
+                                       RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Medium"
+                                       HorizontalAlignment="Left" Grid.RowSpan="2"
+                                       Visibility="{x:Bind RadioButtonMedium.IsChecked, Mode=OneWay}" />
+    <ScrollViewer x:Name="SourcePathInputsContainer" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Padding="4"
+                  BorderBrush="#22101010" BorderThickness="1" CornerRadius="6">
+      <ListView x:Name="SourcePathInputs" Padding="12 0" CanDragItems="True" CanReorderItems="True" AllowDrop="True"
+                SelectionMode="Single" ItemContainerStyle="{StaticResource NoBackgroundListViewItemStyle}" />
+    </ScrollViewer>
+    <StackPanel Grid.Column="2" Grid.Row="0" Spacing="8">
+      <Button Click="Add_Click" Content="{x:Bind i18n:Lang.Text('Button_Add')}" HorizontalAlignment="Stretch" />
+      <RadioButtons x:Name="PreviewRadioButtonSelector" SelectedIndex="0" Margin="10 -6">
+        <RadioButton x:Name="RadioButtonLarge" Content="Large" MinWidth="10" />
+        <RadioButton x:Name="RadioButtonWide" Content="Wide" MinWidth="10" Margin="0 -8 0 0" />
+        <RadioButton x:Name="RadioButtonMedium" Content="Medium" MinWidth="10" Margin="0 -16 0 0" />
+      </RadioButtons>
+    </StackPanel>
+    <StackPanel Grid.Column="2" Grid.Row="1" Spacing="8">
+      <Button Click="Clear_Click" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" HorizontalAlignment="Stretch"
+              Style="{StaticResource RedButtonStyle}" CornerRadius="4" />
+      <Button Click="Submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" HorizontalAlignment="Stretch"
+              Style="{StaticResource AccentButtonStyle}" />
+    </StackPanel>
+  </Grid>
 
 </UserControl>

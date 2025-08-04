@@ -1,60 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <UserControl
-    x:Class="WCT_WinUI3.Components.HomePage.ImageTile"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:WCT_WinUI3.Components.HomePage"
-    xmlns:Components="using:WCT_WinUI3.Components"
-    xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+  x:Class="WCT_WinUI3.Components.HomePage.ImageTile"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:WCT_WinUI3.Components.HomePage"
+  xmlns:Components="using:WCT_WinUI3.Components"
+  xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
 
 
-    <Grid RowSpacing="16" ColumnSpacing="16">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
-        <Components:ImageTilePreviewer x:Name="previewer" UnitSize="49" />
-        <Grid Grid.Row="0" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Vertical" Spacing="8">
-                <Button x:Name="PickImageFile" Click="PickImageFile_Click" Content="{x:Bind i18n:Lang.Text('Page_Home_ImageTile_ImageFile')}" HorizontalAlignment="Stretch" />
-            </StackPanel>
-            <StackPanel Orientation="Vertical" Grid.Row="1" Spacing="8">
-                <Button Click="Clear_Click"  Style="{StaticResource RedButtonStyle}"  HorizontalAlignment="Stretch" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" CornerRadius="4"/>
-                <Button Click="Submit_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" Content="{x:Bind i18n:Lang.Text('Button_Submit')}"/>
-            </StackPanel>
-        </Grid>
-        <Grid x:Name="EditBySizeGrid" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" RowSpacing="4" ColumnSpacing="-1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="{x:Bind i18n:Lang.Text('Page_Home_ImageTile_EditBySize')}" Grid.ColumnSpan="3"/>
-            <TextBox x:Name="EditBySizeLarge" Text="{x:Bind previewer.Source.Large, Mode=OneWay}" Grid.Row="1" CornerRadius="6 0 0 6" Height="32"/>
-            <TextBox x:Name="EditBySizeWide" Text="{x:Bind previewer.Source.Wide, Mode=OneWay}" Grid.Row="1" CornerRadius="6 0 0 6" Height="32"/>
-            <TextBox x:Name="EditBySizeMedium" Text="{x:Bind previewer.Source.Medium, Mode=OneWay}" Grid.Row="1" CornerRadius="6 0 0 6" Height="32"/>
-            <TextBox x:Name="EditBySizeSmall" Text="{x:Bind previewer.Source.Small, Mode=OneWay}" Grid.Row="1" CornerRadius="6 0 0 6" Height="32"/>
-            <ComboBox x:Name="EditBySizeCombo" SelectionChanged="EditBySizeCombo_SelectionChanged" Grid.Row="1" Grid.Column="1" CornerRadius="0" Height="32" />
-            <Button x:Name="EditBySizePickFile" Click="PickImageFile_Click" Grid.Row="1" Grid.Column="2" Height="32" Width="38" Padding="0" CornerRadius="0">
-                <FontIcon Glyph="&#xE7C5;" />
-            </Button>
-            <Button Click="EditBySizeApply_Click" Grid.Row="1" Grid.Column="3" CornerRadius="0 6 6 0" Height="32" Width="64" Content="{x:Bind i18n:Lang.Text('Button_Apply')}" />
-        </Grid>
+  <Grid RowSpacing="16" ColumnSpacing="16">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="auto" />
+    </Grid.ColumnDefinitions>
+    <Components:ImageTilePreviewer x:Name="previewer" UnitSize="49" />
+    <Grid Grid.Row="0" Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <StackPanel Orientation="Vertical" Spacing="8">
+        <Button x:Name="PickImageFile" Click="PickImageFile_Click"
+                Content="{x:Bind i18n:Lang.Text('Page_Home_ImageTile_ImageFile')}" HorizontalAlignment="Stretch" />
+      </StackPanel>
+      <StackPanel Orientation="Vertical" Grid.Row="1" Spacing="8">
+        <Button Click="Clear_Click" Style="{StaticResource RedButtonStyle}" HorizontalAlignment="Stretch"
+                Content="{x:Bind i18n:Lang.Text('Button_Clear')}" CornerRadius="4" />
+        <Button Click="Submit_Click" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch"
+                Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
+      </StackPanel>
     </Grid>
+    <Grid x:Name="EditBySizeGrid" Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" RowSpacing="4" ColumnSpacing="-1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="auto" />
+        <RowDefinition Height="auto" />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="auto" />
+      </Grid.ColumnDefinitions>
+      <TextBlock Text="{x:Bind i18n:Lang.Text('Page_Home_ImageTile_EditBySize')}" Grid.ColumnSpan="3" />
+      <TextBox x:Name="EditBySizeLarge" Text="{x:Bind previewer.Source.Large, Mode=OneWay}" Grid.Row="1"
+               CornerRadius="6 0 0 6" Height="32" />
+      <TextBox x:Name="EditBySizeWide" Text="{x:Bind previewer.Source.Wide, Mode=OneWay}" Grid.Row="1"
+               CornerRadius="6 0 0 6" Height="32" />
+      <TextBox x:Name="EditBySizeMedium" Text="{x:Bind previewer.Source.Medium, Mode=OneWay}" Grid.Row="1"
+               CornerRadius="6 0 0 6" Height="32" />
+      <TextBox x:Name="EditBySizeSmall" Text="{x:Bind previewer.Source.Small, Mode=OneWay}" Grid.Row="1"
+               CornerRadius="6 0 0 6" Height="32" />
+      <ComboBox x:Name="EditBySizeCombo" SelectionChanged="EditBySizeCombo_SelectionChanged" Grid.Row="1"
+                Grid.Column="1" CornerRadius="0" Height="32" />
+      <Button x:Name="EditBySizePickFile" Click="PickImageFile_Click" Grid.Row="1" Grid.Column="2" Height="32"
+              Width="38" Padding="0" CornerRadius="0">
+        <FontIcon Glyph="&#xE7C5;" />
+      </Button>
+      <Button Click="EditBySizeApply_Click" Grid.Row="1" Grid.Column="3" CornerRadius="0 6 6 0" Height="32" Width="64"
+              Content="{x:Bind i18n:Lang.Text('Button_Apply')}" />
+    </Grid>
+  </Grid>
 </UserControl>

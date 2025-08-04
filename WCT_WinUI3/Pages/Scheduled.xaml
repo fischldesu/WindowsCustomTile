@@ -1,54 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Page  
-   x:Class="WCT_WinUI3.Pages.Scheduled"  
-   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
-   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
-   xmlns:local="using:WCT_WinUI3.Pages"  
-   xmlns:Components="using:WCT_WinUI3.Components"  
-   xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
-   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"  
-   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"  
-   mc:Ignorable="d">
+
+<Page
+  x:Class="WCT_WinUI3.Pages.Scheduled"
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:local="using:WCT_WinUI3.Pages"
+  xmlns:Components="using:WCT_WinUI3.Components"
+  xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  mc:Ignorable="d">
 
   <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Page_Scheduled_Title')}">
     <Grid ColumnSpacing="16">
       <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="*"/>
-        <ColumnDefinition Width="auto"/>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="auto" />
       </Grid.ColumnDefinitions>
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
         <RowDefinition Height="auto" />
       </Grid.RowDefinitions>
       <Border Grid.RowSpan="2" Style="{StaticResource BorderSectionStyle}">
-        <TabView x:Name="items" AddTabButtonClick="items_AddTabButtonClick" SelectionChanged="items_SelectionChanged" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+        <TabView x:Name="items" AddTabButtonClick="items_AddTabButtonClick" SelectionChanged="items_SelectionChanged"
+                 VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
       </Border>
-      <StackPanel Name="RightPanelTop" Grid.Column="1"  Orientation="Vertical" Spacing="8">
-        <Button x:Name="selectFile" Click="selectFile_Click" HorizontalAlignment="Stretch" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
-        <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Randomize list on the left" Content="{x:Bind i18n:Lang.Text('G_Randomize')}" />
+      <StackPanel Name="RightPanelTop" Grid.Column="1" Orientation="Vertical" Spacing="8">
+        <Button x:Name="selectFile" Click="selectFile_Click" HorizontalAlignment="Stretch"
+                Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
+        <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch"
+                ToolTipService.ToolTip="Randomize list on the left" Content="{x:Bind i18n:Lang.Text('G_Randomize')}" />
       </StackPanel>
       <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">
-        <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch" ToolTipService.ToolTip="Clear all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4" Content="{x:Bind i18n:Lang.Text('Button_Clear')}" />
+        <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch"
+                ToolTipService.ToolTip="Clear all xml text" Style="{StaticResource RedButtonStyle}" CornerRadius="4"
+                Content="{x:Bind i18n:Lang.Text('Button_Clear')}" />
       </StackPanel>
     </Grid>
     <local:PageTemplate.FooterContent>
-            <Components:PageFooter>
-                <Components:PageFooter.FrontContent>
-                    <Components:DocumentationDropdownButton Description="(Invoke Update periodically)">
-                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference" NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.update" />
-                        <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines" NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#timer" />
-                    </Components:DocumentationDropdownButton>
-                </Components:PageFooter.FrontContent>
-                <Components:PageFooter.RearContent>
-                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-                        <StackPanel Orientation="Horizontal" Width="192">
-                            <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1" SpinButtonPlacementMode="Compact" SmallChange="1"  LargeChange="10" />
-                            <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
-                        </StackPanel>
-                        <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}" Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
-                    </StackPanel>
-                </Components:PageFooter.RearContent>
-            </Components:PageFooter>
-        </local:PageTemplate.FooterContent>
-    </local:PageTemplate>
+      <Components:PageFooter>
+        <Components:PageFooter.FrontContent>
+          <Components:DocumentationDropdownButton Description="(Invoke Update periodically)">
+            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference"
+                             NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.update" />
+            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines"
+                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#timer" />
+          </Components:DocumentationDropdownButton>
+        </Components:PageFooter.FrontContent>
+        <Components:PageFooter.RearContent>
+          <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" Width="192">
+              <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1"
+                         SpinButtonPlacementMode="Compact" SmallChange="1" LargeChange="10" />
+              <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
+            </StackPanel>
+            <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}"
+                    Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
+          </StackPanel>
+        </Components:PageFooter.RearContent>
+      </Components:PageFooter>
+    </local:PageTemplate.FooterContent>
+  </local:PageTemplate>
 </Page>
