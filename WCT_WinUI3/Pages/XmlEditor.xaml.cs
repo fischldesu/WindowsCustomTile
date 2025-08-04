@@ -1,3 +1,4 @@
+using Fischldesu.WCTCore.Tile;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -51,7 +52,7 @@ namespace WCT_WinUI3.Pages
             }
             if (ret)
             {
-                Utility.TileHelper.SetXml(xmlDoc);
+                TileHelper.SetTileXml(xmlDoc);
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
                     Utility.I18N.Lang.Text("Info_ChnagesApplied"),
                     InfoBarSeverity.Success);

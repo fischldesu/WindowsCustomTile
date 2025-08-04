@@ -14,7 +14,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using WCT_WinUI3.Utility;
 using Microsoft.UI.Xaml.Media.Animation;
-using WCT_WinUI3.Utility.Log;
+using Fischldesu.WCTCore.Tile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -191,7 +191,6 @@ namespace WCT_WinUI3.Components
 
                 ResetTarget(ele);
                 animations.Begin();
-                Logger.Log($"ZI {Canvas.GetZIndex(ele)}| List {index}");
                 Timer.SetTimeout(() => ele.Opacity = 0, animations.Children[0].Duration.TimeSpan);
 
             }, TimeSpan.FromSeconds(4));

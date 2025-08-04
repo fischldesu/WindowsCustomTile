@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Windows.ApplicationModel.Resources;
 using Microsoft.Windows.Globalization;
-using WCT_WinUI3.Utility.Log;
+using Fischldesu.WCTCore;
 
 namespace WCT_WinUI3.Utility.I18N
 {
@@ -22,11 +22,11 @@ namespace WCT_WinUI3.Utility.I18N
                 if (string.IsNullOrEmpty(value))
                     PLO = Windows.Globalization.ApplicationLanguages.ManifestLanguages[0];
                 ApplicationLanguages.PrimaryLanguageOverride = PLO;
-                App.Settings.SetStringValue("language", value);
+                Settings.SetStringValue("language", value);
             }
             get
             {
-                var lang = App.Settings.GetStringValue("language");
+                var lang = Settings.GetStringValue("language");
                 if (string.IsNullOrEmpty(lang))
                     return string.Empty;
                 return lang;
@@ -41,7 +41,7 @@ namespace WCT_WinUI3.Utility.I18N
             }
             catch
             {
-                Logger.Log($"Cannot load string: {stringTag}", LogMessage.LogLevel.ERROR);
+                Log.Error($"Cannot load string: {stringTag}");
                 return stringTag;
             }
         }

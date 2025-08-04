@@ -25,10 +25,10 @@
                     <Button x:Name="showLogWindow" Click="showLogWindow_Click" Content="{x:Bind i18n:Lang.Text('Settings_Log_OpenWindow')}" />
                 </CommunityToolkit:SettingsCard>
                 <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_NoNotify')}">
-                    <CommunityToolkit:SettingsCard.HeaderIcon>
-                        <FontIcon Glyph="&#xE8BD;" />
-                    </CommunityToolkit:SettingsCard.HeaderIcon>
-                    <ToggleSwitch IsOn="{x:Bind Proj:App.Settings.NoNotification, Mode=TwoWay}" />
+          <CommunityToolkit:SettingsCard.HeaderIcon>
+            <FontIcon Glyph="&#xE8BD;" />
+          </CommunityToolkit:SettingsCard.HeaderIcon>
+          <ToggleSwitch IsOn="{Binding NoNotification, Mode=TwoWay}" />
                 </CommunityToolkit:SettingsCard>
                 <CommunityToolkit:SettingsCard Header="{x:Bind i18n:Lang.Text('Settings_Reset')}">
                     <CommunityToolkit:SettingsCard.HeaderIcon>
@@ -122,7 +122,7 @@
                             ©fischldesu 2025
                             </TextBlock>
                             <TextBlock x:Name="versionInfo" Grid.Column="2" Grid.RowSpan="2" Foreground="Gray" VerticalAlignment="Center">
-                                <Run Text="{x:Bind Proj:App.Settings.Version.Major}" />.<Run Text="{x:Bind Proj:App.Settings.Version.Minor}" />.<Run Text="{x:Bind Proj:App.Settings.Version.Build}" />
+                                <Run Text="{Binding Version.Major}" />.<Run Text="{Binding Settings.Version.Minor}" />.<Run Text="{Binding Settings.Version.Build}" />
                                 <Run x:Name="spVersion" />
                             </TextBlock>
                         </Grid>

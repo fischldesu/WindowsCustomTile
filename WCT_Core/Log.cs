@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ public enum LogLevel
 internal class Log
 {
 
-    public static LogMessage[] History => [.. historyMessages];
+    public static ReadOnlyCollection<LogMessage> History => historyMessages.ToArray().AsReadOnly();
 
     private static readonly Queue<LogMessage> historyMessages = [];
 

@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WCT_WinUI3.Utility;
+using Fischldesu.WCTCore.Tile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -69,7 +70,7 @@ namespace WCT_WinUI3.Components.HomePage
             try
             {
                 xmlDoc.LoadXml(xml);
-                TileHelper.SetXml(xmlDoc);
+                TileHelper.SetTileXml(xmlDoc);
             }
             catch
             {

@@ -1,6 +1,5 @@
 using ABI.System;
 using CommunityToolkit.WinUI.Controls;
-using WCT_WinUI3.Utility.Log;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -42,6 +41,8 @@ namespace WCT_WinUI3.Pages
             ];
 
             this.InitializeComponent();
+            DataContext = Fischldesu.WCTCore.Settings.Instance;
+
             backdropCombo.ItemsSource = Enum.GetValues(typeof(WindowBackdropType));
             paneDisplayModeCombo.ItemsSource = Enum.GetValues(typeof(NavigationViewPaneDisplayMode));
 
@@ -83,7 +84,7 @@ namespace WCT_WinUI3.Pages
         private void resetAll_Click(object sender, RoutedEventArgs e)
         {
             resetAll.Flyout?.Hide();
-            App.Settings.ResetAll();
+            Fischldesu.WCTCore.Settings.ResetAll();
         }
 
         private void aboutExpander_SizeChanged(object sender, SizeChangedEventArgs args)

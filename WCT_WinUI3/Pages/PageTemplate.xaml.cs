@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WCT_WinUI3.Utility.Log;
+using Fischldesu.WCTCore;
 
 namespace WCT_WinUI3.Pages
 {
@@ -59,7 +59,7 @@ namespace WCT_WinUI3.Pages
             }
             else
             {
-                Logger.Log("Page ShowInfo: InfoBar not exist", LogMessage.LogLevel.WARNING);
+                Log.Warning("Page ShowInfo: InfoBar not exist");
                 return false;
             }
         }

@@ -36,12 +36,12 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Text="{x:Bind Proj:App.Settings.LaunchCommand, Mode=OneTime}" />
+            <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Text="{Binding LaunchCommand}" />
                         <Button x:Name="launchCmdApply" Click="launchCmdApply_Click"  Grid.Column="1" Style="{StaticResource AccentButtonStyle}" CornerRadius="0 4 4 0" Content="{x:Bind i18n:Lang.Text('Button_Apply')}" />
                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
                             <RadioButton x:Name="LaunchCmdType_cmd" Tag="cmd" Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmdType_Cmd')}" GroupName="LaunchCmdType"/>
                             <RadioButton x:Name="LaunchCmdType_uri" Tag="uri" Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmdType_URL')}" GroupName="LaunchCmdType" />
-                            <CheckBox x:Name="alwaysShowWindow" Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchAlwaysShowWindow')}" IsChecked="{x:Bind Proj:App.Settings.LaunchAlwaysShowWindow, Mode=OneTime}" ToolTipService.ToolTip="Always show main window at app launch"/>
+              <CheckBox x:Name="alwaysShowWindow" Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchAlwaysShowWindow')}" IsChecked="{Binding LaunchAlwaysShowWindow}"  ToolTipService.ToolTip="Always show main window at app launch"/>
                         </StackPanel>
                     </Grid>
                     <Pivot x:Name="quickFunctionPivot" Loaded="quickFunctionPivot_Loaded"  Padding="-12 0">

@@ -135,8 +135,8 @@ namespace WCT_WinUI3.Pages
                     2 => TimeSpan.FromSeconds(timeInput.Value),
                     _ => TimeSpan.FromMinutes(timeInput.Value),
                 };
-                TileHelper.SetInterval([.. xmlDocuments], timeSpan);
-
+                await Fischldesu.WCTCore.Tile.TileHelper.SetAutoUpdateTileXmls(xmlDocuments.AsReadOnly());
+                await Fischldesu.WCTCore.Tasks.Background.BackgroundTileUpdater.Register("interval", new Windows.ApplicationModel.Background.TimeTrigger((uint)timeSpan.Minutes, false));
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
                     Utility.I18N.Lang.Text("Info_ChangesApplied"),
                     InfoBarSeverity.Success);

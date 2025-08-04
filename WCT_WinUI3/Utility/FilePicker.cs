@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Pickers;
 using Windows.Storage;
 using WinRT.Interop;
-using WCT_WinUI3.Utility.Log;
+using Fischldesu.WCTCore;
 
 namespace WCT_WinUI3.Utility
 {
@@ -40,7 +40,7 @@ namespace WCT_WinUI3.Utility
             }
             catch (Exception)
             {
-                Logger.Log("Excetion when picking a file", LogMessage.LogLevel.ERROR);
+                Log.Error("Excetion when picking a file");
             }
             return null;
         }
@@ -64,7 +64,7 @@ namespace WCT_WinUI3.Utility
             }
             catch (Exception)
             {
-                Logger.Log("Excetion when picking a file", LogMessage.LogLevel.ERROR);
+                Log.Error("Excetion when picking a file");
             }
             return null;
         }

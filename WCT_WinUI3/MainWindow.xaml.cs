@@ -11,8 +11,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using WCT_WinUI3.Utility;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Fischldesu.WCTCore;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -133,11 +132,11 @@ namespace WCT_WinUI3
             }
             var logLevel = severity switch
             {
-                InfoBarSeverity.Warning => Utility.Log.LogMessage.LogLevel.WARNING,
-                InfoBarSeverity.Error => Utility.Log.LogMessage.LogLevel.WARNING,
-                _ => Utility.Log.LogMessage.LogLevel.INFO,
+                InfoBarSeverity.Warning => LogLevel.WARNING,
+                InfoBarSeverity.Error => LogLevel.ERROR,
+                _ => LogLevel.INFO,
             };
-            Utility.Log.Logger.Log($"{severity} info:{Title} {message}", logLevel);
+            Log.Append($"{Title} {message}", logLevel);
         }
 
         private void NavigateToContent(Page pageInstance)

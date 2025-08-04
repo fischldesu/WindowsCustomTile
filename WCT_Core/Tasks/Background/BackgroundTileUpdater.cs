@@ -44,8 +44,7 @@ internal class BackgroundTileUpdater
 
     public static async Task Update(BackgroundTaskEntry? backgroundUpdater = null)
     {
-
-        var settings = new Settings();
+        var settings = Settings.Instance;
         var nextIndex = settings.AutoUpdateNextTileIndex;
         var result = await Tile.TileHelper.GetAutoUpdateTileXml(nextIndex);
 

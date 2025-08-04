@@ -18,8 +18,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.Windows.AppLifecycle;
 using Windows.System;
-using WCT_WinUI3.Utility;
-using WCT_WinUI3.Utility.Log;
+using Fischldesu.WCTCore;
 
 namespace WCT_WinUI3
 {
@@ -33,7 +32,6 @@ namespace WCT_WinUI3
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public static MainWindow? mainWindow { get; private set; }
-        public static readonly Settings Settings = new(); 
 
         public App()
         {
@@ -43,7 +41,7 @@ namespace WCT_WinUI3
 
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            Logger.Log($"App.UnhandledException:{e.Message}");
+            Log.Fatal($"App.UnhandledException {e.Exception.Message}\r\n{e.Exception.StackTrace}");
             
             var logWindow = new LogWindow();
 
@@ -59,7 +57,7 @@ namespace WCT_WinUI3
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            Logger.Log("Application launched (App.OnLaunched)");
+            Log.Info("Application launched (App.OnLaunched)");
 
             mainWindow = new MainWindow();
 
@@ -67,7 +65,7 @@ namespace WCT_WinUI3
             if (AppInstance.GetCurrent().GetActivatedEventArgs().Data is ProtocolActivatedEventArgs protocolArgs && protocolArgs.Uri != null)
                 protocalLaunch = ProtocolLaunch(protocolArgs.Uri);
 
-            if (protocalLaunch || !DoLaunchCommand() || Settings.LaunchAlwaysShowWindow)
+            if (protocalLaunch || !DoLaunchCommand() || Settings.Instance.LaunchAlwaysShowWindow)
                 mainWindow.Activate();
             else
                 Exit();
@@ -75,7 +73,7 @@ namespace WCT_WinUI3
 
         private bool ProtocolLaunch(Uri uri)
         {
-            Logger.Log($"Application launched with Protocol: {uri}");
+            Log.Info($"Application launched with Protocol: {uri}");
             switch (uri.Host.ToLower())
             {
                 case "start":
@@ -91,36 +89,34 @@ namespace WCT_WinUI3
         public static bool DoLaunchCommand()
         {
             var ret = false;
-            var settings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            if (settings != null)
+            var settings = Settings.Instance;
+            try
             {
-                try
+                if (settings.LaunchCommand is string command)
                 {
-                    if (Settings.LaunchCommand is string command)
+                    var commandType = settings.LaunchCommandType;
+                    switch (commandType)
                     {
-                        var commandType = Settings.LaunchCommandType;
-                        switch (commandType)
-                        {
-                            case "uri":
-                                Launcher.LaunchUriAsync(new Uri(command)).Wait();
-                                ret = true;
-                                break;
-                            case "cmd":
-                                System.Diagnostics.Process.Start(command);
-                                ret = true;
-                                break;
-                            default:
-                                Logger.Log($"Unknown launch command type:{(commandType is string t ? t : "UnknownType")}", LogMessage.LogLevel.WARNING);
-                                ret = false;
-                                break;
-                        }
+                        case "uri":
+                            Launcher.LaunchUriAsync(new Uri(command)).Wait();
+                            ret = true;
+                            break;
+                        case "cmd":
+                            System.Diagnostics.Process.Start(command);
+                            ret = true;
+                            break;
+                        default:
+                            Log.Warning($"Unknown launch command type:{(commandType is string t ? t : "UnknownType")}");
+                            ret = false;
+                            break;
                     }
                 }
-                catch (Exception e)
-                {
-                    Logger.Log($"Error while doing Launch Command {e.Message}", LogMessage.LogLevel.ERROR);
-                }
             }
+            catch (Exception e)
+            {
+                Log.Error($"Error while doing Launch Command {e.Message}");
+            }
+
             return ret;
         }
 
@@ -134,8 +130,8 @@ namespace WCT_WinUI3
         {
             var ret = Microsoft.Windows.AppLifecycle.AppInstance.Restart(arguments);
             if (ret != Windows.ApplicationModel.Core.AppRestartFailureReason.RestartPending)
-                Logger.Log("Pending restart", LogMessage.LogLevel.INFO);
-            else Logger.Log($"Application restart failed:{ret}", LogMessage.LogLevel.ERROR);
+                Log.Info("Pending restart");
+            else Log.Error($"Application restart failed:{ret}");
         }
 
     }

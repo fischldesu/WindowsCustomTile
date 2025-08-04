@@ -15,7 +15,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using WCT_WinUI3.Utility.Log;
+using Fischldesu.WCTCore;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,20 +35,20 @@ namespace WCT_WinUI3
 
             Initilaize();
 
-            Utility.Log.Logger.NewMessageLogged += (msg)=> { if (autoUpdate.IsChecked is bool u && u) Append(msg); };
+            Log.NewMessage += (_, msg) => { if (autoUpdate.IsChecked is bool u && u) Append(msg); };
         }
 
         private void Initilaize()
         {
-            foreach (var item in Utility.Log.Logger.History)
+            foreach (var item in Log.History)
                 Append(item);
         }
 
-        private void Append(Utility.Log.LogMessage msg)
+        private void Append(LogMessage msg)
         {
             var textBlock = new TextBlock() { IsTextSelectionEnabled = true };
 
-            var danger = msg.Level >= Utility.Log.LogMessage.LogLevel.WARNING;
+            var danger = msg.Level >= LogLevel.WARNING;
             var levelRun = new Run() 
             { 
                 Text = $"[{msg.Level}]".PadRight(8),
@@ -74,7 +74,7 @@ namespace WCT_WinUI3
         {
             var dataPackage = new DataPackage();
             var text = string.Empty;
-            foreach (var item in Logger.History.TakeLast(128))
+            foreach (var item in Log.History.TakeLast(128))
                 text += item.ToString() + Environment.NewLine;
             
             dataPackage.SetText(text);

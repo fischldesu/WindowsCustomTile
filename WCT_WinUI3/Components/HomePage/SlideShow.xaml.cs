@@ -1,3 +1,4 @@
+using Fischldesu.WCTCore.Tile;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -113,7 +114,7 @@ namespace WCT_WinUI3.Components.HomePage
             try
             {
                 xmlDocument.LoadXml(xmlString);
-                TileHelper.SetXml(xmlDocument);
+                TileHelper.SetTileXml(xmlDocument);
             }
             catch
             {

@@ -1,3 +1,4 @@
+using Fischldesu.WCTCore.Tile;
 using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
@@ -122,8 +123,8 @@ namespace WCT_WinUI3.Pages
             if (ok)
             {
                 if (updateRecurrence.SelectedItem is Windows.UI.Notifications.PeriodicUpdateRecurrence recurrence)
-                    if (uriList.Count == 1) Utility.TileHelper.SetHTTPServer(uriList[0], recurrence);
-                    else Utility.TileHelper.SetHTTPServer([.. uriList], recurrence);
+                    if (uriList.Count == 1) TileHelper.SetPeriodicUpdateHTTPServer(uriList[0], recurrence);
+                    else TileHelper.SetPeriodicUpdateHTTPServer(uriList.AsReadOnly(), recurrence);
 
                 if (uriList.Count == 0) App.mainWindow?.ShowInfoBand("None of server URI is valid",
                     string.Empty,

@@ -26,9 +26,8 @@ namespace WCT_WinUI3.Pages
         public HomePage()
         {
             this.InitializeComponent();
-
-
-            var type = App.Settings.LaunchCommandType;
+            DataContext = Fischldesu.WCTCore.Settings.Instance;
+            var type = Fischldesu.WCTCore.Settings.Instance.LaunchCommandType;
             if (type != null)
             {
                 if (type == "uri") LaunchCmdType_uri.IsChecked = true;
@@ -38,6 +37,7 @@ namespace WCT_WinUI3.Pages
 
         private void launchCmdApply_Click(object sender, RoutedEventArgs e)
         {
+            var settings = Fischldesu.WCTCore.Settings.Instance;
             var ret = false;
             var text = launchCmdInputer.Text;
 
@@ -48,9 +48,9 @@ namespace WCT_WinUI3.Pages
                 var asw = alwaysShowWindow.IsChecked;
                 if (uri != null && cmd != null && asw != null && ((bool)uri || (bool)cmd))
                 {
-                    App.Settings.LaunchCommand = text;
-                    App.Settings.LaunchCommandType = (bool)uri ? "uri" : "cmd";
-                    App.Settings.LaunchAlwaysShowWindow = (bool)asw;
+                    settings.LaunchCommand = text;
+                    settings.LaunchCommandType = (bool)uri ? "uri" : "cmd";
+                    settings.LaunchAlwaysShowWindow = (bool)asw;
 
                     ret = true;
                 }

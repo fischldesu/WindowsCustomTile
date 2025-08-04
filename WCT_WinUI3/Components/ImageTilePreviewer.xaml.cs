@@ -15,6 +15,7 @@ using Windows.Foundation.Collections;
 using WCT_WinUI3.Utility;
 using System.ComponentModel;
 using Windows.ApplicationModel.DataTransfer;
+using Fischldesu.WCTCore.Tile;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.

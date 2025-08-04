@@ -12,7 +12,7 @@ namespace WCT_WinUI3.Utility
     {
         public static void Text(string title, string message)
         {
-            if (App.Settings.NoNotification)
+            if (Fischldesu.WCTCore.Settings.Instance.NoNotification)
                 return;
 
             AppNotification notification = new AppNotificationBuilder()

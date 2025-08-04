@@ -10,18 +10,18 @@ namespace Fischldesu.WCTCore;
 
 internal partial class Settings : INotifyPropertyChanged
 {
-
     public event PropertyChangedEventHandler? PropertyChanged;
+    public static readonly Settings Instance = new();
 
-    public Windows.ApplicationModel.PackageVersion Version => Windows.ApplicationModel.Package.Current.Id.Version;
+    public static Windows.ApplicationModel.PackageVersion Version => Windows.ApplicationModel.Package.Current.Id.Version;
 
-    public void ResetAll()
+    public static void ResetAll()
     {
-        LaunchCommand = null;
-        LaunchCommandType = null;
-        LaunchAlwaysShowWindow = false;
-        NoNotification = false;
-        AutoUpdateNextTileIndex = 0;
+        Instance.LaunchCommand = null;
+        Instance.LaunchCommandType = null;
+        Instance.LaunchAlwaysShowWindow = false;
+        Instance.NoNotification = false;
+        Instance.AutoUpdateNextTileIndex = 0;
     }
 
     public string? LaunchCommand
@@ -32,7 +32,7 @@ internal partial class Settings : INotifyPropertyChanged
             if (value != LaunchCommand)
             {
                 SetStringValue(nameof(LaunchCommand), value);
-                OnPropertyChanged(nameof(LaunchCommand));
+                Instance.OnPropertyChanged(nameof(LaunchCommand));
             }
         }
     }
@@ -44,7 +44,7 @@ internal partial class Settings : INotifyPropertyChanged
             if (value != LaunchCommandType)
             {
                 SetStringValue(nameof(LaunchCommandType), value);
-                OnPropertyChanged(nameof(LaunchCommandType));
+                Instance.OnPropertyChanged(nameof(LaunchCommandType));
             }
         }
     }
@@ -56,7 +56,7 @@ internal partial class Settings : INotifyPropertyChanged
             if (value != LaunchAlwaysShowWindow)
             {
                 SetIntValue(nameof(LaunchAlwaysShowWindow), value ? 1 : 0);
-                OnPropertyChanged(nameof(LaunchAlwaysShowWindow));
+                Instance.OnPropertyChanged(nameof(LaunchAlwaysShowWindow));
             }
         }
     }
@@ -68,7 +68,7 @@ internal partial class Settings : INotifyPropertyChanged
             if (value != NoNotification)
             {
                 SetIntValue(nameof(NoNotification), value ? 1 : 0);
-                OnPropertyChanged(nameof(NoNotification));
+                Instance.OnPropertyChanged(nameof(NoNotification));
             }
         }
     }
@@ -80,27 +80,27 @@ internal partial class Settings : INotifyPropertyChanged
             if (value != AutoUpdateNextTileIndex)
             {
                 SetIntValue(nameof(AutoUpdateNextTileIndex), value);
-                OnPropertyChanged(nameof(AutoUpdateNextTileIndex));
+                Instance.OnPropertyChanged(nameof(AutoUpdateNextTileIndex));
             }
         }
     }
 
-    public string? GetStringValue(string key)
+    public static string? GetStringValue(string key)
     {
         var settings = Storage.Settings;
         return settings.Values[key] as string;
     }
-    public void SetStringValue(string key, string? value)
+    public static void SetStringValue(string key, string? value)
     {
         var settings = Storage.Settings;
         settings.Values[key] = value;
     }
-    public int GetIntValue(string key)
+    public static int GetIntValue(string key)
     {
         var settings = Storage.Settings;
         return settings.Values[key] is int value ? value : -1;
     }
-    public void SetIntValue(string key, int value)
+    public static void SetIntValue(string key, int value)
     {
         var settings = Storage.Settings;
         settings.Values[key] = value;
