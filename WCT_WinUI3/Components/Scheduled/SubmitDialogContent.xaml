@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="WCT_WinUI3.Components.Scheduled.SubmitDialogContent"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WCT_WinUI3.Components.Scheduled"
+    xmlns:Background="using:Windows.ApplicationModel.Background"
+    xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+  <ScrollViewer>
+    <StackPanel Orientation="Vertical" Padding="0 10" Spacing="16">
+      <StackPanel x:Name="Statistics" Orientation="Vertical" Spacing="8">
+        <TextBlock  FontWeight="Bold" Text="{x:Bind i18n:Lang.Text('Dialog_Statistics')}" />
+        <TextBlock>
+          <Run Text="{x:Bind i18n:Lang.Text('Dialog_TotalValidXml')}" />
+          <Run x:Name="ValidXmlCount" />
+        </TextBlock>
+        <StackPanel x:Name="InvalidXmlStatistics" Orientation="Horizontal" Spacing="8" Margin="0 -10 0 0">
+          <TextBlock VerticalAlignment="Center" Height="18">
+            <Run Text="{x:Bind i18n:Lang.Text('Dialog_TotalInvalidXml')}" />
+            <Run x:Name="InvalidXmlCount" />
+          </TextBlock>
+          <CheckBox Foreground="Gray" Height="28" MinHeight="28" x:Name="StatisticsDisplayInvalidCheckBox" Content="{x:Bind i18n:Lang.Text('G_Detail')}"  VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel x:Name="InvalidXmlList" Orientation="Vertical" Visibility="{x:Bind StatisticsDisplayInvalidCheckBox.IsChecked, Mode=OneWay}" />
+      </StackPanel>
+      <StackPanel x:Name="TriggerAttributes" Orientation="Vertical" Spacing="8">
+        <TextBlock FontWeight="Bold" Text="{x:Bind i18n:Lang.Text('Page_Scheduled_TaskTriggerType')}" />
+        <RadioButtons SelectedItem="{x:Bind TimeTriggerRadio, Mode=OneTime}">
+          <RadioButton x:Name="TimeTriggerRadio" Content="{x:Bind i18n:Lang.Text('Page_Scheduled_TaskTriggerType_Time')}"  />
+          <RadioButton x:Name="SystemTriggerRadio" Content="{x:Bind i18n:Lang.Text('Page_Scheduled_TaskTriggerType_System')}" Margin="0 -8 0 0" />
+        </RadioButtons>
+        <StackPanel Orientation="Horizontal" Visibility="{x:Bind TimeTriggerRadio.IsChecked, Mode=OneWay}">
+          <ComboBox x:Name="TimeTriggerComboBox" CornerRadius="4 0 0 4" SelectionChanged="TimeTriggerComboBox_SelectionChanged" Margin="0 0 -1 0" Height="34" SelectedIndex="0" />
+          <NumberBox x:Name="TimeTriggerTimeSpan" CornerRadius="0 4 4 0" ValueChanged="TimeTriggerTimeSpan_ValueChanged" Value="30" Height="34" />
+        </StackPanel>
+        <ComboBox x:Name="SystemTriggerComboBox" SelectedIndex="6" Visibility="{x:Bind SystemTriggerRadio.IsChecked, Mode=OneWay}" Height="34" />
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

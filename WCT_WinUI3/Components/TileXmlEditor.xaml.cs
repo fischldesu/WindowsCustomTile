@@ -66,6 +66,12 @@ namespace WCT_WinUI3.Components
             return edit_total.Text;
         }
 
+        public void SetXml(Windows.Data.Xml.Dom.XmlDocument xmlDocument)
+        {
+            edit_total.Text = xmlDocument.GetXml();
+            pivot.SelectedIndex = 1;
+        }
+
         private void edit_total_showTemplate_Click(object sender, RoutedEventArgs e)
         {
             var spaces = "    ";

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// CSWinRT Component Implement WindowsAppSDK BackgroundTask
+// Reference Artical https://www.cnblogs.com/richasy/p/winappsdk_appservice.html
+
 using Windows.ApplicationModel.Background;
 
 namespace Fischldesu.WCTCore.Tasks.Background;
@@ -20,9 +18,9 @@ public sealed class BackgroundTaskEntry : IBackgroundTask
             Log.Info($"backgroundtask Running: {backgroundTask.Task.Name}");
             await BackgroundTileUpdater.Update(this);
         }
-        catch (Exception e)
+        catch (System.Exception e)
         {
-            Log.Fatal($"{e.GetType()}: {e.Message}\r\n {e.StackTrace}");
+            Log.Fatal($"{e.GetType()}: {e.Message}\r\n{e.StackTrace}");
         }
         deferral.Complete();
     }

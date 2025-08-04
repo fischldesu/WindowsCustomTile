@@ -1,27 +1,31 @@
+using Fischldesu.WCTCore.Tile;
+using Microsoft.UI.Text;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Media.Animation;
-using Microsoft.UI.Text;
+using Microsoft.UI.Xaml.Navigation;
 using System;
-using System.Threading.Tasks;
-using Windows.Data.Xml.Dom;
-using System.Linq;
-using WCT_WinUI3.Components;
-using WCT_WinUI3.Utility;
 using System.Collections.Generic;
-using WinRT;
+using System.Linq;
+using System.Threading.Tasks;
+using WCT_WinUI3.Components;
+using WCT_WinUI3.Components.Scheduled;
+using WCT_WinUI3.Utility;
+using Windows.ApplicationModel.Background;
+using Windows.Data.Xml.Dom;
 
 namespace WCT_WinUI3.Pages
 {
     public sealed partial class Scheduled : Page
     {
-        public class TileXmlTabs(XmlDocument[] xmlDocuments, string[] invalid)
+        public readonly string BackgroundTaskName = "WCTBackgroundTileUpdateTask";
+
+        public readonly struct TileXmlTabs(XmlDocument[] xmlDocuments, string[] invalid)
         {
             public readonly XmlDocument[] Available = xmlDocuments;
             public readonly string[] Invalid = invalid;
@@ -30,9 +34,17 @@ namespace WCT_WinUI3.Pages
         public Scheduled()
         {
             this.InitializeComponent();
-            timeFormat.Items.Add(Utility.I18N.Lang.Text("G_Hour"));
-            timeFormat.Items.Add(Utility.I18N.Lang.Text("G_Minute"));
-            timeFormat.Items.Add(Utility.I18N.Lang.Text("G_Second"));
+
+            CancelTaskButton.Visibility = Visibility.Collapsed;
+            foreach (var item in BackgroundTaskRegistration.AllTasks)
+            {
+                if (item.Value.Name == BackgroundTaskName)
+                {
+                    CancelTaskButton.Visibility = Visibility.Visible;
+                    break;
+                }
+            }
+
             NewTab();
         }
 
@@ -90,10 +102,8 @@ namespace WCT_WinUI3.Pages
 
         public async Task<bool> SubmitXmlsTimer(TileXmlTabs? tabs)
         {
-            //
 
-
-            if (tabs == null || tabs.Available.Length < 1)
+            if (tabs == null || tabs.Value.Available.Length < 1)
             {
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
                     Utility.I18N.Lang.Text("Info_NoValidXml"),
@@ -101,64 +111,81 @@ namespace WCT_WinUI3.Pages
                 return false;
             }
 
-            TextBlock content = new()
-            {
-                Margin = new Thickness(0, 16, 0, 0)
-            };
+            var content = new SubmitDialogContent(tabs.Value);
 
-            void TextTitle (string? text)
-            {
-                if (text == null) return;
+            if (!await AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), content))
+                return false;
 
-                content.Inlines.Add(new Run()
-                {
-                    Text = text,
-                    FontWeight = FontWeights.Bold,
-                    FontSize = 12
-                });
+            SubmitDialogContent.ScheduleSubmitInfo? submitInfo = null;
+            try
+            {
+                submitInfo = content.GetSubmitInfo();
             }
-            void TextContent(string? text)
+            catch (Exception e)
             {
-                if (text == null) return;
-
-                content.Inlines.Add(new Run()
-                {
-                    Text = text
-                });
-            }
-            void TextLineBreak() => content.Inlines.Add(new LineBreak());
-
-            TextTitle($"{Utility.I18N.Lang.Text("Dialog_TotalValidXml")}\n");
-            TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {tabs.Available.Length}\n");
-            TextLineBreak();
-            TextTitle($"{Utility.I18N.Lang.Text("Dialog_TimeSpan")}\n");
-            TextContent($"{Utility.I18N.Lang.Text("Dialog_Every")} {timeInput.Value} {timeFormat.SelectedItem}\n");
-            if (tabs.Invalid.Length > 0)
-            {
-                TextLineBreak();
-                TextTitle($"{Utility.I18N.Lang.Text("Dialog_TotalInvalidXml")}\n");
-                TextContent($"{Utility.I18N.Lang.Text("Dialog_Count")}: {tabs.Invalid.Length}\n{string.Join(Environment.NewLine, tabs.Invalid)}");
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                    $"{e.Message} \r\n{e.StackTrace}",
+                    InfoBarSeverity.Error);
             }
 
-            if (await AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), content))
-            {
-                var timeSpan = timeFormat.SelectedIndex switch
-                {
-                    0 => TimeSpan.FromHours(timeInput.Value),
-                    1 => TimeSpan.FromMinutes(timeInput.Value),
-                    2 => TimeSpan.FromSeconds(timeInput.Value),
-                    _ => TimeSpan.FromMinutes(timeInput.Value),
-                };
-                await Fischldesu.WCTCore.Tile.TileHelper.SetAutoUpdateTileXmls(tabs.Available.AsReadOnly());
-                await Fischldesu.WCTCore.Tasks.Background.BackgroundTileUpdater.Register("interval", new Windows.ApplicationModel.Background.TimeTrigger((uint)timeSpan.Minutes, false));
-                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
-                    Utility.I18N.Lang.Text("Info_ChangesApplied"),
-                    InfoBarSeverity.Success);
+            if (submitInfo == null) return false;
 
-                return true;
+            var type = submitInfo.Value.TriggerType;
+            var infoMessage = Utility.I18N.Lang.Text("Page_Scheduled");
+            switch (type)
+            {
+                case SubmitDialogContent.ScheduleTriggerType.System:
+                case SubmitDialogContent.ScheduleTriggerType.BackgroundTimer:
+                    if (submitInfo.Value.Trigger is IBackgroundTrigger trigger)
+                    {
+                        ProcessingRing.Visibility = Visibility.Visible;
+                        ProcessingRing.IsActive = true;
+                        var xmls = tabs.Value.Available.AsReadOnly();
+                        await Fischldesu.WCTCore.Tile.TileHelper.SetAutoUpdateTileXmls(xmls);
+                        var registration = await Fischldesu.WCTCore.Tasks.Background.BackgroundTileUpdater.Register(BackgroundTaskName, trigger);
+                        ProcessingRing.IsActive = false;
+                        ProcessingRing.Visibility = Visibility.Collapsed;
+                        if (registration == null)
+                        {
+                            App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                                "Background task register failed",
+                                InfoBarSeverity.Error);
+                            return false;
+                        }
+                        else
+                        {
+                            var textID = "Page_Scheduled_TaskTriggerType_System";
+                            if (type == SubmitDialogContent.ScheduleTriggerType.BackgroundTimer)
+                                textID = "Page_Scheduled_TaskTriggerType_Time";
+
+                            infoMessage += Utility.I18N.Lang.Text(textID);
+                            CancelTaskButton.Visibility = Visibility.Visible;
+                            XmlFileFolderOperationGroup.Visibility = Visibility.Visible;
+                        }
+                    }
+                    else
+                    {
+                        App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                            "Invlaid Trigger",
+                            InfoBarSeverity.Error);
+                        return false;
+                    }
+                    break;
+                case SubmitDialogContent.ScheduleTriggerType.TrayIcon:
+                    App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                        "Tray Icon task is not available for now",
+                        InfoBarSeverity.Error);
+                    return false;
+                default:
+                    App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                        "Schedule Submit: Invalid Result",
+                        InfoBarSeverity.Error);
+                    return false;
             }
 
-            return false;
+            App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"), infoMessage, InfoBarSeverity.Success);
+
+            return true;
         }
 
         private void items_AddTabButtonClick(TabView sender, object args)
@@ -227,6 +254,44 @@ namespace WCT_WinUI3.Pages
         private void clear_Click(object sender, RoutedEventArgs e)
         {
             items.TabItems.Clear();
+        }
+
+        private void CancelTaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            Fischldesu.WCTCore.Tasks.Background.BackgroundTileUpdater.Unregister(BackgroundTaskName);
+            CancelTaskButton.Visibility = Visibility.Collapsed;
+        }
+
+        private async void LoadXmlsFromFile_Click(object sender, RoutedEventArgs e)
+        {
+            var docs = await TileHelper.GetAllAutoUpdateTileXmls();
+            if (docs == null || docs.Count < 1)
+            {
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
+                    Utility.I18N.Lang.Text("Info_NoValidXml"),
+                    InfoBarSeverity.Warning);
+                return;
+            }
+            
+            foreach (var xmlDocument in docs)
+            {
+                var tab = NewTab();
+                if (xmlDocument != null)
+                    tab.SetXml(xmlDocument);
+            }
+        }
+
+        private async void OpenXmlsFolder_Click(object sender, RoutedEventArgs e)
+        {
+            var folder = await TileHelper.GetSetAutoUpdateTileXmlsFolder();
+            await Windows.System.Launcher.LaunchFolderAsync(folder);
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var path = await TileHelper.GetSetAutoUpdateTileXmlsFolder();
+            if (path != null)
+                XmlFileFolderOperationGroup.Visibility = Visibility.Visible;
         }
     }
 }

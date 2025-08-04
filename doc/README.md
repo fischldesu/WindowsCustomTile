@@ -9,7 +9,10 @@ Coming soon
 - v0.0.4 prerelease
 
 - [x] Integrates SpecialTile: Multiple Photo Gallery
-- [ ] Background Service: Auto update tile content (For Page.Timer)(May implement with system tray icon)
+- [x] Background tile update task
+
+- [ ] Some other feature optimizations
+
 - v0.1 release
 
 ## Extended Ideas

@@ -1,22 +1,24 @@
 # Windows Custom Tile
 
-Quickly customize your Windows start menu tiles.  
+Makes you quickly customize Windows start menu tiles.  
 个性化你的Windows开始菜单磁贴
 
 ![Application home-page Screenshot](/Assets/screenshot-main.png)
 
-[Dev blog 开发博客](https://blog.fischldesu.com/?p=windows-live-tile)  
-[Bilibili BV1T83ozJETg](https://www.bilibili.com/video/BV1T83ozJETg)
+[开发博客](https://blog.fischldesu.com/?p=windows-live-tile) /
+[Bilibili](https://www.bilibili.com/video/BV1T83ozJETg) /
+[下载](https://github.com/fischldesu/WindowsCustomTile/release)  
+[网站 WindowsCustomTile.fischldesu.com](https://repo.fischldesu.com/WindowsCustomTile)
 
 ### Tech Stack 技术栈
-`.NET 8` `WindowsAppSDK` `WinUI 3`
+`.NET` with `WindowsAppSDK` `WinUI 3` `WinRT`
 
 磁贴更新 `Windows.UI.Notifications.TileUpdater`
 ```
 TileUpdater tileUpdater = TileUpdateManager.CreateTileUpdaterForApplication();
 Windows.Data.Xml.Dom.XmlDocument tileXml = new();
 
-tileXml.LoadXml(<Here goes your tile XML string>);
+tileXml.LoadXml(<Here goes your tile Xml string>);
 TileNotification tileNotification = new(tileXml);
 tileUpdater.Update(tileNotification);
 ```

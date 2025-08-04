@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,7 +65,7 @@ internal class TileHelper
         updater.StartPeriodicUpdateBatch(uris.AsEnumerable(), recurrence);
     }
 
-    public async static Task<ReadOnlyCollection<XmlDocument>?> GetAutoUpdateAllTileXmls()
+    public async static Task<ReadOnlyCollection<XmlDocument>?> GetAllAutoUpdateTileXmls()
     {
         StorageFolder? autoUpdateTileXmlFolder = null;
         try
@@ -138,6 +139,21 @@ internal class TileHelper
     public static void Reset()
     {
         TileUpdateManager.CreateTileUpdaterForApplication().Clear();
+    }
+    public async static Task<IStorageFolder?> GetSetAutoUpdateTileXmlsFolder()
+    {
+        try
+        {
+            var folder = await Storage.Folder.GetFolderAsync(AutoUpdateTileXmlFolderName);
+            if ((await folder?.GetFilesAsync()).Count > 0)
+                return folder;
+            return null;
+        }
+        catch
+        {
+            return null;
+        }
+
     }
 
 }

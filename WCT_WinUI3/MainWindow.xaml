@@ -50,7 +50,7 @@
         </Grid.RowDefinitions>
         <Frame x:Name="frame" Grid.Row="1" />
         <InfoBar x:Name="infoBar" CornerRadius="0" Margin="-1 0" Grid.Row="0" HorizontalAlignment="Stretch" />
-        <InfoBar x:Name="infoBand" Grid.Row="0" Grid.RowSpan="3" Margin="16 24" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+        <InfoBar x:Name="infoBand"  Grid.Row="0" Grid.RowSpan="3" Margin="16 24" VerticalAlignment="Bottom" HorizontalAlignment="Center" PointerPressed="infoBand_PointerPressed" />
       </Grid>
     </NavigationView>
   </Grid>

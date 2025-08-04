@@ -360,4 +360,28 @@
   <data name="Page_Home_SlideShow" xml:space="preserve">
     <value>Slide Show</value>
   </data>
+  <data name="Page_Scheduled_TaskTriggerType" xml:space="preserve">
+    <value>Task trigger type</value>
+  </data>
+  <data name="Page_Scheduled_TaskTriggerType_Time" xml:space="preserve">
+    <value>Periodic Trigger</value>
+  </data>
+  <data name="Page_Scheduled_TaskTriggerType_System" xml:space="preserve">
+    <value>System Event</value>
+  </data>
+  <data name="Dialog_Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="G_Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Page_Scheduled_CancelTask" xml:space="preserve">
+    <value>Cancel Task</value>
+  </data>
+  <data name="Page_Scheduled_LoadXmlFile" xml:space="preserve">
+    <value>Load Xml File</value>
+  </data>
+  <data name="Page_Scheduled_OpenXmlFolder" xml:space="preserve">
+    <value>Open Xml Folder</value>
+  </data>
 </root>

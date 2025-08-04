@@ -115,7 +115,7 @@ namespace WCT_WinUI3
 
         private Action? infoBandCloseCancelToken;
 
-        public void ShowInfoBand(string? title, string? message, InfoBarSeverity severity, int closeTimeSecond = 3)
+        public void ShowInfoBand(string? title, string? message, InfoBarSeverity severity, int closeTimeSecond = 6)
         {
             infoBand.Title = title;
             infoBand.Message = message ?? string.Empty;
@@ -176,6 +176,11 @@ namespace WCT_WinUI3
         private void view_Loaded(object sender, RoutedEventArgs e)
         {
             view.SelectedItem = navigationDefaultItem;
+        }
+
+        private void infoBand_PointerPressed(object sender, PointerRoutedEventArgs e)
+        {
+            infoBandCloseCancelToken = null;
         }
     }
 }

@@ -360,4 +360,28 @@
   <data name="Page_Home_SlideShow" xml:space="preserve">
     <value>幻灯片</value>
   </data>
+  <data name="Page_Scheduled_TaskTriggerType" xml:space="preserve">
+    <value>任务触发方式</value>
+  </data>
+  <data name="Page_Scheduled_TaskTriggerType_Time" xml:space="preserve">
+    <value>时间周期触发</value>
+  </data>
+  <data name="Page_Scheduled_TaskTriggerType_System" xml:space="preserve">
+    <value>系统事件触发</value>
+  </data>
+  <data name="Dialog_Statistics" xml:space="preserve">
+    <value>统计</value>
+  </data>
+  <data name="G_Detail" xml:space="preserve">
+    <value>详细</value>
+  </data>
+  <data name="Page_Scheduled_CancelTask" xml:space="preserve">
+    <value>取消计划任务</value>
+  </data>
+  <data name="Page_Scheduled_LoadXmlFile" xml:space="preserve">
+    <value>加载Xml文件夹</value>
+  </data>
+  <data name="Page_Scheduled_OpenXmlFolder" xml:space="preserve">
+    <value>打开Xml文件夹</value>
+  </data>
 </root>

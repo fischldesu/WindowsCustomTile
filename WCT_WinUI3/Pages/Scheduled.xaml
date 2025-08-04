@@ -9,7 +9,7 @@
   xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  mc:Ignorable="d">
+  mc:Ignorable="d" Loaded="Page_Loaded">
 
   <local:PageTemplate Header="{x:Bind i18n:Lang.Text('Page_Scheduled_Title')}">
     <Grid ColumnSpacing="16">
@@ -30,6 +30,12 @@
                 Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
         <Button x:Name="randomize" Click="randomize_Click" HorizontalAlignment="Stretch"
                 ToolTipService.ToolTip="Randomize list on the left" Content="{x:Bind i18n:Lang.Text('G_Randomize')}" />
+        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" Visibility="Collapsed" x:Name="XmlFileFolderOperationGroup">
+          <Button x:Name="LoadXmlsFromFile" Click="LoadXmlsFromFile_Click" HorizontalAlignment="Stretch"  Margin="0 0 0 -1"
+                Content="{x:Bind i18n:Lang.Text('Page_Scheduled_LoadXmlFile')}" CornerRadius="4 4 0 0" />
+          <Button x:Name="OpenXmlsFolder" Click="OpenXmlsFolder_Click" HorizontalAlignment="Stretch"
+                Content="{x:Bind i18n:Lang.Text('Page_Scheduled_OpenXmlFolder')}" CornerRadius="0 0 4 4" />
+        </StackPanel>
       </StackPanel>
       <StackPanel Name="RightPanelBottom" Grid.Column="1" Grid.Row="1" Orientation="Vertical" Spacing="8">
         <Button Grid.Row="1" x:Name="clear" Click="clear_Click" HorizontalAlignment="Stretch"
@@ -40,7 +46,7 @@
     <local:PageTemplate.FooterContent>
       <Components:PageFooter>
         <Components:PageFooter.FrontContent>
-          <Components:DocumentationDropdownButton Description="(Invoke Update periodically)">
+          <Components:DocumentationDropdownButton Description="Schedule a Update task">
             <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference"
                              NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.update" />
             <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines"
@@ -48,11 +54,10 @@
           </Components:DocumentationDropdownButton>
         </Components:PageFooter.FrontContent>
         <Components:PageFooter.RearContent>
-          <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal">
-            <StackPanel Orientation="Horizontal" Width="192">
-              <NumberBox x:Name="timeInput" Minimum="0" Height="32" CornerRadius="6 0 0 6" Value="1"
-                         SpinButtonPlacementMode="Compact" SmallChange="1" LargeChange="10" />
-              <ComboBox x:Name="timeFormat" Height="32" SelectedIndex="1" CornerRadius="0 6 6 0" Margin="-1 0 0 0" />
+          <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="12">
+            <StackPanel Orientation="Horizontal">
+              <ProgressRing x:Name="ProcessingRing" IsActive="False" Visibility="Collapsed" Height="20" Width="20"/>
+              <Button x:Name="CancelTaskButton" Click="CancelTaskButton_Click" Content="{x:Bind i18n:Lang.Text('Page_Scheduled_CancelTask')}" />
             </StackPanel>
             <Button x:Name="submit" Height="32" Click="submit_Click" Style="{StaticResource AccentButtonStyle}"
                     Content="{x:Bind i18n:Lang.Text('Button_Submit')}" />
