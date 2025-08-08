@@ -8,7 +8,7 @@
   xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-  mc:Ignorable="d">
+  mc:Ignorable="d" Loaded="UserControl_Loaded">
 
   <Pivot x:Name="pivot" FontFamily="Consolas" AllowDrop="True" Drop="pivot_Drop" DragOver="pivot_DragOver">
 
@@ -82,9 +82,19 @@
           <RowDefinition Height="*" />
           <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="0" x:Name="edit_total" AcceptsReturn="True" VerticalAlignment="Stretch"
-                 HorizontalAlignment="Stretch" Margin="0 0 0 8" />
-        <Button Grid.Row="1" x:Name="edit_total_showTemplate" HorizontalAlignment="Right"
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+        <RichEditBox Grid.ColumnSpan="2" Grid.Row="0" x:Name="edit_total" AcceptsReturn="True" VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch" Margin="0 0 0 8" FontFamily="Consolas" Loaded="RefreshCodeHighLight" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="12">
+          <Button x:Name="RefreshHighLightButton" Click="RefreshCodeHighLight"  VerticalAlignment="Center" Height="32">
+            <FontIcon Glyph="&#xE72C;" FontSize="16" />
+          </Button>
+          <TextBlock x:Name="SyntaxErrorText" Foreground="Red" Text="{x:Bind i18n:Lang.Text('Component_TileEditor_SyntaxError')}" VerticalAlignment="Center" Visibility="Collapsed" />
+        </StackPanel>
+        <Button Grid.Row="1" Grid.Column="1" x:Name="edit_total_showTemplate" HorizontalAlignment="Right"
                 Click="edit_total_showTemplate_Click"
                 Content="{x:Bind i18n:Lang.Text('Component_TileEditor_InitTemplate')}">
         </Button>

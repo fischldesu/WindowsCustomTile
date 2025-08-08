@@ -2,6 +2,7 @@ using Fischldesu.WCTCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Reflection.Metadata;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 
@@ -10,8 +11,8 @@ namespace WCT_WinUI3.Components
     public sealed partial class TileXmlEditor : UserControl
     {
         private static Action? copyAction;
-
-        public TextBox Editor { get { return edit_total; } }
+        private Utility.XmlCodeHighLighter xmlCodeHighLighter = new();
+        public RichEditBox Editor { get { return edit_total; } }
         public bool SelectedSingleEditor { 
             set {
                 if (value)
@@ -25,6 +26,19 @@ namespace WCT_WinUI3.Components
         public TileXmlEditor()
         {
             this.InitializeComponent();
+
+            edit_total.TextChanged += xmlCodeHighLighter.TextChangedEventHandler;
+            xmlCodeHighLighter.HighLightOver += XmlCodeHighLighter_Over;
+        }
+
+        private void XmlCodeHighLighter_Over(object? sender, Utility.XmlCodeHighLighter.HighLightResultType e)
+        {
+            SyntaxErrorText.Visibility = e switch
+            {
+                Utility.XmlCodeHighLighter.HighLightResultType.SyntaxError => Visibility.Visible,
+                Utility.XmlCodeHighLighter.HighLightResultType.Finished => Visibility.Collapsed,
+                _ => Visibility.Collapsed
+            };
         }
 
         public static string FromTemplate(string small, string mid, string wide, string large)
@@ -65,19 +79,20 @@ namespace WCT_WinUI3.Components
                     edit_single_wide.Text,
                     edit_single_large.Text);
             }
-            return edit_total.Text;
+            edit_total.Document.GetText(Microsoft.UI.Text.TextGetOptions.None, out string currentText);
+            return currentText;
         }
 
         public void SetXml(Windows.Data.Xml.Dom.XmlDocument xmlDocument)
         {
-            edit_total.Text = xmlDocument.GetXml();
+            edit_total.Document.SetText(Microsoft.UI.Text.TextSetOptions.None, xmlDocument.GetXml());
             pivot.SelectedIndex = 1;
         }
 
         private void edit_total_showTemplate_Click(object sender, RoutedEventArgs e)
         {
-            var spaces = "    ";
-            edit_total.Text = FromTemplate(spaces, spaces, spaces, spaces);
+            edit_total.Document.SetText(Microsoft.UI.Text.TextSetOptions.None, FromTemplate(string.Empty, string.Empty, string.Empty, string.Empty));
+            RefreshCodeHighLight();
         }
 
         private void copy_Click(object sender, RoutedEventArgs e)
@@ -132,6 +147,17 @@ namespace WCT_WinUI3.Components
         private void pivot_DragOver(object _, DragEventArgs e)
         {
             e.AcceptedOperation = DataPackageOperation.Copy;
+        }
+
+        private void RefreshCodeHighLight(object? sender = null, RoutedEventArgs? e = null)
+        {
+            xmlCodeHighLighter.CancelAutoHighLight();
+            Utility.XmlCodeHighLighter.HighLight(edit_total, xmlCodeHighLighter);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ActualThemeChanged += (_, _)=> RefreshCodeHighLight();
         }
     }
 }

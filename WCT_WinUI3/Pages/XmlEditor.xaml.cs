@@ -54,7 +54,7 @@ namespace WCT_WinUI3.Pages
             {
                 TileHelper.SetTileXml(xmlDoc);
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
-                    Utility.I18N.Lang.Text("Info_ChnagesApplied"),
+                    Utility.I18N.Lang.Text("Info_ChangesApplied"),
                     InfoBarSeverity.Success);
             }
             return ret;

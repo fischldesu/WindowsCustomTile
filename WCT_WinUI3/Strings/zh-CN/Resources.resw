@@ -384,4 +384,10 @@
   <data name="Page_Scheduled_OpenXmlFolder" xml:space="preserve">
     <value>打开Xml文件夹</value>
   </data>
+  <data name="Component_TileEditor_SyntaxError" xml:space="preserve">
+    <value>格式错误</value>
+  </data>
+  <data name="Info_InvalidXmlText" xml:space="preserve">
+    <value>无效的Xml文本</value>
+  </data>
 </root>

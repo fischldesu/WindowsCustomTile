@@ -384,4 +384,10 @@
   <data name="Page_Scheduled_OpenXmlFolder" xml:space="preserve">
     <value>Open Xml Folder</value>
   </data>
+  <data name="Component_TileEditor_SyntaxError" xml:space="preserve">
+    <value>Syntax Error</value>
+  </data>
+  <data name="Info_InvalidXmlText" xml:space="preserve">
+    <value>Invalid Xml text</value>
+  </data>
 </root>

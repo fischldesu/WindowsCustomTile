@@ -222,13 +222,13 @@ namespace WCT_WinUI3.Pages
             if (xmlText != null)
                 if (items.SelectedItem is TabViewItem tabViewItem && tabViewItem.Content is TileXmlEditor editor)
                 {
-                    editor.Editor.Text = xmlText;
+                    editor.Editor.Document.SetText(TextSetOptions.None, xmlText);
                     editor.SelectedSingleEditor = false;
                 }
                 else
                 {
                     editor = NewTab();
-                    editor.Editor.Text = xmlText;
+                    editor.Editor.Document.SetText(TextSetOptions.None, xmlText);
                     editor.SelectedSingleEditor = false;
                 }
         }
