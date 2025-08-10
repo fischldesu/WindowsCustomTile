@@ -3,11 +3,11 @@
 Makes you quickly customize Windows start menu tiles.  
 个性化你的Windows开始菜单磁贴
 
-![Application home-page Screenshot](/Assets/screenshot-main.png)
+![Application home-page Screenshot](Assets/screenshot-main.png)
 
 [开发博客](https://blog.fischldesu.com/?p=windows-live-tile) /
 [Bilibili](https://www.bilibili.com/video/BV1T83ozJETg) /
-[下载](https://github.com/fischldesu/WindowsCustomTile/release)  
+[下载](https://github.com/fischldesu/WindowsCustomTile/releases)  
 [网站 WindowsCustomTile.fischldesu.com](https://repo.fischldesu.com/WindowsCustomTile)
 
 ### Tech Stack 技术栈
