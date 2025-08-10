@@ -27,10 +27,6 @@ namespace WCT_WinUI3
     /// </summary>
     public partial class App : Application
     {
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public static MainWindow? mainWindow { get; private set; }
 
         public App()
@@ -41,14 +37,68 @@ namespace WCT_WinUI3
 
         private void App_UnhandledException(object sender, Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
         {
-            Log.Fatal($"App.UnhandledException {e.Exception.Message}\r\n{e.Exception.StackTrace}");
-            
-            var logWindow = new LogWindow();
+            e.Handled = true;
+            Log.Fatal($"{e.Exception}: {e.Exception.Message}\r\n{e.Exception.StackTrace}");
+            Crash(e);
+        }
 
-            mainWindow?.Close();
-            logWindow.Closed += (_, _) => Exit();
+        public static void Crash(Microsoft.UI.Xaml.UnhandledExceptionEventArgs e)
+        {
+            var crashWindow = new Window()
+            {
+                Title = "Windows Custom Tile - Fatal Error",
+            };
+            var crashContent = new StackPanel()
+            {
+                Padding = new Thickness(32),
+            };
+            var title = new TextBlock()
+            {
+                Text = "Fatal Error",
+                FontSize = 24,
+                Foreground = new SolidColorBrush(Microsoft.UI.Colors.Red),
+                HorizontalAlignment = HorizontalAlignment.Left,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            var message = new TextBlock()
+            {
+                Text = $"{e.Message}\r\n{e.Exception.StackTrace}",
+                FontSize = 16,
+            };
+            var button = new Button()
+            {
+                Content = Utility.I18N.Lang.Text("G_Detail"),
+            };
 
-            logWindow.Activate();
+            button.Click += async (_, _) =>
+            {
+                var time = DateTime.Now;
+                var logFile = $"{time.Month}-{time.Day}.log";
+                try
+                {
+                    var file = await Storage.Folder.GetFileAsync(logFile);
+                    var log = await Launcher.LaunchFileAsync(file);
+                }
+                catch
+                {
+                    Log.Error($"Failed to open log file: {logFile}");
+                }
+            };
+            crashContent.Spacing = 16;
+            crashContent.Children.Add(title);
+            crashContent.Children.Add(message);
+            crashContent.Children.Add(button);
+
+            crashWindow.Content = crashContent;
+            crashWindow.Activate();
+
+            if (mainWindow != null)
+            {
+                mainWindow.Content = null;
+                mainWindow.Close();
+                mainWindow = null;
+            }
+
         }
 
         /// <summary>
@@ -61,20 +111,24 @@ namespace WCT_WinUI3
 
             mainWindow = new MainWindow();
 
-            var protocalLaunch = false;
-            if (AppInstance.GetCurrent().GetActivatedEventArgs().Data is ProtocolActivatedEventArgs protocolArgs && protocolArgs.Uri != null)
-                protocalLaunch = ProtocolLaunch(protocolArgs.Uri);
+            var appActivateData = AppInstance.GetCurrent().GetActivatedEventArgs().Data;
+            if (appActivateData is ProtocolActivatedEventArgs protocolArgs)
+            {
+                if(ProtocolLaunch(protocolArgs.Uri))
+                    mainWindow.Activate();
+                return;
+            }
 
-            if (protocalLaunch || !DoLaunchCommand() || Settings.Instance.LaunchAlwaysShowWindow)
+            if (DirectLaunch())
                 mainWindow.Activate();
-            else
-                Exit();
+            
         }
 
-        private bool ProtocolLaunch(Uri uri)
+        /// <returns>Display MainWindow or not</returns>
+        private bool ProtocolLaunch(Uri? uri)
         {
             Log.Info($"Application launched with Protocol: {uri}");
-            switch (uri.Host.ToLower())
+            switch (uri?.Host.ToLower())
             {
                 case "start":
                     return true;
@@ -86,38 +140,40 @@ namespace WCT_WinUI3
             }
         }
 
-        public static bool DoLaunchCommand()
+        /// <returns>Display MainWindow or not</returns>
+        private bool DirectLaunch()
         {
-            var ret = false;
-            var settings = Settings.Instance;
+            if (!ExcuteLaunchCommand())
+                return true;
+            return Settings.Instance.LaunchAlwaysShowWindow || Administrator();
+        }
+
+        /// <returns>Excute launch command failed or success</returns>
+        public static bool ExcuteLaunchCommand()
+        {
+            var command = Settings.Instance.LaunchCommand;
+            if (string.IsNullOrWhiteSpace(command))
+                return false;
+            
             try
             {
-                if (settings.LaunchCommand is string command)
+                switch (Settings.Instance.LaunchCommandType)
                 {
-                    var commandType = settings.LaunchCommandType;
-                    switch (commandType)
-                    {
-                        case "uri":
-                            Launcher.LaunchUriAsync(new Uri(command)).Wait();
-                            ret = true;
-                            break;
-                        case "cmd":
-                            System.Diagnostics.Process.Start(command);
-                            ret = true;
-                            break;
-                        default:
-                            Log.Warning($"Unknown launch command type:{(commandType is string t ? t : "UnknownType")}");
-                            ret = false;
-                            break;
-                    }
+                    case "uri":
+                        Launcher.LaunchUriAsync(new Uri(command)).Wait();
+                        return true;
+                    case "cmd":
+                        System.Diagnostics.Process.Start(command);
+                        return true;
+                    default:
+                        return false;
                 }
             }
             catch (Exception e)
             {
-                Log.Error($"Error while doing Launch Command {e.Message}");
+                Log.Error($"Error while excuting [{command}] Exception: {e.Message}");
             }
-
-            return ret;
+            return false;
         }
 
         public static bool Administrator()
@@ -128,10 +184,10 @@ namespace WCT_WinUI3
 
         public static void RequestRestart(string arguments)
         {
-            var ret = Microsoft.Windows.AppLifecycle.AppInstance.Restart(arguments);
+            var ret = AppInstance.Restart(arguments);
             if (ret != Windows.ApplicationModel.Core.AppRestartFailureReason.RestartPending)
                 Log.Info("Pending restart");
-            else Log.Error($"Application restart failed:{ret}");
+            else Log.Error($"Application restart failed: {ret}");
         }
 
     }
