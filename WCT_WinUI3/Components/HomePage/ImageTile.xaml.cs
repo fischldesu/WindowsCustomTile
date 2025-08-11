@@ -23,14 +23,43 @@ namespace WCT_WinUI3.Components.HomePage
 {
     public sealed partial class ImageTile : UserControl
     {
+        public TileSize? SelectedSize
+        {
+            get
+            {
+                if (TileSizeLargeRadio.IsChecked)
+                    return TileSize.Large;
+                else if (TileSizeWideRadio.IsChecked)
+                    return TileSize.Wide;
+                else if (TileSizeMediumRadio.IsChecked)
+                    return TileSize.Medium;
+                else if (TileSizeSmallRadio.IsChecked)
+                    return TileSize.Small;
+                return null;
+            }
+            set
+            {
+                RadioMenuFlyoutItem? item = value switch
+                {
+                    TileSize.Small => TileSizeSmallRadio,
+                    TileSize.Medium => TileSizeMediumRadio,
+                    TileSize.Wide => TileSizeWideRadio,
+                    TileSize.Large => TileSizeLargeRadio,
+                    _ => null
+                };
+
+                if (item == null) return;
+                item.IsChecked = true;
+                item.UpdateLayout();
+            }
+        }
+
         public ImageTile()
         {
             this.InitializeComponent(); 
-            EditBySizeCombo.ItemsSource = Enum.GetValues(typeof(TileSize));
-            EditBySizeCombo.SelectedItem = TileSize.Large;
             previewer.ImageButtonFlyoutClick += (sender, size) =>
             {
-                EditBySizeCombo.SelectedItem = size;
+                SelectedSize = size;
                 var textBox = GetPreviewerEditBySize_TextBox(size);
                 if (textBox == null) return;
                 textBox.Focus(FocusState.Pointer);
@@ -95,37 +124,27 @@ namespace WCT_WinUI3.Components.HomePage
                 _ => null
             };
         }
-        private void EditBySizeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (var item in EditBySizeGrid.Children)
-                if (item is TextBox textBox)
-                    textBox.Visibility = Visibility.Collapsed;
-
-            var target = GetPreviewerEditBySize_TextBox((TileSize?)EditBySizeCombo.SelectedItem);
-            if (target != null)
-                target.Visibility = Visibility.Visible;
-
-        }
 
         private void EditBySizeApply_Click(object sender, RoutedEventArgs e)
         {
-            var selected = (TileSize?)EditBySizeCombo.SelectedItem;
+            var selected = SelectedSize;
             var target = GetPreviewerEditBySize_TextBox(selected);
             if (target != null)
             {
+                var text = target.Text ?? string.Empty;
                 switch (selected)
                 {
                     case TileSize.Large:
-                        previewer.Source.Large = target.Text;
+                        previewer.Source.Large = text;
                         break;
                     case TileSize.Medium:
-                        previewer.Source.Medium = target.Text;
+                        previewer.Source.Medium = text;
                         break;
                     case TileSize.Wide:
-                        previewer.Source.Wide = target.Text;
+                        previewer.Source.Wide = text;
                         break;
                     case TileSize.Small:
-                        previewer.Source.Small = target.Text;
+                        previewer.Source.Small = text;
                         break;
                 }
             }
@@ -145,9 +164,9 @@ namespace WCT_WinUI3.Components.HomePage
                 previewer.Source.Wide = path;
                 previewer.Source.Small = path;
             }
-            else if (EditBySizePickFile == (Button)sender)
+            else if (sender is MenuFlyoutItem)
             {
-                var textBox = GetPreviewerEditBySize_TextBox((TileSize?)EditBySizeCombo.SelectedItem);
+                var textBox = GetPreviewerEditBySize_TextBox(SelectedSize);
                 if (textBox != null)
                     textBox.Text = path;
             }

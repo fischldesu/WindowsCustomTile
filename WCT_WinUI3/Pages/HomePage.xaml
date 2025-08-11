@@ -37,9 +37,19 @@
             <Grid.ColumnDefinitions>
               <ColumnDefinition Width="*" />
               <ColumnDefinition Width="auto" />
+              <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Text="{Binding LaunchCommand}" />
-            <Button x:Name="launchCmdApply" Grid.Column="1" CornerRadius="0 4 4 0" Style="{StaticResource AccentButtonStyle}" 
+            <TextBox x:Name="launchCmdInputer" CornerRadius="4 0 0 4" Height="32" Text="{Binding LaunchCommand}" />
+            <Button Grid.Column="1" Margin="-1 0" CornerRadius="0" Height="32">
+              <FontIcon Glyph="&#xE712;" />
+              <Button.Flyout>
+                <MenuFlyout>
+                  <MenuFlyoutItem x:Name="LaunchCmd_Excute" Icon="NewWindow" Text="Excute Immediately" Click="LaunchCommandFlyoutItem_Click" />
+                  <MenuFlyoutItem x:Name="LaunchCmd_Reset" Icon="Delete" Text="Reset LaunchCommand" Click="LaunchCommandFlyoutItem_Click" />
+                </MenuFlyout>
+              </Button.Flyout>
+            </Button>
+            <Button x:Name="launchCmdApply" Grid.Column="2" Height="32" CornerRadius="0 4 4 0" Style="{StaticResource AccentButtonStyle}" 
                     Content="{x:Bind i18n:Lang.Text('Button_Apply')}"
                     Click="launchCmdApply_Click"/>
             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">

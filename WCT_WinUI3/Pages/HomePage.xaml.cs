@@ -1,3 +1,4 @@
+using Fischldesu.WCTCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -12,9 +13,9 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using WCT_WinUI3.Components;
-using WCT_WinUI3.Utility;
-using System.Xml.Linq;
+using Windows.System;
+
+using CoreSettings = Fischldesu.WCTCore.Settings;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -85,6 +86,50 @@ namespace WCT_WinUI3.Pages
                 if (height > 0)
                     foreachContent(ele => ele.MinHeight = height);
             });
+        }
+
+        private async void LaunchCommandFlyoutItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (ReferenceEquals(sender, LaunchCmd_Excute))
+            {
+                var uri = LaunchCmdType_uri.IsChecked ?? false;
+                var cmd = LaunchCmdType_cmd.IsChecked ?? false;
+                var command = launchCmdInputer.Text;
+
+                try
+                {
+                    if (uri)
+                    {
+                        Log.Info($"Excute Uri command {command}");
+                        if (!await Launcher.LaunchUriAsync(new Uri(command)))
+                            throw new InvalidOperationException("Launcher.LaunchUriAsync failed");
+                    }
+                    else if (cmd)
+                    {
+                        Log.Info($"Excute Command {command}");
+                        System.Diagnostics.Process.Start(command);
+                        App.mainWindow?.ShowInfoBand("Info", "Command Excuted", InfoBarSeverity.Informational);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"), $"Command Excute Failed {ex.Message}", InfoBarSeverity.Error);
+                }
+
+            }
+            else if (ReferenceEquals(sender, LaunchCmd_Reset))
+            {
+                CoreSettings.Instance.LaunchCommand = null;
+                CoreSettings.Instance.LaunchCommandType = null;
+                CoreSettings.Instance.LaunchAlwaysShowWindow = false;
+
+                launchCmdInputer.Text = string.Empty;
+                LaunchCmdType_uri.IsChecked = false;
+                LaunchCmdType_cmd.IsChecked = false;
+                alwaysShowWindow.IsChecked = false;
+
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"), "Reset Launch command settings", InfoBarSeverity.Success);
+            }
         }
     }
 }

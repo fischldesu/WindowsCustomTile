@@ -47,24 +47,46 @@
         <ColumnDefinition Width="*" />
         <ColumnDefinition Width="auto" />
         <ColumnDefinition Width="auto" />
-        <ColumnDefinition Width="auto" />
       </Grid.ColumnDefinitions>
       <TextBlock Text="{x:Bind i18n:Lang.Text('Page_Home_ImageTile_EditBySize')}" Grid.ColumnSpan="3" />
       <TextBox x:Name="EditBySizeLarge" Text="{x:Bind previewer.Source.Large, Mode=OneWay}" Grid.Row="1"
-               CornerRadius="6 0 0 6" Height="32" />
+               CornerRadius="6 0 0 6" Height="32" Visibility="{x:Bind TileSizeLargeRadio.IsChecked, Mode=OneWay}" />
       <TextBox x:Name="EditBySizeWide" Text="{x:Bind previewer.Source.Wide, Mode=OneWay}" Grid.Row="1"
-               CornerRadius="6 0 0 6" Height="32" />
+               CornerRadius="6 0 0 6" Height="32" Visibility="{x:Bind TileSizeWideRadio.IsChecked, Mode=OneWay}" />
       <TextBox x:Name="EditBySizeMedium" Text="{x:Bind previewer.Source.Medium, Mode=OneWay}" Grid.Row="1"
-               CornerRadius="6 0 0 6" Height="32" />
+               CornerRadius="6 0 0 6" Height="32" Visibility="{x:Bind TileSizeMediumRadio.IsChecked, Mode=OneWay}" />
       <TextBox x:Name="EditBySizeSmall" Text="{x:Bind previewer.Source.Small, Mode=OneWay}" Grid.Row="1"
-               CornerRadius="6 0 0 6" Height="32" />
-      <ComboBox x:Name="EditBySizeCombo" SelectionChanged="EditBySizeCombo_SelectionChanged" Grid.Row="1"
-                Grid.Column="1" CornerRadius="0" Height="32" />
-      <Button x:Name="EditBySizePickFile" Click="PickImageFile_Click" Grid.Row="1" Grid.Column="2" Height="32"
-              Width="38" Padding="0" CornerRadius="0">
-        <FontIcon Glyph="&#xE7C5;" />
+               CornerRadius="6 0 0 6" Height="32" Visibility="{x:Bind TileSizeSmallRadio.IsChecked, Mode=OneWay}" />
+      <Button Grid.Row="1" Grid.Column="1" Height="32" CornerRadius="0">
+        <FontIcon Glyph="&#xE712;" />
+        <Button.Flyout>
+          <MenuFlyout>
+            <MenuFlyoutItem Icon="BrowsePhotos" Text="{x:Bind i18n:Lang.Text('Page_Home_ImageTile_ImageFile')}" Click="PickImageFile_Click" />
+            <MenuFlyoutSeparator />
+            <RadioMenuFlyoutItem x:Name="TileSizeLargeRadio" Text="Large" IsChecked="True">
+              <RadioMenuFlyoutItem.Icon>
+                <FontIcon Glyph="&#xE747;" />
+              </RadioMenuFlyoutItem.Icon>
+            </RadioMenuFlyoutItem>
+            <RadioMenuFlyoutItem x:Name="TileSizeWideRadio" Text="Wide" >
+              <RadioMenuFlyoutItem.Icon>
+                <FontIcon Glyph="&#xE745;" />
+              </RadioMenuFlyoutItem.Icon>
+            </RadioMenuFlyoutItem>
+            <RadioMenuFlyoutItem x:Name="TileSizeMediumRadio" Text="Medium">
+              <RadioMenuFlyoutItem.Icon>
+                <FontIcon Glyph="&#xE744;" />
+              </RadioMenuFlyoutItem.Icon>
+            </RadioMenuFlyoutItem>
+            <RadioMenuFlyoutItem x:Name="TileSizeSmallRadio" Text="Small">
+              <RadioMenuFlyoutItem.Icon>
+                <FontIcon Glyph="&#xE743;" />
+              </RadioMenuFlyoutItem.Icon>
+            </RadioMenuFlyoutItem>
+          </MenuFlyout>
+        </Button.Flyout>
       </Button>
-      <Button Click="EditBySizeApply_Click" Grid.Row="1" Grid.Column="3" CornerRadius="0 6 6 0" Height="32" Width="64"
+      <Button Click="EditBySizeApply_Click" Grid.Row="1" Grid.Column="2" CornerRadius="0 6 6 0" Height="32" Width="64"
               Content="{x:Bind i18n:Lang.Text('Button_Apply')}" />
     </Grid>
   </Grid>
