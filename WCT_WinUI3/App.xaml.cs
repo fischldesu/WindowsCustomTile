@@ -82,6 +82,8 @@ namespace WCT_WinUI3
                 catch
                 {
                     Log.Error($"Failed to open log file: {logFile}");
+                    if(!await Launcher.LaunchFolderAsync(Storage.Folder))
+                        Log.Error($"Failed to open AppData folder: {Storage.Folder.Path}");
                 }
             };
             crashContent.Spacing = 16;
