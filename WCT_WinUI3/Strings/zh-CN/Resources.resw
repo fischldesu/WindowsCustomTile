@@ -390,4 +390,13 @@
   <data name="Info_InvalidXmlText" xml:space="preserve">
     <value>无效的Xml文本</value>
   </data>
+  <data name="G_Open" xml:space="preserve">
+    <value>打开</value>
+  </data>
+  <data name="G_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Settings_AutoTileQueue" xml:space="preserve">
+    <value>自动磁贴队列</value>
+  </data>
 </root>

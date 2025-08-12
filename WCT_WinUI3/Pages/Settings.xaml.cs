@@ -125,5 +125,21 @@ namespace WCT_WinUI3.Pages
             App.RequestRestart(string.Empty);
             restartConfirm.Visibility = Visibility.Collapsed;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button button && button.Tag is string tag)
+            {
+                bool? enable = tag switch
+                {
+                    "Open" => true,
+                    "Close" => false,
+                    _ => null
+                };
+
+                if (enable.HasValue)
+                    Fischldesu.WCTCore.Tile.TileHelper.NotificationQueue = enable.Value;
+            }
+        }
     }
 }

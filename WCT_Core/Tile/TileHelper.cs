@@ -29,6 +29,11 @@ internal class TileHelper
 
     private const string AutoUpdateTileXmlFolderName = "AutoUpdateTileXml";
 
+    public static bool NotificationQueue
+    {
+        set => TileUpdateManager.CreateTileUpdaterForApplication().EnableNotificationQueue(value);
+    }
+
     public static void SetTileXml(XmlDocument xmlDocument)
     {
         var updater = TileUpdateManager.CreateTileUpdaterForApplication();
