@@ -25,7 +25,7 @@
           <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="4">
             <TextBlock FontSize="22" Text="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmd')}" />
             <HyperlinkButton Padding="6" Margin="0 1 0 0" VerticalAlignment="Stretch"
-                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki">
+                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki#launch-command">
               <FontIcon Glyph="&#xE946;" FontSize="16" />
             </HyperlinkButton>
           </StackPanel>

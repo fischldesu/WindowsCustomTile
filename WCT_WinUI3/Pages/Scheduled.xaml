@@ -47,10 +47,10 @@
       <Components:PageFooter>
         <Components:PageFooter.FrontContent>
           <Components:DocumentationDropdownButton Description="Schedule a Update task">
-            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference"
-                             NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.update" />
+            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="IBackgroundTask API"
+                             NavigateUri="https://learn.microsoft.com/uwp/api/windows.applicationmodel.background.ibackgroundtask" />
             <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines"
-                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#timer" />
+                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/more#schedule" />
           </Components:DocumentationDropdownButton>
         </Components:PageFooter.FrontContent>
         <Components:PageFooter.RearContent>

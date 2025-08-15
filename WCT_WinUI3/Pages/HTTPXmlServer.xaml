@@ -46,12 +46,12 @@
       <Components:PageFooter>
         <Components:PageFooter.FrontContent>
           <Components:DocumentationDropdownButton Description="TileUpdater.StartPeriodicUpdate">
-            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference 1"
+            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference One"
                              NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.startperiodicupdate" />
-            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference 2"
+            <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="API Reference Multiple"
                              NavigateUri="https://learn.microsoft.com/uwp/api/windows.ui.notifications.tileupdater.startperiodicupdatebatch" />
             <HyperlinkButton HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" Content="Use Guidelines"
-                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/pages#http-server" />
+                             NavigateUri="https://repo.fischldesu.com/WindowsCustomTile/wiki/more#srv" />
           </Components:DocumentationDropdownButton>
         </Components:PageFooter.FrontContent>
         <Components:PageFooter.RearContent>
