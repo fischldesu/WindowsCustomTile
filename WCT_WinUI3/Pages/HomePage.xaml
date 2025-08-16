@@ -18,7 +18,7 @@
       <RowDefinition Height="42" />
       <RowDefinition Height="*" />
     </Grid.RowDefinitions>
-    <TextBlock Grid.Row="0" FontSize="32">Winodws Custom Tile</TextBlock>
+    <TextBlock Grid.Row="0" FontSize="32">Windows Custom Tile</TextBlock>
     <Border Grid.Row="1" Margin="0 16" HorizontalAlignment="Stretch" Style="{StaticResource BorderSectionStyle}">
       <ScrollViewer>
         <StackPanel Padding="32 26 32 16" Spacing="12">
