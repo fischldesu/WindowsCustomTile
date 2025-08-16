@@ -399,4 +399,31 @@
   <data name="Settings_AutoTileQueue" xml:space="preserve">
     <value>Auto Tile Queue</value>
   </data>
+  <data name="Page_Home_LaunchCmd_ExcuteImmediately" xml:space="preserve">
+    <value>Excute Immediately</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_Applied" xml:space="preserve">
+    <value>Launch command applied</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_ApplyFailed" xml:space="preserve">
+    <value>Apply launch command failed</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_Excuted" xml:space="preserve">
+    <value>Command excuted</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_ExcuteFailed" xml:space="preserve">
+    <value>Command excute failed</value>
+  </data>
+  <data name="G_UpdateFailed" xml:space="preserve">
+    <value>Update failed</value>
+  </data>
+  <data name="G_UpdateSuccess" xml:space="preserve">
+    <value>update successful</value>
+  </data>
+  <data name="Component_SlideShowTilePreviewer_NoneValid" xml:space="preserve">
+    <value>No valid images provided</value>
+  </data>
+  <data name="G_MaxTolimit" xml:space="preserve">
+    <value>Upper limit is</value>
+  </data>
 </root>

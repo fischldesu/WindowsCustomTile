@@ -94,7 +94,7 @@ namespace WCT_WinUI3.Components.HomePage
             if (sources.Count <= 0)
             {
                 App.mainWindow?.ShowInfoBand(null,
-                    "No valid images provided", InfoBarSeverity.Warning);
+                    Utility.I18N.Lang.Text("Component_SlideShowTilePreviewer_NoneValid"), InfoBarSeverity.Warning);
                 return;
             }
 
@@ -107,7 +107,17 @@ namespace WCT_WinUI3.Components.HomePage
 
             var xmlString =
                 "<tile><visual>" +
-                $"<binding template='{CurrentPreviewer?.Tag}' hint-presentation='photos' >" +
+
+                $"<binding template='TileLarge' hint-presentation='photos' >" +
+                $"{slideshow}</binding>" +
+
+                $"<binding template='TileMedium' hint-presentation='photos' >" +
+                $"{slideshow}</binding>" +
+
+                $"<binding template='TileWide' hint-presentation='photos' >" +
+                $"{slideshow}</binding>" +
+
+                $"<binding template='TileSmall' hint-presentation='photos' >" +
                 $"{slideshow}</binding>" +
                 "</visual></tile>";
 
@@ -121,17 +131,18 @@ namespace WCT_WinUI3.Components.HomePage
                 
                 return;
             }
-            App.mainWindow?.ShowInfoBand("Success",
-                "Slide Show tile set",
+            App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
+                Utility.I18N.Lang.Text("Page_Home_SlideShow") + Utility.I18N.Lang.Text("G_UpdateSuccess"),
                 InfoBarSeverity.Success);
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             if (SourcePathInputs.Items.Count >= 12)
-                App.mainWindow?.ShowInfoBand(null, "Max limited to 12", InfoBarSeverity.Warning);
+                App.mainWindow?.ShowInfoBand(null, Utility.I18N.Lang.Text("G_MaxTolimit") + "12", InfoBarSeverity.Warning);
             else NewItem();
         }
+
         private void Clear_Click(object sender, RoutedEventArgs e)
         {
             SourcePathInputs.Items.Clear();

@@ -103,13 +103,13 @@ namespace WCT_WinUI3.Components.HomePage
             }
             catch
             {
-                App.mainWindow?.ShowInfoBand("Failed",
-                    "Image tile quick set failed, check your Uri",
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                    Utility.I18N.Lang.Text("Page_Home_ImageTile") + Utility.I18N.Lang.Text("G_UpdateFailed"),
                     InfoBarSeverity.Error);
                 return;
             }
-            App.mainWindow?.ShowInfoBand("Success",
-                "Image tile quick set ok",
+            App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
+                Utility.I18N.Lang.Text("Page_Home_ImageTile") + Utility.I18N.Lang.Text("G_UpdateSuccess"),
                 InfoBarSeverity.Success);
         }
 

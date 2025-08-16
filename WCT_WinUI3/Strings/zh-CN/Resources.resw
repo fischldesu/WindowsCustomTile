@@ -399,4 +399,31 @@
   <data name="Settings_AutoTileQueue" xml:space="preserve">
     <value>自动磁贴队列</value>
   </data>
+  <data name="Page_Home_LaunchCmd_ExcuteImmediately" xml:space="preserve">
+    <value>立即尝试执行</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_Applied" xml:space="preserve">
+    <value>启动命令已应用</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_ApplyFailed" xml:space="preserve">
+    <value>启动命令应用失败</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_Excuted" xml:space="preserve">
+    <value>命令已执行</value>
+  </data>
+  <data name="Page_Home_LaunchCmd_ExcuteFailed" xml:space="preserve">
+    <value>命令执行失败</value>
+  </data>
+  <data name="G_UpdateFailed" xml:space="preserve">
+    <value>更新失败</value>
+  </data>
+  <data name="G_UpdateSuccess" xml:space="preserve">
+    <value>成功更新</value>
+  </data>
+  <data name="Component_SlideShowTilePreviewer_NoneValid" xml:space="preserve">
+    <value>没有可用的图片Uri</value>
+  </data>
+  <data name="G_MaxTolimit" xml:space="preserve">
+    <value>最多数量为</value>
+  </data>
 </root>

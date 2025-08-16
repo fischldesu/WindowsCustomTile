@@ -57,11 +57,11 @@ namespace WCT_WinUI3.Pages
                 }
             }
 
-            if (ret) App.mainWindow?.ShowInfoBand("Success",
-                "Launch command applied",
+            if (ret) App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"),
+                Utility.I18N.Lang.Text("Page_Home_LaunchCmd_Applied"),
                 InfoBarSeverity.Success);
-            else App.mainWindow?.ShowInfoBand(string.Empty,
-                "Failed to apply for the launch command",
+            else App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"),
+                Utility.I18N.Lang.Text("Page_Home_LaunchCmd_ApplyFailed"),
                 InfoBarSeverity.Error);
         }
 
@@ -108,12 +108,12 @@ namespace WCT_WinUI3.Pages
                     {
                         Log.Info($"Excute Command {command}");
                         System.Diagnostics.Process.Start(command);
-                        App.mainWindow?.ShowInfoBand("Info", "Command Excuted", InfoBarSeverity.Informational);
+                        App.mainWindow?.ShowInfoBand(null, Utility.I18N.Lang.Text("Page_Home_LaunchCmd_Excuted"), InfoBarSeverity.Informational);
                     }
                 }
                 catch (Exception ex)
                 {
-                    App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"), $"Command Excute Failed {ex.Message}", InfoBarSeverity.Error);
+                    App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Failed"), Utility.I18N.Lang.Text($"Page_Home_LaunchCmd_ExcuteFailed") + ex.Message, InfoBarSeverity.Error);
                 }
 
             }
@@ -128,7 +128,7 @@ namespace WCT_WinUI3.Pages
                 LaunchCmdType_cmd.IsChecked = false;
                 alwaysShowWindow.IsChecked = false;
 
-                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"), "Reset Launch command settings", InfoBarSeverity.Success);
+                App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Success"), Utility.I18N.Lang.Text("Settings_Reset_Opt") + Utility.I18N.Lang.Text("Page_Home_LaunchCmd"), InfoBarSeverity.Success);
             }
         }
     }

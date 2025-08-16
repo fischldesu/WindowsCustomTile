@@ -44,8 +44,8 @@
               <FontIcon Glyph="&#xE712;" />
               <Button.Flyout>
                 <MenuFlyout>
-                  <MenuFlyoutItem x:Name="LaunchCmd_Excute" Icon="NewWindow" Text="Excute Immediately" Click="LaunchCommandFlyoutItem_Click" />
-                  <MenuFlyoutItem x:Name="LaunchCmd_Reset" Icon="Delete" Text="Reset LaunchCommand" Click="LaunchCommandFlyoutItem_Click" />
+                  <MenuFlyoutItem x:Name="LaunchCmd_Excute" Icon="NewWindow" Text="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmd_ExcuteImmediately')}" Click="LaunchCommandFlyoutItem_Click" />
+                  <MenuFlyoutItem x:Name="LaunchCmd_Reset" Icon="Delete" Text="{x:Bind i18n:Lang.Text('Settings_Reset_Opt')}" Click="LaunchCommandFlyoutItem_Click" />
                 </MenuFlyout>
               </Button.Flyout>
             </Button>
