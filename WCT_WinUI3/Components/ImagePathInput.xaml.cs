@@ -30,7 +30,7 @@ namespace WCT_WinUI3.Components
             {
                 hintText.Visibility = Visibility.Collapsed;
                 var converter = new Utility.Convert.StringToImageSource();
-                var result = (ImageSource?)converter.Convert(SourceString, typeof(ImageSource), null, null);
+                var result = (ImageSource?)converter.Convert(SourceString, typeof(ImageSource), null, string.Empty);
                 hintText.Visibility = result == null ? Visibility.Visible : Visibility.Collapsed;
                 return result;
             }
@@ -66,7 +66,7 @@ namespace WCT_WinUI3.Components
 
         private void CheckPathValid_Click(object sender, RoutedEventArgs e)
         {
-            DispatcherQueue.TryEnqueue(async () =>
+            DispatcherQueue.TryEnqueue(() =>
             {
                 CheckValid();
             });
