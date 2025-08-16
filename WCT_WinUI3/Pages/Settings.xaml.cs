@@ -57,7 +57,7 @@ namespace WCT_WinUI3.Pages
             VersionMajor.Text = CoreSettings.Version.Major.ToString();
             VersionMinor.Text = CoreSettings.Version.Minor.ToString();
             VersionBuild.Text = CoreSettings.Version.Build.ToString();
-            SpVersion.Text = "(pre-release)";
+            SpVersion.Text = string.Empty;
         }
 
         public void AskResetAll()
