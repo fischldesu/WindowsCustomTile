@@ -1,25 +1,28 @@
-## Wiki 使用说明
+## 使用说明 wiki
 
-Coming soon 
+使用说明文档 [请点击这里](https://repo.fischldesu.com/WindowsCustomTile/wiki)
+English [Basic Wiki](https://github.com/fischldesu/WindowsCustomTile/wiki)   
 
-## Develop Plan (Feature)
+## 开发计划 路线
 
-- [x] Multilanguage: full support
-- [x] Unify and update page layout
-- v0.0.4 prerelease
+- v0.1 release (20250817)
+- [ ] UI逻辑优化
+- [ ] 更优的启动命令逻辑
 
-- [x] Integrates SpecialTile: Multiple Photo Gallery
-- [x] Background tile update task
+- v0.1.1
+- [ ] 优化软件体积(代码裁剪 直接默认裁剪会导致`WCTCore`中`IBackgroundTask`无法触发)
+- v0.1.x
 
-- [ ] Some other feature optimizations
+- [ ] 半可视化磁贴编辑器
+- v0.2
 
-- v0.1 release
+- [ ] 通过HTTP请求(可能类Py爬虫)获取流媒体、博客等消息展示到磁贴 [#3](https://github.com/fischldesu/WindowsCustomTile/issues/3)
 
-## Extended Ideas
-- Personal HTTPXmlServer  
-- [#3](https://github.com/fischldesu/WindowsCustomTile/issues/3)
-get HTTP response from web-stream, blog, etc... for tile displays
-## Known Unsolved Issue
-Not found yet
-## Dev log
+- v0.3
+
+## 已知问题
+
+对于本身需要管理员运行的`EXE`等文件，并不能直接启动并通过UAC使用户获取权限 当前算是设计缺陷
+
+## 开发日志
 See [Git Commit](https://github.com/fischldesu/WindowsCustomTile/commits/master/)
