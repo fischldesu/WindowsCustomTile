@@ -21,14 +21,14 @@
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="auto" />
     </Grid.ColumnDefinitions>
-    <Components:SlideShowTilePreviewer x:Name="SlideShowLarge" Tag="TileLarge"
+    <local:SlideShowTilePreviewer x:Name="SlideShowLarge" Tag="TileLarge"
                                        RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Large"
                                        HorizontalAlignment="Left" Grid.RowSpan="2"
                                        Visibility="{x:Bind RadioButtonLarge.IsChecked, Mode=OneWay}" />
-    <Components:SlideShowTilePreviewer x:Name="SlideShowWide" Tag="TileWide" RequestPreview="SlideShow_RequestPreview"
+    <local:SlideShowTilePreviewer x:Name="SlideShowWide" Tag="TileWide" RequestPreview="SlideShow_RequestPreview"
                                        UnitSize="50" TileSize="Wide" HorizontalAlignment="Left" Grid.RowSpan="2"
                                        Visibility="{x:Bind RadioButtonWide.IsChecked, Mode=OneWay}" />
-    <Components:SlideShowTilePreviewer x:Name="SlideShowMedium" Tag="TileMedium"
+    <local:SlideShowTilePreviewer x:Name="SlideShowMedium" Tag="TileMedium"
                                        RequestPreview="SlideShow_RequestPreview" UnitSize="50" TileSize="Medium"
                                        HorizontalAlignment="Left" Grid.RowSpan="2"
                                        Visibility="{x:Bind RadioButtonMedium.IsChecked, Mode=OneWay}" />

@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.System.Profile;
+using WCT_WinUI3.Components.HTTPXmlServer;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,12 +34,13 @@ namespace WCT_WinUI3.Pages
             NewItem("uri 1");
         }
 
-        public Components.XmlUriInput NewItem(string header = "")
+        public XmlUriInput NewItem(string header = "")
         {
             if(header == string.Empty)
-                header = $"uri {inputStack.Children.Count + 1}";
+                header = $"uri {UriInputListView.Items.Count + 1}";
+            //header = $"uri {inputStack.Children.Count + 1}";
 
-            var item = new Components.XmlUriInput()
+            var item = new XmlUriInput()
             {
                 Header = header,
                 Margin = new Thickness(0, 0, 0, 8)
@@ -46,15 +48,8 @@ namespace WCT_WinUI3.Pages
 
             item.RequestRemove += RequestRemoveOne;
 
-            inputStack.Children.Add(item);
-
-            var animation = new Utility.Animation.Appearance(item)
-            {
-                TransitionDuration = new Duration(TimeSpan.FromMilliseconds(300)),
-                Translate = 35,
-                Opacity = 0.2
-            };
-            animation.Start(true);
+            UriInputListView.Items.Add(item);
+            //inputStack.Children.Add(item);
             return item;
         }
 
@@ -63,14 +58,14 @@ namespace WCT_WinUI3.Pages
             var uriList = new List<Uri>();
             var invalids = new List<string>();
 
-            foreach (var item in inputStack.Children)
-                if (item is Components.XmlUriInput uriInput)
+            foreach (var item in UriInputListView.Items)
+                if (item is XmlUriInput uriInput)
                 {
                     if (uriInput.Uri != null) uriList.Add(uriInput.Uri);
                     else invalids.Add(uriInput.Header);
                 }
 
-            if (inputStack.Children.Count < 0)
+            if (UriInputListView.Items.Count < 0)
             {
                 App.mainWindow?.ShowInfoBand(Utility.I18N.Lang.Text("G_Warning"),
                     Utility.I18N.Lang.Text("Info_NoValidSrv"),
@@ -140,7 +135,7 @@ namespace WCT_WinUI3.Pages
             NewItem();
         }
 
-        public void RequestRemoveOne(object? from, Components.XmlUriInput? input)
+        public void RequestRemoveOne(object? from, XmlUriInput? input)
         {
             if (input != null)
             {
@@ -149,14 +144,14 @@ namespace WCT_WinUI3.Pages
 
                 //};
                 //animation.Start(true).Completed +=(obj, _)=>{
-                    inputStack.Children.Remove(input);
+                    UriInputListView.Items.Remove(input);
                 //};
             }
         }
 
         private void clear_Click(object sender, RoutedEventArgs e)
         {
-            inputStack.Children.Clear();
+            UriInputListView.Items.Clear();
         }
 
         private async void submit_Click(object sender, RoutedEventArgs e)
@@ -166,10 +161,10 @@ namespace WCT_WinUI3.Pages
 
         private void randomize_Click(object sender, RoutedEventArgs e)
         {
-            if (inputStack.Children.Count <= 1)
+            if (UriInputListView.Items.Count <= 1)
                 return;
 
-            var list = inputStack.Children.Cast<UIElement>().ToList();
+            var list = UriInputListView.Items.Cast<UIElement>().ToList();
 
             var rng = new Random();
             int n = list.Count;
@@ -180,10 +175,10 @@ namespace WCT_WinUI3.Pages
                 (list[n], list[k]) = (list[k], list[n]);
             }
 
-            inputStack.Children.Clear();
+            UriInputListView.Items.Clear();
             foreach (var item in list)
             {
-                inputStack.Children.Add(item);
+                UriInputListView.Items.Add(item);
                 var animation = new Utility.Animation.Appearance(item)
                 {
                     TransitionDuration = new Duration(TimeSpan.FromMilliseconds(300)),

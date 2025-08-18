@@ -51,11 +51,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Components\SlideShowTilePreviewer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
     <Page Update="Components\DocumentationDropdownButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -72,11 +67,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="LogWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Update="Components\ImageTilePreviewer.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -139,6 +129,9 @@
     <Page Update="Components\Scheduled\SubmitDialogContent.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Components\HTTPXmlServer\" />
   </ItemGroup>
 
   <!--

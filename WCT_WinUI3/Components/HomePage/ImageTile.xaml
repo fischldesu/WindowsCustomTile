@@ -21,7 +21,7 @@
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="auto" />
     </Grid.ColumnDefinitions>
-    <Components:ImageTilePreviewer x:Name="previewer" UnitSize="49" />
+    <local:ImageTilePreviewer x:Name="previewer" UnitSize="49" />
     <Grid Grid.Row="0" Grid.Column="1">
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />

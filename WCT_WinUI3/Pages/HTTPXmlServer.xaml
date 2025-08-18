@@ -27,7 +27,7 @@
       </Grid.RowDefinitions>
       <Border Grid.RowSpan="2" Style="{StaticResource BorderSectionStyle}">
         <ScrollViewer Name="ContentContainer" Padding="16">
-          <StackPanel x:Name="inputStack" Orientation="Vertical" />
+          <ListView x:Name="UriInputListView" CanDragItems="True" CanReorderItems="True" AllowDrop="True" ItemContainerStyle="{StaticResource NoBackgroundListViewItemStyle}" />
         </ScrollViewer>
       </Border>
       <StackPanel Name="RightPanelTop" Grid.Column="1" Orientation="Vertical" Spacing="8">

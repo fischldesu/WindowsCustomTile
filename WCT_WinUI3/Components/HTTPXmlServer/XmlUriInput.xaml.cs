@@ -16,7 +16,7 @@ using Windows.Foundation.Collections;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace WCT_WinUI3.Components
+namespace WCT_WinUI3.Components.HTTPXmlServer
 {
     public sealed partial class XmlUriInput : UserControl
     {
