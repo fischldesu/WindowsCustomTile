@@ -23,6 +23,7 @@ internal partial class Settings : INotifyPropertyChanged
         Instance.NoNotification = false;
         Instance.AutoUpdateNextTileIndex = 0;
 
+        Windows.UI.Notifications.TileUpdateManager.CreateTileUpdaterForApplication().Clear();
         Tasks.Background.BackgroundTileUpdater.UnregisterAll();
     }
 
