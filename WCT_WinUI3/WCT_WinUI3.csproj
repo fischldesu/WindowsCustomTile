@@ -161,5 +161,7 @@
     <AppxBundlePlatforms>x64</AppxBundlePlatforms>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <DefaultLanguage>zh-CN</DefaultLanguage>
+    <AssemblyName>WindowsCustomTile</AssemblyName>
+    <ApplicationIcon>Assets\WindowIcon.ico</ApplicationIcon>
   </PropertyGroup>
 </Project>

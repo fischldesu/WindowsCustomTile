@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("WCT_WinUI3")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("WindowsCustomTile")]
 namespace Fischldesu.WCTCore;
 
 internal partial class Settings : INotifyPropertyChanged
