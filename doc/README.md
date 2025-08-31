@@ -26,6 +26,9 @@ English [Basic Wiki](https://github.com/fischldesu/WindowsCustomTile/wiki)
 而对于本身需要管理员运行的`EXE`等文件，会导致并不能直接启动/通过UAC使用户获取权限  
 当前算是设计缺陷 后续会改进
 暂时解决办法：使用bat cmd 等脚本中间层执行
+2. 变化的动态磁贴（幻灯片、磁贴队列等）在一些情况下会失效（不显示、停止）
+3. 部分动态磁贴内容在更新时无法生效，始终是上一次的内容（如幻灯片磁贴）  
+解决办法：来回的切换磁贴大小
 
 ## 开发日志
 See [Git Commit](https://github.com/fischldesu/WindowsCustomTile/commits/master/)
