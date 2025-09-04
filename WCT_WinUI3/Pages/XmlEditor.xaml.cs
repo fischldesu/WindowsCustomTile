@@ -41,8 +41,11 @@ namespace WCT_WinUI3.Pages
                 if (xmlText.Length < 4)
                     throw new ArgumentException("Invalid Xml text");
                 xmlDoc.LoadXml(xmlText);
-
-                ret = await Utility.AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), xmlText);
+                ScrollView container = new()
+                {
+                    Content = new TextBlock() { Text = xmlText }
+                };
+                ret = await Utility.AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), container);
             }
             catch (Exception)
             {
