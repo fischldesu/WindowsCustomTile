@@ -429,4 +429,10 @@
   <data name="G_ContinueInSchedulePage" xml:space="preserve">
     <value>在计划任务中继续编辑</value>
   </data>
+  <data name="Info_RunningAsAdmin" xml:space="preserve">
+    <value>App正以管理员方式运行</value>
+  </data>
+  <data name="Info_SomeFunctionUnavailable" xml:space="preserve">
+    <value>部分功能可能无法正常使用</value>
+  </data>
 </root>

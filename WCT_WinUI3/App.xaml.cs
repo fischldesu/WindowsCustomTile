@@ -121,7 +121,7 @@ namespace WCT_WinUI3
                 return;
             }
 
-            if (DirectLaunch())
+            if (NeedShowWindow())
                 mainWindow.Activate();
             
         }
@@ -143,11 +143,11 @@ namespace WCT_WinUI3
         }
 
         /// <returns>Display MainWindow or not</returns>
-        private bool DirectLaunch()
+        private bool NeedShowWindow()
         {
             if (!ExcuteLaunchCommand())
                 return true;
-            return Settings.Instance.LaunchAlwaysShowWindow || Administrator();
+            return Settings.Instance.LaunchAlwaysShowWindow;
         }
 
         /// <returns>Excute launch command failed or success</returns>

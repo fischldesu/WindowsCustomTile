@@ -429,4 +429,10 @@
   <data name="G_ContinueInSchedulePage" xml:space="preserve">
     <value>Continue in Scheduled page</value>
   </data>
+  <data name="Info_RunningAsAdmin" xml:space="preserve">
+    <value>App is running as Administrator</value>
+  </data>
+  <data name="Info_SomeFunctionUnavailable" xml:space="preserve">
+    <value>Some functions may not work properly</value>
+  </data>
 </root>

@@ -189,6 +189,14 @@ namespace WCT_WinUI3
         private void view_Loaded(object sender, RoutedEventArgs e)
         {
             view.SelectedItem = navigationDefaultItem;
+            if (App.Administrator())
+            {
+                infoBar.Title = Utility.I18N.Lang.Text("Info_RunningAsAdmin");
+                infoBar.Message = Utility.I18N.Lang.Text("Info_SomeFunctionUnavailable");
+                infoBar.Severity = InfoBarSeverity.Warning;
+                infoBar.IsOpen = true;
+                infoBar.IsClosable = true;
+            }
         }
 
         private void infoBand_PointerPressed(object sender, PointerRoutedEventArgs e)
