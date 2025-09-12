@@ -23,6 +23,12 @@ namespace WCT_WinUI3.Components
             get { return pivot.SelectedIndex == 0; }
         }
 
+        public int PivotSelectedIndex
+        {
+            get => pivot.SelectedIndex;
+            set => pivot.SelectedIndex = value;
+        }
+
         public TileXmlEditor()
         {
             this.InitializeComponent();

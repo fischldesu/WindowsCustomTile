@@ -393,7 +393,7 @@
   <data name="G_Open" xml:space="preserve">
     <value>Open</value>
   </data>
-  <data name="G_Close" xml:space="preserve">
+  <data name="几" xml:space="preserve">
     <value>Close</value>
   </data>
   <data name="Settings_AutoTileQueue" xml:space="preserve">
@@ -425,5 +425,8 @@
   </data>
   <data name="G_MaxTolimit" xml:space="preserve">
     <value>Upper limit is</value>
+  </data>
+  <data name="G_ContinueInSchedulePage" xml:space="preserve">
+    <value>Continue in Scheduled page</value>
   </data>
 </root>

@@ -12,6 +12,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using WCT_WinUI3.Utility;
 using Fischldesu.WCTCore;
+using WCT_WinUI3.Pages;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -24,7 +25,7 @@ namespace WCT_WinUI3
         {
             Main,
             XmlEditor,
-            Interval,
+            Scheduled,
             HTTPXmlServer,
             Settings
         }
@@ -108,10 +109,10 @@ namespace WCT_WinUI3
             AppWindow.SetIcon("Assets/WindowIcon.ico");
         }
 
-        public readonly Pages.HomePage main = new();
-        public readonly Pages.XmlEditor xmlEditor = new();
+        public readonly Pages.HomePage Main = new();
+        public readonly Pages.XmlEditor XmlEditor = new();
         public readonly Pages.Scheduled Scheduled = new();
-        public readonly Pages.HTTPXmlServer httpsrv = new();
+        public readonly Pages.HTTPXmlServer HTTPXmlServer = new();
 
         private Action? infoBandCloseCancelToken;
 
@@ -139,7 +140,21 @@ namespace WCT_WinUI3
             Log.Append($"{Title} {message}", logLevel);
         }
 
-        private void NavigateToContent(Page pageInstance)
+        public void NavigateTo(PageType page)
+        {
+            if (page == PageType.Settings)
+            {
+                view.SelectedItem = view.SettingsItem;
+                return;
+            }
+
+            var viewItems = view.MenuItems.OfType<NavigationViewItem>();
+            var viewItem = viewItems.FirstOrDefault(item => item.Tag.ToString() == page.ToString());
+            if (viewItem != null)
+                view.SelectedItem = viewItem;
+        }
+
+        private void NavigationViewDisplayContent(Page pageInstance)
         {
             var animation = new Utility.Animation.Appearance(pageInstance)
             {
@@ -152,9 +167,7 @@ namespace WCT_WinUI3
 
         private void view_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.IsSettingsSelected) NavigateToContent(
-                new Pages.Settings()
-                );
+            if (args.IsSettingsSelected) NavigationViewDisplayContent(new Pages.Settings());
             else
             {
                 var selected = args.SelectedItem as NavigationViewItem;
@@ -162,13 +175,13 @@ namespace WCT_WinUI3
                 {
                     Page page = (selected.Tag as string) switch
                     {
-                        "main" => main,
-                        "xmlEditor" => xmlEditor,
-                        "interval" => Scheduled,
-                        "httpsrv" => httpsrv,
-                        _ => main,
+                        nameof(Main) => Main,
+                        nameof(XmlEditor) => XmlEditor,
+                        nameof(Scheduled) => Scheduled,
+                        nameof(HTTPXmlServer) => HTTPXmlServer,
+                        _ => Main,
                     };
-                    NavigateToContent(page);
+                    NavigationViewDisplayContent(page);
                 }
             }
         }

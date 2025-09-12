@@ -393,7 +393,7 @@
   <data name="G_Open" xml:space="preserve">
     <value>打开</value>
   </data>
-  <data name="G_Close" xml:space="preserve">
+  <data name="几" xml:space="preserve">
     <value>关闭</value>
   </data>
   <data name="Settings_AutoTileQueue" xml:space="preserve">
@@ -425,5 +425,8 @@
   </data>
   <data name="G_MaxTolimit" xml:space="preserve">
     <value>最多数量为</value>
+  </data>
+  <data name="G_ContinueInSchedulePage" xml:space="preserve">
+    <value>在计划任务中继续编辑</value>
   </data>
 </root>

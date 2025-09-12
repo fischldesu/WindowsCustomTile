@@ -74,6 +74,16 @@ namespace WCT_WinUI3.Pages
             if (xmlText != null)
                 await Submit(xmlText);
         }
-        
+
+        private void ContinueInSchedulePage_Click(object sender, RoutedEventArgs e)
+        {
+            App.mainWindow?.NavigateTo(PageType.Scheduled);
+            var editor = App.mainWindow?.Scheduled.NewTab();
+            if (editor != null)
+            {
+                editor.Editor.TextDocument.SetText(Microsoft.UI.Text.TextSetOptions.None, this.editor.GetXml());
+                editor.PivotSelectedIndex = 1;
+            }
+        }
     }
 }

@@ -24,9 +24,9 @@
           </Components:DocumentationDropdownButton>
         </Components:PageFooter.FrontContent>
         <Components:PageFooter.RearContent>
-          <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button x:Name="selectFile" Click="selectFile_Click" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}"
-                    Margin="0 0 8 0" />
+          <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Spacing="8">
+            <Button x:Name="ContinueInSchedulePage" Click="ContinueInSchedulePage_Click" Content="{x:Bind i18n:Lang.Text('G_ContinueInSchedulePage')}" />
+            <Button x:Name="selectFile" Click="selectFile_Click" Content="{x:Bind i18n:Lang.Text('G_SelectXmlFile')}" />
             <Button x:Name="submit" Click="submit_Click" Content="{x:Bind i18n:Lang.Text('Button_Submit')}"
                     HorizontalAlignment="Right" Style="{StaticResource AccentButtonStyle}" />
           </StackPanel>
