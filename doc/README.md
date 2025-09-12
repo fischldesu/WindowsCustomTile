@@ -7,7 +7,8 @@ English [Basic Wiki](https://github.com/fischldesu/WindowsCustomTile/wiki)
 
 - v0.1 release (20250817)
 - [ ] UI逻辑优化
-- [ ] 更优的启动命令逻辑
+- [x] 更优的启动命令逻辑
+[6d23db3](https://github.com/fischldesu/WindowsCustomTile/commit/367a34eb2759e6985a94567da030bc744a7e77f4)
 
 - v0.1.1
 - [ ] 优化软件体积(代码裁剪 直接默认裁剪会导致`WCTCore`中`IBackgroundTask`无法触发)
