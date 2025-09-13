@@ -43,7 +43,7 @@ namespace WCT_WinUI3.Pages
                 xmlDoc.LoadXml(xmlText);
                 ScrollView container = new()
                 {
-                    Content = new TextBlock() { Text = xmlText }
+                    Content = new TextBlock() { Text = xmlText, FontFamily = new FontFamily("Consolas") }
                 };
                 ret = await Utility.AppContentDialog.ShowAsync(Utility.I18N.Lang.Text("Dialog_AskApplyChanges"), container);
             }

@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Reflection.Metadata;
+using WCT_WinUI3.Utility;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
 
@@ -49,19 +50,25 @@ namespace WCT_WinUI3.Components
 
         public static string FromTemplate(string small, string mid, string wide, string large)
         {
+            const string spaces = "      ";
+            small = Toolsets.AddPrefixForEachLine(small, spaces);
+            mid = Toolsets.AddPrefixForEachLine(mid, spaces);
+            wide = Toolsets.AddPrefixForEachLine(wide, spaces);
+            large = Toolsets.AddPrefixForEachLine(large, spaces);
+
             return $@"<tile>
   <visual>
     <binding template='TileSmall'>
-      {small}
+{small}
     </binding>
     <binding template='TileMedium'>
-      {mid}
+{mid}
     </binding>
     <binding template='TileWide'>
-      {wide}
+{wide}
     </binding>
     <binding template='TileLarge'>
-      {large}
+{large}
     </binding>
   </visual>
 </tile>
