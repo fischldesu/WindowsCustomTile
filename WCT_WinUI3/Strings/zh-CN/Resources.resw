@@ -435,4 +435,7 @@
   <data name="Info_SomeFunctionUnavailable" xml:space="preserve">
     <value>部分功能可能无法正常使用</value>
   </data>
+  <data name="G_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
 </root>
