@@ -9,7 +9,7 @@ English [Basic Wiki](https://github.com/fischldesu/WindowsCustomTile/wiki)
 - [ ] UI逻辑优化
 [6d23db3](https://github.com/fischldesu/WindowsCustomTile/commit/6d23db36a69a920fcb5cc404a1046db33a22f52d)
 [40d6786](https://github.com/fischldesu/WindowsCustomTile/commit/40d67866b0b859ebf58da02cda6d415ada9a2234)
-- [x] 更优的启动命令逻辑
+- [ ] 更优的启动命令逻辑
 [367a34e](https://github.com/fischldesu/WindowsCustomTile/commit/367a34eb2759e6985a94567da030bc744a7e77f4)
 
 - v0.1.1
