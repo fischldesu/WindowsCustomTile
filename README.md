@@ -47,4 +47,4 @@ Windows Custom Tile 是一款可以让你快速个性化、自定义 Windows开�
 <br>  
 This software codes are licensed under the MIT License.
 <br>
-© fischldesu 2025
+© fischldesu 2026
