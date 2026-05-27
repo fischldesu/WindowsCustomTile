@@ -174,7 +174,7 @@ namespace WCT_WinUI3
             }
             catch (Exception e)
             {
-                Log.Error($"Error while excuting [{command}] Exception: {e.Message}");
+                Log.Error($"Error while executing [{command}] Exception: {e.Message}");
             }
             return false;
         }
