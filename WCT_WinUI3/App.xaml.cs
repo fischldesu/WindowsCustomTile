@@ -123,7 +123,8 @@ namespace WCT_WinUI3
 
             if (NeedShowWindow())
                 mainWindow.Activate();
-            
+            else
+                Current.Exit();
         }
 
         /// <returns>Display MainWindow or not</returns>
