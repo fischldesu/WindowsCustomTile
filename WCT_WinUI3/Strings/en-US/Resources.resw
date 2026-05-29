@@ -438,4 +438,7 @@
   <data name="G_Close" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="Page_Home_LaunchCmd_SelectFileToOpen" xml:space="preserve">
+    <value>Select file or program</value>
+  </data>
 </root>

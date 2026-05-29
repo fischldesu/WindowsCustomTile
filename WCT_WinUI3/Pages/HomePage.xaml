@@ -45,6 +45,7 @@
               <Button.Flyout>
                 <MenuFlyout>
                   <MenuFlyoutItem x:Name="LaunchCmd_Excute" Icon="NewWindow" Text="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmd_ExcuteImmediately')}" Click="LaunchCommandFlyoutItem_Click" />
+                  <MenuFlyoutItem x:Name="LaunchCmd_SelectFile" Icon="OpenFile" Text="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmd_SelectFileToOpen')}" Click="LaunchCommandFlyoutItem_Click" />
                   <MenuFlyoutItem x:Name="LaunchCmd_Reset" Icon="Delete" Text="{x:Bind i18n:Lang.Text('Settings_Reset_Opt')}" Click="LaunchCommandFlyoutItem_Click" />
                 </MenuFlyout>
               </Button.Flyout>
@@ -52,7 +53,7 @@
             <Button x:Name="launchCmdApply" Grid.Column="2" Height="32" CornerRadius="0 4 4 0" Style="{StaticResource AccentButtonStyle}" 
                     Content="{x:Bind i18n:Lang.Text('Button_Apply')}"
                     Click="launchCmdApply_Click"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="2">
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
               <RadioButton x:Name="LaunchCmdType_cmd" Tag="cmd"
                            Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmdType_Cmd')}" GroupName="LaunchCmdType" />
               <RadioButton x:Name="LaunchCmdType_uri" Tag="uri"

@@ -117,6 +117,19 @@ namespace WCT_WinUI3.Pages
                 }
 
             }
+            else if (ReferenceEquals(sender, LaunchCmd_SelectFile))
+            {
+                try
+                {
+                    var path = await Utility.FilePicker.PickSingleFile(["*"], false);
+                    if (path != null)
+                    {
+                        launchCmdInputer.Text = new Uri(path).AbsoluteUri;
+                        LaunchCmdType_uri.IsChecked = true;
+                    }
+                }
+                catch { }
+            }
             else if (ReferenceEquals(sender, LaunchCmd_Reset))
             {
                 CoreSettings.Instance.LaunchCommand = null;
