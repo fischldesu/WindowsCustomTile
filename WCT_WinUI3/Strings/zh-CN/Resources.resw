@@ -393,9 +393,6 @@
   <data name="G_Open" xml:space="preserve">
     <value>打开</value>
   </data>
-  <data name="几" xml:space="preserve">
-    <value>关闭</value>
-  </data>
   <data name="Settings_AutoTileQueue" xml:space="preserve">
     <value>自动磁贴队列</value>
   </data>
@@ -440,5 +437,8 @@
   </data>
   <data name="Page_Home_LaunchCmd_SelectFileToOpen" xml:space="preserve">
     <value>选择需要打开的文件或程序</value>
+  </data>
+  <data name="Page_Home_Sudo" xml:space="preserve">
+    <value>提权运行</value>
   </data>
 </root>
