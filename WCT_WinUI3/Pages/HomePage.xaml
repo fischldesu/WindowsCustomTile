@@ -58,7 +58,7 @@
             <Button x:Name="launchCmdApply" Grid.Column="2" Height="32" CornerRadius="0 4 4 0" Style="{StaticResource AccentButtonStyle}" 
                     Content="{x:Bind i18n:Lang.Text('Button_Apply')}"
                     Click="launchCmdApply_Click"/>
-            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3">
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" Spacing="8">
               <RadioButton x:Name="LaunchCmdType_cmd" Tag="cmd"
                            Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmdType_Cmd')}" GroupName="LaunchCmdType" />
               <RadioButton x:Name="LaunchCmdType_uri" Tag="uri"
