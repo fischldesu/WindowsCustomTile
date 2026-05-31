@@ -63,6 +63,18 @@ internal partial class Settings : INotifyPropertyChanged
             }
         }
     }
+    public bool Sudo
+    {
+        get => GetIntValue(nameof(Sudo)) > 0;
+        set
+        {
+            if (value != Sudo)
+            {
+                SetIntValue(nameof(Sudo), value ? 1 : 0);
+                Instance.OnPropertyChanged(nameof(Sudo));
+            }
+        }
+    }
     public bool NoNotification
     {
         get => GetIntValue(nameof(NoNotification)) > 0;

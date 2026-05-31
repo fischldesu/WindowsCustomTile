@@ -9,9 +9,14 @@
   xmlns:LocalComponents="using:WCT_WinUI3.Components.HomePage"
   xmlns:Proj="using:WCT_WinUI3"
   xmlns:i18n="using:WCT_WinUI3.Utility.I18N"
+  xmlns:Convert="using:WCT_WinUI3.Utility.Convert"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
   mc:Ignorable="d">
+
+  <Page.Resources>
+    <Convert:NullableBoolToBoolConverter x:Key="NullableBoolToBoolConverter" />
+  </Page.Resources>
 
   <Grid Padding="32" RowSpacing="16">
     <Grid.RowDefinitions>
@@ -58,6 +63,10 @@
                            Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmdType_Cmd')}" GroupName="LaunchCmdType" />
               <RadioButton x:Name="LaunchCmdType_uri" Tag="uri"
                            Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchCmdType_URL')}" GroupName="LaunchCmdType" />
+              <CheckBox x:Name="Sudo" Content="{x:Bind i18n:Lang.Text('Page_Home_Sudo')}"
+                        IsChecked="{Binding Sudo}"
+                        IsEnabled="{x:Bind LaunchCmdType_cmd.IsChecked, Converter={StaticResource NullableBoolToBoolConverter}, Mode=OneWay}"
+                        ToolTipService.ToolTip="Run as administrator" />
               <CheckBox x:Name="alwaysShowWindow" Content="{x:Bind i18n:Lang.Text('Page_Home_LaunchAlwaysShowWindow')}"
                         IsChecked="{Binding LaunchAlwaysShowWindow}"
                         ToolTipService.ToolTip="Always show main window at app launch" />

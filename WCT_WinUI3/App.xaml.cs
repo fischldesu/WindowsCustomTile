@@ -16,6 +16,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using Microsoft.Windows.AppLifecycle;
 using Windows.System;
 using Fischldesu.WCTCore;
@@ -166,7 +167,19 @@ namespace WCT_WinUI3
                         Launcher.LaunchUriAsync(new Uri(command)).Wait();
                         return true;
                     case "cmd":
-                        System.Diagnostics.Process.Start(command);
+                        if (Settings.Instance.Sudo)
+                        {
+                            Process.Start(new ProcessStartInfo
+                            {
+                                FileName = command,
+                                UseShellExecute = true,
+                                Verb = "runas"
+                            });
+                        }
+                        else
+                        {
+                            Process.Start(command);
+                        }
                         return true;
                     default:
                         return false;

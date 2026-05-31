@@ -52,7 +52,7 @@ namespace WCT_WinUI3.Pages
                     settings.LaunchCommand = text;
                     settings.LaunchCommandType = (bool)uri ? "uri" : "cmd";
                     settings.LaunchAlwaysShowWindow = (bool)asw;
-
+                    settings.Sudo = Sudo.IsChecked ?? false;
                     ret = true;
                 }
             }
